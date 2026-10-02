@@ -142,6 +142,23 @@ export const ProfileView: React.FC = () => {
 
   return (
     <div className="pulse-profile-page">
+      {/* Top Header Row with Settings Action */}
+      <div className="pulse-profile-top-bar">
+        <div>
+          <h2 className="pulse-page-title">VIP Player Profile</h2>
+          <p className="pulse-page-sub">Circuit 52 Black Card Status & Club Privileges</p>
+        </div>
+        <button
+          type="button"
+          className="pulse-profile-settings-btn"
+          onClick={() => setIsSettingsOpen(true)}
+          aria-label="Open Settings"
+          title="Club Preferences & House Rules"
+        >
+          <Settings size={18} />
+        </button>
+      </div>
+
       {/* Header Profile Identity Card */}
       <div className="pulse-profile-hero-card">
         <div className="pulse-profile-avatar-large">

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import type {
   PrimaryCategory,
   BottomTab,
@@ -165,7 +165,23 @@ export const PulseProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [activeTab, setActiveTab] = useState<BottomTab>('HOME');
   const [activeCategory, setActiveCategory] = useState<PrimaryCategory>('DINING');
   const [activeFilterChip, setActiveFilterChip] = useState<QuickFilterId>('NEAR_ME');
-  const [isPhoneFrameMode, setIsPhoneFrameMode] = useState<boolean>(true);
+  const [isPhoneFrameMode, setIsPhoneFrameMode] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth > 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsPhoneFrameMode(false);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Location
   const [currentLocation, setCurrentLocation] = useState<LocationItem>(LOCATIONS[0]);
