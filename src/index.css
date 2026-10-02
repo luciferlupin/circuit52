@@ -153,7 +153,7 @@ input, select, textarea {
 
 .pulse-viewport-container.fluid-mode {
   padding: 0;
-  background: #000000;
+  background: var(--bg-main);
 }
 
 .pulse-desktop-mode-switcher {
@@ -186,7 +186,7 @@ input, select, textarea {
 }
 
 .pulse-phone-shell {
-  background: #000000;
+  background: var(--bg-main);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -237,7 +237,7 @@ input, select, textarea {
   justify-content: space-between;
   align-items: center;
   padding: 10px 18px 4px;
-  background: #000000;
+  background: var(--bg-main);
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -250,7 +250,7 @@ input, select, textarea {
   align-items: center;
   gap: 6px;
   padding: 3px 12px;
-  background: #000000;
+  background: #020612;
   border-radius: 20px;
   box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.28), 0 0 10px rgba(37, 99, 235, 0.2);
 }
@@ -286,7 +286,7 @@ input, select, textarea {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: #000000;
+  background: var(--bg-main);
   padding-bottom: 96px; /* Space for floating bottom nav */
 }
 
@@ -298,7 +298,7 @@ input, select, textarea {
   position: sticky;
   top: 0;
   z-index: 85;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(8, 13, 26, 0.94);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 10px 16px 12px;
@@ -962,7 +962,7 @@ input, select, textarea {
   gap: 5px;
   padding: 3px 8px;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(10, 20, 48, 0.88);
   border: 1px solid rgba(59, 130, 246, 0.25);
   backdrop-filter: blur(6px);
   font-size: 0.68rem;
@@ -1000,7 +1000,7 @@ input, select, textarea {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(10, 20, 48, 0.85);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   display: flex;
@@ -1042,7 +1042,7 @@ input, select, textarea {
 }
 
 .pulse-card-distance-pill {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
@@ -1139,7 +1139,7 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
@@ -1167,7 +1167,7 @@ input, select, textarea {
 .pulse-cert-pill {
   padding: 2px 5px;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   font-size: 0.6rem;
   font-weight: 800;
   color: #fff;
@@ -1287,7 +1287,7 @@ input, select, textarea {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   backdrop-filter: blur(4px);
   color: #60a5fa;
   font-size: 0.65rem;
@@ -1304,7 +1304,7 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
@@ -1382,7 +1382,7 @@ input, select, textarea {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(10, 20, 48, 0.85);
   border: 1px solid var(--border-subtle);
   color: #fff;
   font-size: 0.65rem;
@@ -1480,7 +1480,7 @@ input, select, textarea {
   width: 100%;
   overflow: hidden;
   user-select: none;
-  background: #000000;
+  background: var(--bg-main);
 }
 
 .pulse-detail-hero-img {
@@ -1504,7 +1504,7 @@ input, select, textarea {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(10, 20, 48, 0.8);
   backdrop-filter: blur(6px);
   color: #fff;
   display: flex;
@@ -1600,7 +1600,7 @@ input, select, textarea {
 }
 
 .pulse-detail-pill.open {
-  color: #60a5fa;
+  color: #34d399;
 }
 
 .pulse-detail-action-buttons-grid {
@@ -1840,8 +1840,8 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(0, 0, 0, 0.98);
-  backdrop-filter: blur(16px);
+  background: rgba(14, 23, 46, 0.96);
+  backdrop-filter: blur(20px);
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -2236,8 +2236,8 @@ input, select, textarea {
 
 .pulse-booking-footer {
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(0, 0, 0, 0.98);
-  border-top: 1px solid var(--border-medium);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2762,8 +2762,8 @@ input, select, textarea {
 
 .pulse-seat-footer {
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(0, 0, 0, 0.98);
-  border-top: 1px solid var(--border-medium);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2965,8 +2965,8 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(0, 0, 0, 0.98);
-  border-top: 1px solid var(--border-medium);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3168,13 +3168,18 @@ input, select, textarea {
 }
 
 .pulse-coupon-apply-btn {
-  padding: 4px 10px;
+  padding: 6px 14px;
+  min-height: 36px;
   background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
   color: #ffffff;
   border: 1px solid rgba(96, 165, 250, 0.4);
-  border-radius: 4px;
-  font-size: 0.72rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
   font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pulse-coupon-error {
@@ -3372,8 +3377,8 @@ input, select, textarea {
 
 .pulse-checkout-footer {
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(0, 0, 0, 0.98);
-  border-top: 1px solid var(--border-medium);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3412,8 +3417,8 @@ input, select, textarea {
 .pulse-ticket-modal-card {
   width: 100%;
   max-width: 360px;
-  background: linear-gradient(160deg, #091638 0%, #01040a 100%);
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: linear-gradient(160deg, #10214d 0%, #0a1124 100%);
+  border: 1px solid rgba(147, 197, 253, 0.35);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-elevated);
@@ -3440,7 +3445,7 @@ input, select, textarea {
 
 .pulse-digital-pass-body {
   padding: 16px;
-  background: #000000;
+  background: linear-gradient(180deg, #0d1730 0%, #091024 100%);
 }
 
 /* Animated Security Shimmer Ribbon */
@@ -3521,7 +3526,7 @@ input, select, textarea {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #000000;
+  background: var(--bg-main);
   border: 1px solid var(--border-subtle);
 }
 .pulse-cutout-notch.left { margin-left: -8px; }
@@ -3648,7 +3653,7 @@ input, select, textarea {
   grid-template-columns: 2fr 1fr 1fr;
   gap: 8px;
   padding: 12px 16px;
-  background: #000000;
+  background: rgba(14, 23, 46, 0.95);
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -3714,8 +3719,8 @@ input, select, textarea {
 .pulse-success-modal-card {
   width: 100%;
   max-width: 360px;
-  background: linear-gradient(160deg, #091638 0%, #01040a 100%);
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: linear-gradient(160deg, #10214d 0%, #0a1124 100%);
+  border: 1px solid rgba(147, 197, 253, 0.35);
   border-radius: var(--radius-xl);
   padding: 24px 20px;
   text-align: center;
@@ -3841,19 +3846,27 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px;
+  padding: 8px 12px;
+  min-height: 40px;
   border-radius: var(--radius-sm);
   background: rgba(10, 22, 56, 0.5);
   border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
   color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .pulse-link-dismiss {
   font-size: 0.74rem;
   color: var(--text-muted);
   margin-top: 4px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -4669,7 +4682,7 @@ input, select, textarea {
     min-height: 100dvh !important;
     height: 100% !important;
     overflow-x: hidden !important;
-    background-color: #000000 !important;
+    background-color: var(--bg-main) !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -4677,7 +4690,7 @@ input, select, textarea {
   .pulse-viewport-container {
     padding: 0 !important;
     margin: 0 !important;
-    background: #000000 !important;
+    background: var(--bg-main) !important;
     min-height: 100dvh !important;
     height: 100dvh !important;
     max-height: 100dvh !important;
@@ -5355,10 +5368,10 @@ input, select, textarea {
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  background: rgba(1, 4, 10, 0.98) !important;
+  background: rgba(14, 23, 46, 0.96) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-top: 1px solid rgba(59, 130, 246, 0.25) !important;
+  border-top: 1px solid rgba(147, 197, 253, 0.22) !important;
   padding: 12px 16px max(16px, env(safe-area-inset-bottom, 16px)) !important;
   z-index: 30 !important;
 }
@@ -5403,7 +5416,7 @@ input, select, textarea {
 /* 16. Universal Search Modal Fullscreen Mobile */
 .pulse-search-fullscreen-overlay {
   z-index: 400;
-  background: #000000;
+  background: var(--bg-main) !important;
 }
 
 .pulse-search-header-bar {
@@ -6659,8 +6672,8 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px max(16px, env(safe-area-inset-bottom, 16px));
-  background: rgba(2, 6, 18, 0.98);
-  border-top: 1px solid rgba(59, 130, 246, 0.25);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -6880,8 +6893,8 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px));
-  background: rgba(2, 6, 18, 0.98);
-  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(14, 23, 46, 0.96);
+  border-top: 1px solid rgba(147, 197, 253, 0.22);
   display: flex;
   justify-content: center;
 }
@@ -6893,6 +6906,11 @@ input, select, textarea {
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
+  min-height: 44px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.2s ease;
 }
 
@@ -7098,7 +7116,7 @@ input, select, textarea {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(59, 130, 246, 0.25);
-  background: #000;
+  background: var(--bg-card);
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -7285,7 +7303,7 @@ input, select, textarea {
   border-radius: 14px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  background: #000000;
+  background: var(--bg-card);
   border: 1px solid rgba(59, 130, 246, 0.25);
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
@@ -8243,6 +8261,149 @@ input, select, textarea {
   color: var(--text-secondary);
   line-height: 1.35;
   margin: 0;
+}
+
+/* ==========================================================================
+   MOBILE-FIRST UX PERFECTION: ZERO-OVERFLOW, NATIVE SCROLL & TOUCH HIG
+   ========================================================================== */
+
+/* Universal Scrollbar Elimination for Native Mobile Rails */
+.pulse-category-rail,
+.pulse-filter-chips-rail,
+.pulse-stakes-rail,
+.pulse-tourney-showcase-row,
+.pulse-horizontal-cards-row,
+.pulse-collections-carousel,
+.pulse-achievements-carousel,
+.pulse-streak-days-row,
+.pulse-detail-tabs-bar,
+.pulse-cinema-dates-row,
+.pulse-dates-carousel,
+.pulse-format-filter-chips,
+.pulse-photo-filter-chips,
+.pulse-lightbox-thumbnails,
+.pulse-theatre-scroll-area {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain;
+}
+
+.pulse-category-rail::-webkit-scrollbar,
+.pulse-filter-chips-rail::-webkit-scrollbar,
+.pulse-stakes-rail::-webkit-scrollbar,
+.pulse-tourney-showcase-row::-webkit-scrollbar,
+.pulse-horizontal-cards-row::-webkit-scrollbar,
+.pulse-collections-carousel::-webkit-scrollbar,
+.pulse-achievements-carousel::-webkit-scrollbar,
+.pulse-streak-days-row::-webkit-scrollbar,
+.pulse-detail-tabs-bar::-webkit-scrollbar,
+.pulse-cinema-dates-row::-webkit-scrollbar,
+.pulse-dates-carousel::-webkit-scrollbar,
+.pulse-format-filter-chips::-webkit-scrollbar,
+.pulse-photo-filter-chips::-webkit-scrollbar,
+.pulse-lightbox-thumbnails::-webkit-scrollbar,
+.pulse-theatre-scroll-area::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Responsive Touch Targets & Spacing for Compact Mobile Screens (<= 400px) */
+@media (max-width: 440px) {
+  /* Ticket Footer Actions */
+  .pulse-ticket-footer-actions {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .pulse-ticket-action-btn.apple-wallet {
+    grid-column: span 2 !important;
+  }
+
+  /* Settings Footer Buttons */
+  .pulse-settings-footer {
+    display: flex !important;
+    gap: 8px !important;
+  }
+  .pulse-settings-footer button {
+    flex: 1 !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Event Meta Cards Stack on narrow screens */
+  .pulse-event-meta-cards-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Compact Cinema Seat Matrix */
+  .pulse-seat-btn {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 0.52rem !important;
+  }
+  .pulse-seat-row-items {
+    gap: 3px !important;
+  }
+  .pulse-aisle-gap {
+    width: 8px !important;
+  }
+  .pulse-row-label {
+    width: 10px !important;
+    font-size: 0.55rem !important;
+  }
+
+  /* Segmented Control Tabs on Narrow Mobile */
+  .pulse-segmented-tabs {
+    padding: 3px !important;
+    gap: 4px !important;
+  }
+  .pulse-seg-tab {
+    font-size: 0.72rem !important;
+    padding: 7px 8px !important;
+  }
+  .pulse-seg-count {
+    padding: 1px 5px !important;
+    font-size: 0.58rem !important;
+  }
+
+  /* Tourney Preview Cards */
+  .pulse-tourney-preview-card {
+    width: 250px !important;
+  }
+
+  /* Hero Content */
+  .pulse-hero-headline {
+    font-size: 1.05rem !important;
+  }
+  .pulse-hero-subtext {
+    font-size: 0.68rem !important;
+  }
+
+  /* Club Card Image Height */
+  .pulse-card-img-container {
+    height: 155px !important;
+  }
+}
+
+/* Ultra-Compact Mobile Screens (<= 350px, e.g. iPhone SE / Foldables) */
+@media (max-width: 350px) {
+  .pulse-movies-grid,
+  .pulse-events-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pulse-profile-stats-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 4px !important;
+  }
+  .pulse-stat-num {
+    font-size: 1rem !important;
+  }
+  .pulse-stat-label {
+    font-size: 0.58rem !important;
+  }
 }
 
 

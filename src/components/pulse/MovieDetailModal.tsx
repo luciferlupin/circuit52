@@ -102,7 +102,7 @@ export const MovieDetailModal: React.FC = () => {
             <div className="pulse-movie-meta-col">
               <div className="pulse-movie-rating-row">
                 <div className="pulse-rating-box">
-                  <Star size={12} fill="#93c5fd" color="#93c5fd" />
+                  <Star size={12} fill="#f59e0b" color="#f59e0b" />
                   <span>{selectedMovie.rating.toFixed(1)}</span>
                 </div>
                 <span className="pulse-votes-text">{selectedMovie.votesCount} Entries</span>
