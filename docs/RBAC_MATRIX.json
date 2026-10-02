@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Circuit 52 RBAC Permission Matrix",
+  "version": "1.0.0",
+  "description": "Machine-readable Role-Based Access Control matrix governing Club OS and Platform Admin scopes.",
+  "roles": {
+    "club_roles": {
+      "OWNER_GM": {
+        "description": "Complete operational, commercial, and staff authority for the club venue.",
+        "permissions": [
+          "club.view_profile",
+          "club.edit_profile",
+          "club.manage_operating_hours",
+          "club.manage_staff",
+          "club.assign_roles",
+          "tables.view_live",
+          "tables.open",
+          "tables.update_occupancy",
+          "tables.change_stake",
+          "tables.close",
+          "waitlist.view",
+          "waitlist.manage_queue",
+          "waitlist.call_player",
+          "waitlist.manual_override",
+          "tournaments.create",
+          "tournaments.edit",
+          "tournaments.clock_control",
+          "crm.view_profiles",
+          "crm.create_segments",
+          "crm.dispatch_campaigns",
+          "demand.create_fill_request",
+          "analytics.view_financial_kpis",
+          "analytics.view_table_utilization",
+          "commercials.view_plan",
+          "commercials.update_billing"
+        ]
+      },
+      "OPERATIONS_MANAGER": {
+        "description": "Oversees shift operations, floor managers, waitlists, and tournament schedules.",
+        "permissions": [
+          "club.view_profile",
+          "tables.view_live",
+          "tables.open",
+          "tables.update_occupancy",
+          "tables.change_stake",
+          "tables.close",
+          "waitlist.view",
+          "waitlist.manage_queue",
+          "waitlist.call_player",
+          "waitlist.manual_override",
+          "tournaments.create",
+          "tournaments.edit",
+          "tournaments.clock_control",
+          "demand.create_fill_request",
+          "analytics.view_table_utilization"
+        ]
+      },
+      "FLOOR_MANAGER": {
+        "description": "Rapid 3-click podium operator managing table occupancies, seating, and live alerts.",
+        "permissions": [
+          "tables.view_live",
+          "tables.open",
+          "tables.update_occupancy",
+          "tables.change_stake",
+          "tables.close",
+          "tables.send_heartbeat",
+          "waitlist.view",
+          "waitlist.manage_queue",
+          "waitlist.call_player",
+          "waitlist.seat_player",
+          "waitlist.mark_noshow"
+        ]
+      },
+      "TOURNAMENT_MANAGER": {
+        "description": "Directs tournament entries, blind structures, levels, and clock execution.",
+        "permissions": [
+          "tournaments.view",
+          "tournaments.create",
+          "tournaments.edit",
+          "tournaments.clock_control",
+          "tournaments.update_entries",
+          "tournaments.enter_results"
+        ]
+      },
+      "CRM_MARKETING": {
+        "description": "Builds player segments and schedules consented promotional outreach.",
+        "permissions": [
+          "crm.view_profiles",
+          "crm.create_segments",
+          "crm.dispatch_campaigns",
+          "demand.create_fill_request",
+          "analytics.view_campaign_conversions"
+        ]
+      },
+      "FRONT_DESK_GRE": {
+        "description": "Guest relations and reception desk. Validates player check-ins and adds podium walk-ins.",
+        "permissions": [
+          "tables.view_live",
+          "waitlist.view",
+          "waitlist.add_walkin",
+          "waitlist.verify_checkin"
+        ]
+      },
+      "ANALYST_READONLY": {
+        "description": "Read-only access to operational reports and business intelligence.",
+        "permissions": [
+          "analytics.view_table_utilization",
+          "analytics.view_campaign_conversions",
+          "analytics.export_reports"
+        ]
+      }
+    },
+    "admin_roles": {
+      "SUPER_ADMIN": {
+        "description": "Full platform master access with dual-approval high-risk capabilities.",
+        "permissions": [
+          "admin.all_access",
+          "admin.grant_roles",
+          "admin.revoke_roles",
+          "admin.manage_remote_config",
+          "admin.suspend_club",
+          "admin.resolve_exceptions",
+          "admin.view_audit_logs",
+          "admin.manage_billing_plans"
+        ]
+      },
+      "NETWORK_OPERATIONS": {
+        "description": "Maintains network-wide data freshness, live telemetry, and resolves data quality incidents.",
+        "permissions": [
+          "admin.view_command_centre",
+          "admin.view_exceptions",
+          "admin.resolve_exceptions",
+          "admin.demote_stale_club",
+          "admin.trigger_club_heartbeat_ping",
+          "admin.view_audit_logs"
+        ]
+      },
+      "CLUB_SUCCESS": {
+        "description": "Onboards new club venues and assists managers with initial configurations.",
+        "permissions": [
+          "admin.onboard_club",
+          "admin.verify_club",
+          "admin.edit_club_metadata",
+          "admin.test_integrations"
+        ]
+      },
+      "SUPPORT_AGENT": {
+        "description": "Handles player and club support inquiries via an audited read-only diagnostic view.",
+        "permissions": [
+          "admin.search_users",
+          "admin.view_player_support_context",
+          "admin.resend_otp",
+          "admin.view_club_support_context",
+          "admin.view_reported_disputes"
+        ]
+      },
+      "RISK_TRUST": {
+        "description": "Investigates inaccurate data reports, mock GPS location flags, and SMS spam patterns.",
+        "permissions": [
+          "admin.view_exceptions",
+          "admin.flag_abusive_club",
+          "admin.flag_fraudulent_device",
+          "admin.investigate_reports",
+          "admin.suspend_club"
+        ]
+      },
+      "COMMERCIAL": {
+        "description": "Manages SaaS subscription entitlements, feature tier flags, and licensing.",
+        "permissions": [
+          "admin.view_commercial_dashboard",
+          "admin.update_club_entitlements",
+          "admin.view_mrr_arr"
+        ]
+      },
+      "PRODUCT_ANALYST": {
+        "description": "Platform-wide behavioral analytics, discovery funnel queries, and retention metrics.",
+        "permissions": [
+          "admin.view_analytics_dashboards",
+          "admin.export_anonymized_data"
+        ]
+      },
+      "FINANCE": {
+        "description": "Invoicing hooks, tax/commercial compliance exports.",
+        "permissions": [
+          "admin.view_mrr_arr",
+          "admin.export_invoices"
+        ]
+      }
+    }
+  }
+}

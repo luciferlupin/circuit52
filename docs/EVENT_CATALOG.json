@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Circuit 52 Domain & Analytics Event Catalog",
+  "version": "1.0.0",
+  "domain_events": {
+    "table.opened": {
+      "producer": "club_os.table_service",
+      "consumers": ["discovery_engine", "followers_service", "analytics_worker"],
+      "schema": {
+        "type": "object",
+        "required": ["club_id", "table_id", "game_code", "stake_label", "seat_capacity", "occurred_at"],
+        "properties": {
+          "club_id": { "type": "string", "format": "uuid" },
+          "table_id": { "type": "string", "format": "uuid" },
+          "physical_table_code": { "type": "string" },
+          "game_code": { "type": "string" },
+          "stake_label": { "type": "string" },
+          "seat_capacity": { "type": "integer" },
+          "initial_occupied_seats": { "type": "integer" },
+          "source_type": { "type": "string" },
+          "actor_id": { "type": "string", "format": "uuid" },
+          "occurred_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "table.updated": {
+      "producer": "club_os.table_service",
+      "consumers": ["realtime_sse_gateway", "action_score_calculator", "admin_monitor"],
+      "schema": {
+        "type": "object",
+        "required": ["club_id", "table_id", "status", "occupied_seats", "version", "occurred_at"],
+        "properties": {
+          "club_id": { "type": "string", "format": "uuid" },
+          "table_id": { "type": "string", "format": "uuid" },
+          "status": { "type": "string", "enum": ["FORMING", "ACTIVE", "FULL", "PAUSED", "CLOSING", "CLOSED"] },
+          "occupied_seats": { "type": "integer" },
+          "waiting_count": { "type": "integer" },
+          "confidence_score": { "type": "integer" },
+          "version": { "type": "integer" },
+          "occurred_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "seat.offer.created": {
+      "producer": "waitlist_engine",
+      "consumers": ["push_notification_worker", "sms_fallback_adapter"],
+      "schema": {
+        "type": "object",
+        "required": ["offer_id", "waitlist_entry_id", "player_id", "club_id", "stake_label", "expires_at"],
+        "properties": {
+          "offer_id": { "type": "string", "format": "uuid" },
+          "waitlist_entry_id": { "type": "string", "format": "uuid" },
+          "player_id": { "type": "string", "format": "uuid" },
+          "club_id": { "type": "string", "format": "uuid" },
+          "club_name": { "type": "string" },
+          "stake_label": { "type": "string" },
+          "table_code": { "type": "string" },
+          "countdown_seconds": { "type": "integer", "default": 180 },
+          "expires_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "data.confidence.changed": {
+      "producer": "freshness_watchdog",
+      "consumers": ["discovery_ranking_service", "admin_exception_service"],
+      "schema": {
+        "type": "object",
+        "required": ["club_id", "previous_score", "new_score", "freshness_label", "reason"],
+        "properties": {
+          "club_id": { "type": "string", "format": "uuid" },
+          "previous_score": { "type": "integer" },
+          "new_score": { "type": "integer" },
+          "freshness_label": { "type": "string", "enum": ["LIVE", "RECENT", "STALE", "UNAVAILABLE"] },
+          "reason": { "type": "string" },
+          "minutes_since_heartbeat": { "type": "integer" }
+        }
+      }
+    },
+    "fill_request.created": {
+      "producer": "club_os.demand_service",
+      "consumers": ["demand_matching_engine", "push_notification_worker"],
+      "schema": {
+        "type": "object",
+        "required": ["fill_request_id", "club_id", "game_code", "stake_label", "seats_needed", "expires_at"],
+        "properties": {
+          "fill_request_id": { "type": "string", "format": "uuid" },
+          "club_id": { "type": "string", "format": "uuid" },
+          "game_code": { "type": "string" },
+          "stake_label": { "type": "string" },
+          "seats_needed": { "type": "integer" },
+          "expires_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  },
+  "analytics_events": {
+    "live_feed_viewed": {
+      "description": "Triggered when a player views the ranked live discovery screen",
+      "properties": {
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "filter_game": { "type": "string", "nullable": true },
+        "filter_stake": { "type": "string", "nullable": true },
+        "items_rendered_count": { "type": "integer" }
+      }
+    },
+    "club_viewed": {
+      "description": "Triggered when a player inspects a club profile card",
+      "properties": {
+        "club_id": { "type": "string", "format": "uuid" },
+        "source": { "type": "string", "enum": ["HOME_FEED", "MAP_PIN", "SEARCH", "DEEP_LINK"] },
+        "distance_km": { "type": "number" }
+      }
+    },
+    "waitlist_joined": {
+      "description": "Triggered when a player requests to join a waitlist",
+      "properties": {
+        "club_id": { "type": "string", "format": "uuid" },
+        "stake_label": { "type": "string" },
+        "queue_position_assigned": { "type": "integer" },
+        "source": { "type": "string", "enum": ["REMOTE_APP", "PODIUM_WALKIN"] }
+      }
+    },
+    "seat_offer_responded": {
+      "description": "Triggered when a player responds to an offered seat",
+      "properties": {
+        "offer_id": { "type": "string", "format": "uuid" },
+        "action": { "type": "string", "enum": ["CONFIRM", "DECLINE"] },
+        "latency_seconds": { "type": "integer" }
+      }
+    }
+  }
+}

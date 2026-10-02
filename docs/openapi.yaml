@@ -1,0 +1,896 @@
+openapi: 3.1.0
+info:
+  title: Circuit 52 Platform API
+  version: 1.0.0
+  description: |
+    Production REST & Real-Time API specification for Circuit 52.
+    Powers the Player Discovery App, Club OS Floor Management Console, and Platform Admin Control Centre.
+servers:
+  - url: https://api.circuit52.com/api/v1
+    description: Production Gateway
+  - url: http://localhost:8080/api/v1
+    description: Local Dev Gateway
+
+security:
+  - BearerAuth: []
+
+paths:
+  # ==========================================
+  # AUTHENTICATION
+  # ==========================================
+  /auth/request-otp:
+    post:
+      summary: Request SMS OTP for Phone Authentication
+      operationId: requestOtp
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone]
+              properties:
+                phone:
+                  type: string
+                  example: "+17025550199"
+      responses:
+        '200':
+          description: OTP dispatched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtpResponse'
+
+  /auth/verify-otp:
+    post:
+      summary: Verify OTP and Obtain JWT Tokens
+      operationId: verifyOtp
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, otp_code]
+              properties:
+                phone:
+                  type: string
+                otp_code:
+                  type: string
+                  example: "492810"
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokens'
+
+  # ==========================================
+  # PLAYER DISCOVERY & VENUE FEEDS
+  # ==========================================
+  /discovery/live:
+    get:
+      summary: Get Ranked Live Club Feed
+      description: |
+        Returns ranked live venues based on deterministic formula:
+        0.30×Relevance + 0.20×ActionScore + 0.20×Freshness + 0.15×Proximity + 0.10×FollowAffinity + 0.05×TournamentRelevance
+      operationId: getLiveDiscovery
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+            example: 36.1699
+        - name: lng
+          in: query
+          required: true
+          schema:
+            type: number
+            example: -115.1398
+        - name: radius_km
+          in: query
+          schema:
+            type: number
+            default: 25.0
+        - name: game
+          in: query
+          schema:
+            type: string
+            example: "NLH"
+        - name: stake
+          in: query
+          schema:
+            type: string
+            example: "1/2"
+      responses:
+        '200':
+          description: Ranked clubs list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RankedClubItem'
+                  total_active_tables:
+                    type: integer
+                  network_freshness_sla:
+                    type: number
+                    example: 98.4
+
+  /discovery/map:
+    get:
+      summary: Get Clustered Venue Pins for Map
+      operationId: getMapVenues
+      parameters:
+        - name: bounds
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "-115.3,36.0,-115.0,36.3"
+      responses:
+        '200':
+          description: Map markers with active table counts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MapVenuePin'
+
+  /clubs/{id}:
+    get:
+      summary: Get Club Detail & Operating State
+      operationId: getClubDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Club details with live tables and amenities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubDetail'
+
+  /clubs/{id}/live-tables:
+    get:
+      summary: Get Live Table Sessions for Club
+      operationId: getClubLiveTables
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Active tables in venue
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LiveTableSession'
+
+  /clubs/{id}/reports:
+    post:
+      summary: Submit Player Accuracy Feedback / Report
+      operationId: submitClubReport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason_code]
+              properties:
+                table_id:
+                  type: string
+                  format: uuid
+                reason_code:
+                  type: string
+                  enum: [TABLE_COUNT_INACCURATE, ROOM_CLOSED, WRONG_STAKE, UNPROFESSIONAL]
+                details:
+                  type: string
+                player_lat:
+                  type: number
+                player_lng:
+                  type: number
+      responses:
+        '201':
+          description: Report recorded and queued for verification
+
+  # ==========================================
+  # WAITLIST ENGINE
+  # ==========================================
+  /waitlists/{id}/entries:
+    post:
+      summary: Join Waitlist for Stake Pool
+      operationId: joinWaitlist
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source:
+                  type: string
+                  default: "REMOTE_APP"
+                  enum: [REMOTE_APP, PODIUM_WALKIN, PHONE_CALL]
+                notes:
+                  type: string
+      responses:
+        '201':
+          description: Waitlist joined
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitlistEntry'
+
+  /waitlists/me:
+    get:
+      summary: Get Active Waitlist Entries for Current Player
+      operationId: getMyWaitlistEntries
+      responses:
+        '200':
+          description: Active waitlists with live positions and offer timers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaitlistEntry'
+
+  /waitlist-entries/{id}/respond:
+    post:
+      summary: Confirm or Decline Seat Offer
+      operationId: respondSeatOffer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action:
+                  type: string
+                  enum: [CONFIRM, DECLINE]
+      responses:
+        '200':
+          description: State updated
+
+  /waitlist-entries/{id}/check-in:
+    post:
+      summary: Physical Geofence or Podium Check-In
+      operationId: checkInWaitlist
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lat:
+                  type: number
+                lng:
+                  type: number
+                podium_qr_token:
+                  type: string
+      responses:
+        '200':
+          description: Player status set to CHECKED_IN
+
+  # ==========================================
+  # TOURNAMENTS
+  # ==========================================
+  /tournaments:
+    get:
+      summary: List Tournaments
+      operationId: listTournaments
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: max_buyin_cents
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Tournaments schedule
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tournament'
+
+  # ==========================================
+  # CLUB OS (OPERATIONS CONSOLE)
+  # ==========================================
+  /clubs/{id}/tables/open:
+    post:
+      summary: 3-Click Open Table
+      operationId: openLiveTable
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [physical_table_id, game_id, stake_id]
+              properties:
+                physical_table_id:
+                  type: string
+                  format: uuid
+                game_id:
+                  type: string
+                  format: uuid
+                stake_id:
+                  type: string
+                  format: uuid
+                initial_occupied_seats:
+                  type: integer
+                  default: 5
+      responses:
+        '201':
+          description: Table session opened and broadcast via SSE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveTableSession'
+
+  /live-tables/{id}:
+    patch:
+      summary: Mutate Live Table State (Occupancy, Status, Stake)
+      operationId: updateLiveTable
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                occupied_seats:
+                  type: integer
+                status:
+                  type: string
+                  enum: [FORMING, ACTIVE, FULL, PAUSED, CLOSING, CLOSED]
+                stake_id:
+                  type: string
+                  format: uuid
+                expected_version:
+                  type: integer
+                  description: Optimistic concurrency check
+      responses:
+        '200':
+          description: Table state updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveTableSession'
+
+  /clubs/{id}/fill-requests:
+    post:
+      summary: Broadcast "Fill My Table" Demand Request
+      operationId: createFillRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [game_id, stake_id, seats_needed]
+              properties:
+                game_id:
+                  type: string
+                  format: uuid
+                stake_id:
+                  type: string
+                  format: uuid
+                seats_needed:
+                  type: integer
+                  default: 3
+                duration_hours:
+                  type: integer
+                  default: 2
+      responses:
+        '201':
+          description: Demand matching triggered
+
+  # ==========================================
+  # PLAYER OS: SESSIONS & BANKROLL (PRIVATE)
+  # ==========================================
+  /player/sessions:
+    get:
+      summary: List Player's Private Poker Sessions
+      operationId: getPlayerSessions
+      responses:
+        '200':
+          description: Sessions list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PokerSession'
+    post:
+      summary: Record Poker Session
+      operationId: recordPlayerSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionInput'
+      responses:
+        '201':
+          description: Session recorded
+
+  # ==========================================
+  # ADMIN HQ & COMMAND CENTRE
+  # ==========================================
+  /admin/command-centre:
+    get:
+      summary: Global Network Telemetry & SLA
+      operationId: getAdminCommandCentre
+      responses:
+        '200':
+          description: Real-time network telemetry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandCentreTelemetry'
+
+  /admin/exceptions:
+    get:
+      summary: List Exception Queues
+      operationId: getAdminExceptions
+      parameters:
+        - name: queue_type
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            default: "OPEN"
+      responses:
+        '200':
+          description: Actionable exception items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminExceptionItem'
+
+  /admin/exceptions/{id}/resolve:
+    patch:
+      summary: Resolve Admin Exception
+      operationId: resolveAdminException
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [resolution_notes]
+              properties:
+                resolution_notes:
+                  type: string
+      responses:
+        '200':
+          description: Exception marked resolved
+
+  /admin/config:
+    get:
+      summary: Get Remote Configuration & Ranking Weights
+      operationId: getRemoteConfig
+      responses:
+        '200':
+          description: Key-value configuration parameters
+    patch:
+      summary: Update Remote Configuration
+      operationId: updateRemoteConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key, value]
+              properties:
+                key:
+                  type: string
+                value:
+                  type: object
+      responses:
+        '200':
+          description: Remote configuration updated and cached
+
+# ==========================================
+# COMPONENTS & SCHEMAS
+# ==========================================
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    OtpResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Verification code sent to +17025550199"
+        expires_in_seconds:
+          type: integer
+          example: 300
+
+    AuthTokens:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            system_role:
+              type: string
+              example: "PLAYER"
+            display_name:
+              type: string
+
+    RankedClubItem:
+      type: object
+      properties:
+        club_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+          example: "Bellagio Poker Room"
+        distance_km:
+          type: number
+          example: 1.8
+        operating_status:
+          type: string
+          example: "OPEN"
+        active_tables_count:
+          type: integer
+          example: 18
+        stakes_summary:
+          type: array
+          items:
+            type: string
+          example: ["1/3 NLH (6)", "2/5 NLH (5)", "5/10 NLH (2)", "2/5 PLO (4)"]
+        waiting_count:
+          type: integer
+          example: 14
+        action_score:
+          type: number
+          example: 87.5
+        freshness_label:
+          type: string
+          enum: [LIVE, RECENT, STALE, UNAVAILABLE]
+          example: "LIVE"
+        last_updated_minutes_ago:
+          type: integer
+          example: 1
+        confidence_score:
+          type: integer
+          example: 96
+        discovery_score:
+          type: number
+          example: 92.4
+
+    MapVenuePin:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+        lat:
+          type: number
+        lng:
+          type: number
+        active_tables:
+          type: integer
+        freshness:
+          type: string
+          enum: [LIVE, RECENT, STALE, UNAVAILABLE]
+
+    ClubDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+        is_verified:
+          type: boolean
+        address:
+          type: string
+        phone:
+          type: string
+        amenities:
+          type: array
+          items:
+            type: string
+        active_tables:
+          type: integer
+        action_score:
+          type: number
+        freshness_label:
+          type: string
+
+    LiveTableSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        physical_table_code:
+          type: string
+          example: "T-04"
+        game_code:
+          type: string
+          example: "NLH"
+        stake_label:
+          type: string
+          example: "$2/$5"
+        status:
+          type: string
+          enum: [FORMING, ACTIVE, FULL, PAUSED, CLOSING, CLOSED]
+        seat_capacity:
+          type: integer
+          example: 9
+        occupied_seats:
+          type: integer
+          example: 9
+        waiting_count:
+          type: integer
+          example: 4
+        source_type:
+          type: string
+          example: "MANUAL_STAFF"
+        confidence_score:
+          type: integer
+          example: 98
+        updated_at:
+          type: string
+          format: date-time
+        version:
+          type: integer
+
+    WaitlistEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        club_id:
+          type: string
+          format: uuid
+        club_name:
+          type: string
+        game_code:
+          type: string
+        stake_label:
+          type: string
+        state:
+          type: string
+          enum: [REQUESTED, ACCEPTED, QUEUED, OFFERED, CONFIRMED, CHECKED_IN, SEATED, COMPLETED, DECLINED, EXPIRED]
+        queue_position:
+          type: integer
+          example: 2
+        offer_expires_at:
+          type: string
+          format: date-time
+          nullable: true
+
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        club_name:
+          type: string
+        title:
+          type: string
+        buy_in_cents:
+          type: integer
+        guarantee_cents:
+          type: integer
+        start_time:
+          type: string
+          format: date-time
+        state:
+          type: string
+        current_level:
+          type: integer
+        entries_count:
+          type: integer
+        remaining_players_count:
+          type: integer
+
+    PokerSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        venue_name:
+          type: string
+        game_name:
+          type: string
+        stake_name:
+          type: string
+        buy_in_cents:
+          type: integer
+        cash_out_cents:
+          type: integer
+        profit_loss_cents:
+          type: integer
+        duration_minutes:
+          type: integer
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+
+    CreateSessionInput:
+      type: object
+      required: [venue_name, game_name, stake_name, buy_in_cents, cash_out_cents, started_at, ended_at]
+      properties:
+        venue_name:
+          type: string
+        game_name:
+          type: string
+        stake_name:
+          type: string
+        buy_in_cents:
+          type: integer
+        cash_out_cents:
+          type: integer
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        notes:
+          type: string
+
+    CommandCentreTelemetry:
+      type: object
+      properties:
+        active_cities_count:
+          type: integer
+        active_clubs_count:
+          type: integer
+        active_tables_count:
+          type: integer
+        network_freshness_sla_percent:
+          type: number
+          example: 97.8
+        open_exceptions_count:
+          type: integer
+          example: 3
+        platform_uptime_percent:
+          type: number
+          example: 99.98
+
+    AdminExceptionItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        queue_type:
+          type: string
+        severity:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
