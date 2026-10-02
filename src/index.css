@@ -265,7 +265,186 @@ h1, h2, h3, h4, h5, h6 {
   animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Modal Backdrop */
+/* Phone-First Mobile Viewport Shell (iPhone 16 Pro Style) */
+.mobile-shell-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 0;
+  background: #04070e;
+}
+
+.mobile-phone-frame {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .mobile-shell-container {
+    padding: 24px 16px;
+    background: radial-gradient(circle at 50% 20%, #0f172a 0%, #04070e 100%);
+  }
+
+  .mobile-phone-frame {
+    border-radius: 44px;
+    border: 8px solid #1e293b;
+    min-height: 890px;
+    max-height: 94vh;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(255, 255, 255, 0.15);
+  }
+
+  .mobile-phone-frame::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Swiggy / Zomato Iconic Rating Pill */
+.district-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #14532d;
+  color: #86efac;
+  border: 1px solid rgba(134, 239, 172, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: -0.01em;
+}
+
+/* Zomato District Offer Strip Overlay */
+.district-offer-tag {
+  background: linear-gradient(90deg, #b91c1c 0%, #7c2d12 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px 12px 12px 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Horizontal Snap Carousel */
+.snap-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.snap-carousel::-webkit-scrollbar {
+  display: none;
+}
+.snap-carousel > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Swiggy/Zomato Fixed Bottom Mobile Nav Bar */
+.mobile-tab-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(8, 12, 20, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 80;
+  padding: 0 4px;
+}
+
+.mobile-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+  height: 100%;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.mobile-tab-btn.active {
+  color: var(--accent-live);
+}
+
+.mobile-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  width: 18px;
+  height: 3px;
+  background: var(--accent-live);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-live);
+}
+
+/* Zomato Style Pull-up Bottom Sheet */
+.bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.bottom-sheet-content {
+  background: #0d1322;
+  border-top: 1px solid var(--border-active);
+  border-radius: 26px 26px 0 0;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 16px 20px 34px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.bottom-sheet-handle {
+  width: 44px;
+  height: 5px;
+  background: #475569;
+  border-radius: 3px;
+  margin: 0 auto 16px;
+}
+
+/* Modal Overlay & Dialog */
 .modal-overlay {
   position: fixed;
   top: 0;
