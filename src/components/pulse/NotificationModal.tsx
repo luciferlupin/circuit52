@@ -93,8 +93,8 @@ export const NotificationModal: React.FC<NotificationModalProps> = ({ isOpen, on
           <div className="pulse-nh-left">
             <Bell size={18} className="pulse-nh-icon" />
             <div>
-              <h3 className="pulse-notifications-title">Live Table Notifications</h3>
-              <span className="pulse-notifications-sub">Seat alerts, waitlists and club bonuses</span>
+              <h3 className="pulse-notifications-title">Notifications</h3>
+              <span className="pulse-notifications-sub">Seat alerts & waitlist calls</span>
             </div>
           </div>
           <button type="button" className="pulse-close-btn" onClick={onClose}>

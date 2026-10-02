@@ -15,48 +15,48 @@ const CATEGORIES: CategoryItem[] = [
   {
     id: 'DINING',
     name: 'Cash Games',
-    tagline: 'NLH & PLO Felt',
+    tagline: 'NLH & PLO',
     badge: 'LIVE',
     icon: '♠️',
-    gradient: 'linear-gradient(135deg, #2563eb 0%, #0a1638 100%)'
+    gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
   },
   {
     id: 'MOVIES',
     name: 'Tourneys',
-    tagline: 'Daily & Majors',
+    tagline: 'Daily Majors',
     badge: 'HOT',
     icon: '🏆',
-    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #050d24 100%)'
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
   },
   {
     id: 'EVENTS',
     name: 'Series Gigs',
-    tagline: 'Satellites & Super Gigs',
+    tagline: 'Satellites',
     badge: 'NEW',
     icon: '⚡',
-    gradient: 'linear-gradient(135deg, #3b82f6 0%, #0c1c4d 100%)'
+    gradient: 'linear-gradient(135deg, #06b6d4 0%, #0284c7 100%)'
   },
   {
     id: 'NIGHTLIFE',
     name: 'VIP Salons',
-    tagline: "Bobby's & High Limit",
+    tagline: 'High Limit',
     badge: 'VIP',
     icon: '💎',
-    gradient: 'linear-gradient(135deg, #1e40af 0%, #030816 100%)'
+    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)'
   },
   {
     id: 'ACTIVITIES',
     name: 'PLO & Mixed',
-    tagline: '4/5-Card Omaha',
+    tagline: '5-Card Omaha',
     icon: '🃏',
-    gradient: 'linear-gradient(135deg, #1e3a8a 0%, #060e22 100%)'
+    gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'
   },
   {
     id: 'EXPERIENCES',
     name: 'Private Felt',
-    tagline: 'VIP Host Sessions',
+    tagline: 'VIP Sessions',
     icon: '✨',
-    gradient: 'linear-gradient(135deg, #2563eb 0%, #081330 100%)'
+    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
   }
 ];
 

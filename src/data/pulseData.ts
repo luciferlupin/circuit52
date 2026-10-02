@@ -45,7 +45,7 @@ export const HERO_CAROUSEL_ITEMS = [
     id: 'hero-1',
     label: 'HIGH STAKES ACTION',
     headline: 'Wynn Grand High Roller Lounge',
-    subtext: '16 Live cash tables active. ₹100/₹200 to ₹1,000/₹2,000 NLH & PLO with RFID tracking.',
+    subtext: '16 Live tables active • ₹100/₹200 to ₹1k/₹2k NLH & PLO',
     cta: 'Reserve Table Seat',
     category: 'DINING' as const,
     imageUrl: '/images/wynn.jpg'
@@ -54,7 +54,7 @@ export const HERO_CAROUSEL_ITEMS = [
     id: 'hero-2',
     label: 'WEEKEND CHAMPIONSHIP',
     headline: 'Aria ₹50L GTD Deepstack Tourney',
-    subtext: 'Late registration open. 100k starting chips, 25-minute levels & live stream featured table.',
+    subtext: 'Late registration open • 100k chips • 25m levels',
     cta: 'Register Tourney Seat',
     category: 'MOVIES' as const,
     imageUrl: '/images/aria.jpg'
@@ -63,7 +63,7 @@ export const HERO_CAROUSEL_ITEMS = [
     id: 'hero-3',
     label: 'PRIVATE VIP SANCTUARY',
     headline: "Bobby's Room High Stakes Felt",
-    subtext: 'Exclusive high roller mixed games, private security cage & Michelin tableside dining.',
+    subtext: 'High roller mixed games • Private cage & dining',
     cta: 'Book VIP Pass',
     category: 'NIGHTLIFE' as const,
     imageUrl: '/images/bobbys_room.jpg'
@@ -72,7 +72,7 @@ export const HERO_CAROUSEL_ITEMS = [
     id: 'hero-4',
     label: 'ACTION PLO-5 ROOM',
     headline: 'Resorts World Tech Lounge',
-    subtext: 'Automatic card shufflers, USB felt chargers, zero-rake happy hours & ₹50k hourly high hand.',
+    subtext: 'Auto shufflers • RFID felt • ₹50k hourly high hand',
     cta: 'Join Live Waitlist',
     category: 'DINING' as const,
     imageUrl: '/images/resorts_world.jpg'

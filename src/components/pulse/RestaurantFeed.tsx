@@ -13,7 +13,6 @@ import {
   CalendarDays,
   Zap,
   CheckCircle2,
-  ChevronRight,
   Utensils
 } from 'lucide-react';
 
@@ -86,11 +85,11 @@ export const RestaurantFeed: React.FC = () => {
             {/* Table Availability Pill */}
             {restaurant.isTableAvailable ? (
               <span className="pulse-card-avail-pill green">
-                <span className="pulse-dot-live" /> Seats Open Now
+                <span className="pulse-dot-live" /> Live Seats
               </span>
             ) : (
               <span className="pulse-card-avail-pill orange">
-                <Clock size={11} /> {restaurant.tableWaitMinutes}m waitlist
+                <Clock size={11} /> {restaurant.tableWaitMinutes}m wait
               </span>
             )}
 
@@ -111,32 +110,32 @@ export const RestaurantFeed: React.FC = () => {
 
           {/* Bottom Overlays */}
           <div className="pulse-card-bottom-overlay">
-            {restaurant.featuredOffer && (
+            {restaurant.featuredOffer ? (
               <div className="pulse-card-offer-badge">
                 <Sparkles size={11} />
                 <span>{restaurant.featuredOffer}</span>
               </div>
-            )}
+            ) : <span />}
             <span className="pulse-card-distance-pill">
               {restaurant.distanceKm} km
             </span>
           </div>
         </div>
 
-        {/* Card Content Anatomy (Minimal, Strong Hierarchy) */}
+        {/* Card Content */}
         <div className="pulse-card-content">
           <div className="pulse-card-title-row">
             <h3 className="pulse-card-name">{restaurant.name}</h3>
             {/* Rating Box */}
             <div className="pulse-rating-box">
               <span>{restaurant.rating.toFixed(1)}</span>
-              <Star size={11} fill="#93c5fd" color="#93c5fd" />
+              <Star size={11} fill="#f59e0b" color="#f59e0b" />
             </div>
           </div>
 
           {/* Stakes & Subtitle */}
           <div className="pulse-card-cuisine">
-            {restaurant.cuisine.join(' • ')}
+            {restaurant.cuisine.slice(0, 2).join(' • ')}
           </div>
 
           {/* Area & Min Buy-in */}
@@ -146,7 +145,7 @@ export const RestaurantFeed: React.FC = () => {
             <span className="pulse-card-price">From ₹{restaurant.priceForTwo.toLocaleString()} buy-in</span>
           </div>
 
-          {/* Quick Action Bar on Card */}
+          {/* Single Clean Action Bar on Card */}
           <div className="pulse-card-quick-actions" onClick={e => e.stopPropagation()}>
             <button
               type="button"
@@ -157,15 +156,7 @@ export const RestaurantFeed: React.FC = () => {
               }}
             >
               <CalendarDays size={13} />
-              <span>Reserve Table</span>
-            </button>
-            <button
-              type="button"
-              className="pulse-card-view-btn"
-              onClick={() => setSelectedRestaurant(restaurant)}
-            >
-              <span>View Club</span>
-              <ChevronRight size={13} />
+              <span>Reserve Seat</span>
             </button>
           </div>
         </div>
@@ -179,11 +170,11 @@ export const RestaurantFeed: React.FC = () => {
       <div className="pulse-live-marquee-container">
         <div className="pulse-live-chip">
           <span className="pulse-dot-live" />
-          <span>CIRCUIT 52 LIVE</span>
+          <span>LIVE</span>
         </div>
         <div className="pulse-marquee-content-track">
           <span className="pulse-marquee-text">
-            ⚡ Wynn: Table 1 (₹100/₹200 NLH) has 1 open seat • 🏆 Aria ₹50L GTD Flight A Registration Open (Tonight 8:00 PM) • 🔥 Bellagio: Bobby's Room ₹500/₹1k High Stakes Active • 💎 Hourly High Hand: ₹50,000 Guarantee Running • 🛡️ 180s Seat Hold Guarantee Active
+            ⚡ Wynn: Seat #4 Open (₹100/₹200) • Aria ₹50L GTD tonight • Bobby's Room active • 180s Seat Hold Active
           </span>
         </div>
       </div>
@@ -194,10 +185,10 @@ export const RestaurantFeed: React.FC = () => {
           <div className="pulse-flt-header">
             <div className="pulse-flt-badge">
               <Flame size={13} className="pulse-flt-flame-icon" />
-              <span>FEATURED LIVE TABLE • INDIRANAGAR</span>
+              <span>FEATURED TABLE • INDIRANAGAR</span>
             </div>
             <span className="pulse-flt-seated-pill">
-              <span className="pulse-dot-live" /> 8/9 Seated
+              <span className="pulse-dot-live" /> Seat #4 Open
             </span>
           </div>
 
@@ -205,20 +196,19 @@ export const RestaurantFeed: React.FC = () => {
             <div className="pulse-flt-venue-row">
               <div>
                 <h4 className="pulse-flt-title">Wynn Poker Room — Table 1</h4>
-                <div className="pulse-flt-stakes">₹100/₹200 Deepstack NLH • Min Buy-in: ₹10,000</div>
+                <div className="pulse-flt-stakes">₹100/₹200 Deepstack NLH • ₹10,000 Min Buy-in</div>
               </div>
-              <span className="pulse-flt-seat-open-badge">Seat #4 Open</span>
             </div>
 
             <div className="pulse-flt-amenities-row">
               <span className="pulse-flt-tag">
-                <Zap size={11} /> RFID Smart Felt
+                <Zap size={11} /> RFID Felt
               </span>
               <span className="pulse-flt-tag">
-                <CheckCircle2 size={11} /> Auto Shuffler
+                <CheckCircle2 size={11} /> 180s Hold
               </span>
               <span className="pulse-flt-tag">
-                <Utensils size={11} /> Tableside Wagyu
+                <Utensils size={11} /> Tableside Dining
               </span>
             </div>
 
@@ -234,20 +224,12 @@ export const RestaurantFeed: React.FC = () => {
                 <CalendarDays size={15} />
                 <span>Reserve Seat #4 (180s Guarantee)</span>
               </button>
-              <button
-                type="button"
-                className="pulse-flt-ghost-btn"
-                onClick={() => setSelectedRestaurant(restaurants[0])}
-              >
-                <span>Club Details</span>
-                <ChevronRight size={14} />
-              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. DAILY TABLE STREAK & LUCKY CHIP MINI BANNER */}
+      {/* 3. DAILY TABLE STREAK MINI BANNER */}
       <div className="pulse-streak-mini-banner" onClick={() => setActiveTab('PROFILE')}>
         <div className="pulse-smb-left">
           <div className="pulse-smb-flame-circle">
@@ -255,13 +237,13 @@ export const RestaurantFeed: React.FC = () => {
           </div>
           <div>
             <div className="pulse-smb-title">
-              <span>4-Day Table Streak Active!</span>
+              <span>4-Day Streak Active</span>
               <span className="pulse-smb-level-tag">LVL 24</span>
             </div>
             <div className="pulse-smb-xp-bar-bg">
               <div className="pulse-smb-xp-fill" style={{ width: '84.5%' }} />
             </div>
-            <span className="pulse-smb-sub">8,450 / 10,000 XP • Black Card Master</span>
+            <span className="pulse-smb-sub">8,450 / 10,000 XP • Black Card</span>
           </div>
         </div>
         <button
@@ -422,27 +404,27 @@ export const RestaurantFeed: React.FC = () => {
 
         <div className="pulse-trust-grid">
           <div className="pulse-trust-card">
-            <ShieldCheck size={22} className="pulse-trust-icon" />
-            <h5 className="pulse-trust-title">RFID 13.56 MHz Anti-Cheat</h5>
-            <p className="pulse-trust-desc">All chips and decks scanned continuously to eliminate counterfeit risks.</p>
+            <ShieldCheck size={20} className="pulse-trust-icon" style={{ color: '#10b981' }} />
+            <h5 className="pulse-trust-title">RFID Anti-Cheat</h5>
+            <p className="pulse-trust-desc">Continuous chip & deck scanning eliminates counterfeit risks.</p>
           </div>
 
           <div className="pulse-trust-card">
-            <Clock size={22} className="pulse-trust-icon" />
-            <h5 className="pulse-trust-title">180s Seat Hold Guarantee</h5>
-            <p className="pulse-trust-desc">Your table seat is reserved with a digital timer as soon as you book.</p>
+            <Clock size={20} className="pulse-trust-icon" style={{ color: '#3b82f6' }} />
+            <h5 className="pulse-trust-title">180s Seat Hold</h5>
+            <p className="pulse-trust-desc">Instant digital seat lock as soon as you tap reserve.</p>
           </div>
 
           <div className="pulse-trust-card">
-            <Zap size={22} className="pulse-trust-icon" />
-            <h5 className="pulse-trust-title">Strict Rake Cap Policy</h5>
-            <p className="pulse-trust-desc">5% capped with universal "No Flop, No Drop" policy enforced at all clubs.</p>
+            <Zap size={20} className="pulse-trust-icon" style={{ color: '#f59e0b' }} />
+            <h5 className="pulse-trust-title">Strict Rake Cap</h5>
+            <p className="pulse-trust-desc">5% capped rake with universal No Flop, No Drop rule.</p>
           </div>
 
           <div className="pulse-trust-card">
-            <Utensils size={22} className="pulse-trust-icon" />
-            <h5 className="pulse-trust-title">VIP Tableside Dining</h5>
-            <p className="pulse-trust-desc">Artisanal cuisine served directly to your felt station without leaving play.</p>
+            <Utensils size={20} className="pulse-trust-icon" style={{ color: '#f43f5e' }} />
+            <h5 className="pulse-trust-title">Tableside Dining</h5>
+            <p className="pulse-trust-desc">Gourmet dining served directly to your felt station.</p>
           </div>
         </div>
       </section>

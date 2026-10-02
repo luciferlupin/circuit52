@@ -69,7 +69,7 @@ export const MoviesFeed: React.FC = () => {
         <div className="pulse-section-header">
           <div>
             <h3 className="pulse-section-title">Daily & Weekend Tournaments</h3>
-            <p className="pulse-section-subtitle">Guaranteed prize pools, deepstack structures & live stream tables</p>
+            <p className="pulse-section-subtitle">GTD prize pools, deepstack structures & live streams</p>
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export const MoviesFeed: React.FC = () => {
         <div className="pulse-imax-content">
           <span className="pulse-badge-recent">CHAMPIONSHIP MAJOR</span>
           <h3>₹50 Lakh GTD Aria Weekend Deepstack</h3>
-          <p>100,000 starting chip stack, 25-minute levels & live stream featured table.</p>
+          <p>100k starting chips • 25-minute levels • Feature table</p>
           <button type="button" className="pulse-primary-cta-btn">
             <Sparkles size={13} />
             <span>Register Tournament Seat</span>
@@ -96,7 +96,7 @@ export const MoviesFeed: React.FC = () => {
         <div className="pulse-section-header">
           <div>
             <h3 className="pulse-section-title">Trending Poker Majors & Satellites</h3>
-            <p className="pulse-section-subtitle">High roller tournaments and national satellite qualifiers</p>
+            <p className="pulse-section-subtitle">High roller tournaments & national qualifiers</p>
           </div>
         </div>
 

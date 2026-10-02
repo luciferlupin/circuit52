@@ -30,7 +30,7 @@ export const SavedView: React.FC = () => {
       {/* Header */}
       <div className="pulse-page-header">
         <h2 className="pulse-page-title">Saved & Collections</h2>
-        <p className="pulse-page-sub">{totalSavedCount} curated poker rooms, tournaments and high-roller gigs</p>
+        <p className="pulse-page-sub">{totalSavedCount} saved clubs, tournaments & passes</p>
       </div>
 
       {/* Collections Row */}

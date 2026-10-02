@@ -273,12 +273,12 @@ export const RestaurantDetailModal: React.FC = () => {
               <h2 className="pulse-detail-name">{selectedRestaurant.name}</h2>
               <div className="pulse-rating-box large">
                 <span>{selectedRestaurant.rating.toFixed(1)}</span>
-                <Star size={13} fill="#93c5fd" color="#93c5fd" />
+                <Star size={13} fill="#f59e0b" color="#f59e0b" />
               </div>
             </div>
 
             <div className="pulse-detail-reviews-sub">
-              ★ {selectedRestaurant.rating.toFixed(1)} ({selectedRestaurant.reviewCount.toLocaleString()} verified ratings on Circuit 52)
+              ★ {selectedRestaurant.rating.toFixed(1)} • {selectedRestaurant.reviewCount.toLocaleString()} verified ratings
             </div>
 
             <div className="pulse-detail-cuisine-row">

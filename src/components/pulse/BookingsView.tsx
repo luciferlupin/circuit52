@@ -20,7 +20,7 @@ export const BookingsView: React.FC = () => {
       {/* Top Header */}
       <div className="pulse-page-header">
         <h2 className="pulse-page-title">My Bookings</h2>
-        <p className="pulse-page-sub">Live table waitlists, tournament seats and VIP digital passes</p>
+        <p className="pulse-page-sub">Table waitlists, tournament seats & digital passes</p>
       </div>
 
       {/* Status Segment Tabs */}

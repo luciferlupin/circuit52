@@ -16,7 +16,7 @@ export const OffersView: React.FC = () => {
     <div className="pulse-offers-page">
       <div className="pulse-page-header">
         <h2 className="pulse-page-title">Curated Offers & Perks</h2>
-        <p className="pulse-page-sub">Exclusive high hand bonuses, tournament reload credits and VIP privileges</p>
+        <p className="pulse-page-sub">High hand bonuses, reload credits & VIP privileges</p>
       </div>
 
       <div className="pulse-offers-list">

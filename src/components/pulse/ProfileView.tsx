@@ -92,50 +92,58 @@ export const ProfileView: React.FC = () => {
   const menuRows = [
     {
       id: 'bookings',
-      label: 'My Bookings & Passes',
-      icon: <Ticket size={18} style={{ color: '#3b82f6' }} />,
+      label: 'My Bookings',
+      icon: <Ticket size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#3b82f6',
       badge: `${bookings.filter(b => b.status === 'UPCOMING').length} active`,
       onClick: () => setActiveTab('BOOKINGS')
     },
     {
       id: 'saved',
-      label: 'Saved Places & Wishlist',
-      icon: <Bookmark size={18} style={{ color: '#60a5fa' }} />,
+      label: 'Saved Clubs & Tourneys',
+      icon: <Bookmark size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#0ea5e9',
       badge: `${savedItemIds.length} saved`,
       onClick: () => setActiveTab('SAVED')
     },
     {
       id: 'payments',
-      label: 'Circuit 52 Vault & Table Passes',
-      icon: <CreditCard size={18} style={{ color: '#2563eb' }} />,
-      sub: 'UPI, high-roller credit balance & cards',
+      label: 'Vault & Table Credits',
+      icon: <CreditCard size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#10b981',
+      sub: '₹25,000 balance • UPI active',
       onClick: () => alert('Vault Balance: ₹25,000 High-Roller Credit • UPI auto-settle active')
     },
     {
       id: 'offers',
-      label: 'Exclusive Club Perks & Bonuses',
-      icon: <Tag size={18} style={{ color: '#93c5fd' }} />,
-      badge: `${offers.length} active`,
-      onClick: () => alert(`Active Offers (${offers.length}): ${offers.map(o => o.code).join(', ')}. Use codes in Checkout for instant reload match!`)
+      label: 'Exclusive Club Perks',
+      icon: <Tag size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#f59e0b',
+      badge: `${offers.length} offers`,
+      onClick: () => alert(`Active Offers: ${offers.map(o => o.code).join(', ')}`)
     },
     {
       id: 'notifications',
-      label: 'Notification & Seat Radar Settings',
-      icon: <Bell size={18} style={{ color: '#60a5fa' }} />,
-      sub: 'Instant waitlist alerts, RFID updates',
+      label: 'Notifications & Alerts',
+      icon: <Bell size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#f43f5e',
+      sub: 'Waitlist alerts & seat calls',
       onClick: () => setIsSettingsOpen(true)
     },
     {
       id: 'settings',
-      label: 'Account Privacy & Stream Anonymity',
-      icon: <Settings size={18} style={{ color: '#64748b' }} />,
-      sub: 'Incognito stream mode, Face ID lock',
+      label: 'Privacy & Security',
+      icon: <Settings size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#8b5cf6',
+      sub: 'Incognito stream • Face ID',
       onClick: () => setIsSettingsOpen(true)
     },
     {
       id: 'help',
-      label: '24/7 VIP Floor Concierge',
-      icon: <HelpCircle size={18} style={{ color: '#2563eb' }} />,
+      label: 'VIP Floor Concierge',
+      icon: <HelpCircle size={17} style={{ color: '#ffffff' }} />,
+      bgColor: '#6366f1',
+      sub: '24/7 dedicated floor host',
       onClick: () => alert('Circuit 52 VIP Concierge: Connecting you with Floor Host on Duty...')
     }
   ];
@@ -202,8 +210,8 @@ export const ProfileView: React.FC = () => {
         </div>
 
         <div className="pulse-gamify-perk">
-          <Sparkles size={12} color="#60a5fa" />
-          <span>Active Perk: Dedicated Floor Concierge & 0% Rake on First 100 Hands</span>
+          <Sparkles size={12} color="#f59e0b" />
+          <span>Perk: Floor Concierge & 0% Rake on First 100 Hands</span>
         </div>
       </div>
 
@@ -211,10 +219,10 @@ export const ProfileView: React.FC = () => {
       <div className="pulse-streak-card">
         <div className="pulse-streak-header">
           <div className="pulse-streak-left">
-            <Flame size={20} className="pulse-streak-flame" />
+            <Flame size={20} className="pulse-streak-flame" style={{ color: '#f59e0b' }} />
             <div>
               <div className="pulse-streak-title">7-Day Table Streak</div>
-              <div className="pulse-streak-sub">+350 Bonus Reload Credits Earned</div>
+              <div className="pulse-streak-sub">+350 Reload Credits Earned</div>
             </div>
           </div>
           <span className="pulse-streak-badge">ACTIVE</span>
@@ -312,7 +320,9 @@ export const ProfileView: React.FC = () => {
             onClick={row.onClick}
           >
             <div className="pulse-profile-row-left">
-              <div className="pulse-profile-icon-box">{row.icon}</div>
+              <div className="pulse-profile-icon-box" style={{ background: row.bgColor, borderRadius: '8px', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                {row.icon}
+              </div>
               <div>
                 <div className="pulse-profile-row-label">{row.label}</div>
                 {row.sub && <div className="pulse-profile-row-sub">{row.sub}</div>}

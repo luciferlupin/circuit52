@@ -77,7 +77,7 @@ export const EventsFeed: React.FC = () => {
         <div className="pulse-section-header">
           <div>
             <h3 className="pulse-section-title">High Stakes Series & Invitational Nights</h3>
-            <p className="pulse-section-subtitle">Mega satellites, uncapped PLO-5 cash nights & VIP felt</p>
+            <p className="pulse-section-subtitle">Mega satellites, uncapped cash nights & VIP salons</p>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export const EventsFeed: React.FC = () => {
         <div className="pulse-section-header">
           <div>
             <h3 className="pulse-section-title">Bounties, Satellites & Special Gigs</h3>
-            <p className="pulse-section-subtitle">Celebrity guest pro bounties and national series satellites</p>
+            <p className="pulse-section-subtitle">Pro bounties & national series satellites</p>
           </div>
         </div>
 
@@ -105,7 +105,7 @@ export const EventsFeed: React.FC = () => {
         <div className="pulse-section-header">
           <div>
             <h3 className="pulse-section-title">VIP Private Felts & Masterclasses</h3>
-            <p className="pulse-section-subtitle">Private host sessions, 1-on-1 solver coaching & luxury dining</p>
+            <p className="pulse-section-subtitle">Private host sessions & luxury dining</p>
           </div>
         </div>
 
