@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePulse } from '../../context/PulseContext';
 import {
   X,
@@ -10,8 +10,43 @@ import {
   Clock,
   Sparkles,
   CheckCircle2,
-  CalendarDays
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  Eye,
+  Camera,
+  ZoomIn,
+  ZoomOut
 } from 'lucide-react';
+
+const PHOTO_METAS = [
+  {
+    title: 'Main Cash Game Pit',
+    tag: 'TABLES & FELTS',
+    desc: 'Custom microfiber felt tables equipped with continuous auto-shufflers and 13.56 MHz RFID readers.'
+  },
+  {
+    title: "Bobby's Room VIP Sanctuary",
+    tag: 'VIP SANCTUARY',
+    desc: 'Private high-stakes salon with sound isolation, dedicated cage runner, and bespoke leather seating.'
+  },
+  {
+    title: 'VIP Tableside Dining & Bar',
+    tag: 'BAR & DINING',
+    desc: 'Artisanal cocktails and gourmet tableside dining delivered directly to your chip stack without interrupting play.'
+  },
+  {
+    title: '4K RFID Feature Stage',
+    tag: 'STREAM STAGE',
+    desc: 'Broadcast-calibrated feature table with instant graphic overlays, hidden RFID sensors, and RFID card tracking.'
+  },
+  {
+    title: 'Skyline Players Terrace',
+    tag: 'LOUNGE',
+    desc: 'Exclusive open-air strategy terrace and cigar lounge overlooking the city skyline for break intervals.'
+  }
+];
 
 export const RestaurantDetailModal: React.FC = () => {
   const {
@@ -24,6 +59,37 @@ export const RestaurantDetailModal: React.FC = () => {
 
   const [activeGalleryIdx, setActiveGalleryIdx] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'TABLES' | 'RULES' | 'DINING' | 'PHOTOS' | 'REVIEWS'>('OVERVIEW');
+  const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
+  const [photoFilter, setPhotoFilter] = useState<string>('ALL');
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+
+  // Touch swipe support for mobile
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const minSwipeDistance = 45;
+
+  // Keyboard navigation when Lightbox is open
+  useEffect(() => {
+    if (!isLightboxOpen || !selectedRestaurant) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        setActiveGalleryIdx(prev => (prev + 1) % selectedRestaurant.galleryUrls.length);
+      } else if (e.key === 'ArrowLeft') {
+        setActiveGalleryIdx(prev =>
+          (prev - 1 + selectedRestaurant.galleryUrls.length) % selectedRestaurant.galleryUrls.length
+        );
+      } else if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, selectedRestaurant]);
+
+  // Reset zoom on photo change or lightbox close
+  useEffect(() => {
+    setIsZoomed(false);
+  }, [activeGalleryIdx, isLightboxOpen]);
 
   if (!selectedRestaurant) return null;
 
@@ -41,22 +107,85 @@ export const RestaurantDetailModal: React.FC = () => {
     }
   };
 
+  const handlePrevPhoto = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setActiveGalleryIdx(prev =>
+      (prev - 1 + selectedRestaurant.galleryUrls.length) % selectedRestaurant.galleryUrls.length
+    );
+  };
+
+  const handleNextPhoto = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setActiveGalleryIdx(prev =>
+      (prev + 1) % selectedRestaurant.galleryUrls.length
+    );
+  };
+
+  // Touch Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) {
+      // Swiped Left -> Next
+      handleNextPhoto();
+    } else if (distance < -minSwipeDistance) {
+      // Swiped Right -> Prev
+      handlePrevPhoto();
+    }
+  };
+
+  const currentMeta = PHOTO_METAS[activeGalleryIdx % PHOTO_METAS.length];
+
+  const filteredPhotos = selectedRestaurant.galleryUrls.map((url, idx) => ({
+    url,
+    idx,
+    meta: PHOTO_METAS[idx % PHOTO_METAS.length]
+  })).filter(item => {
+    if (photoFilter === 'ALL') return true;
+    if (photoFilter === 'TABLES' && (item.meta.tag.includes('TABLES') || item.meta.tag.includes('STREAM'))) return true;
+    if (photoFilter === 'VIP' && (item.meta.tag.includes('VIP') || item.meta.tag.includes('LOUNGE'))) return true;
+    if (photoFilter === 'DINING' && item.meta.tag.includes('DINING')) return true;
+    return true;
+  });
+
   return (
     <div className="pulse-detail-overlay" onClick={() => setSelectedRestaurant(null)}>
       <div className="pulse-detail-sheet" onClick={(e) => e.stopPropagation()}>
         {/* Top Handle */}
         <div className="pulse-sheet-handle" />
 
-        {/* Immersive Image Gallery */}
-        <div className="pulse-detail-gallery-container">
-          <img
-            src={selectedRestaurant.galleryUrls[activeGalleryIdx] || selectedRestaurant.imageUrl}
-            alt={selectedRestaurant.name}
-            className="pulse-detail-hero-img"
-          />
+        {/* Immersive Interactive Image Gallery */}
+        <div
+          className="pulse-detail-gallery-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Main Hero Photo with Vignette */}
+          <div
+            className="pulse-hero-img-stage"
+            onClick={() => setIsLightboxOpen(true)}
+            title="Tap to open Fullscreen Gallery"
+          >
+            <img
+              src={selectedRestaurant.galleryUrls[activeGalleryIdx] || selectedRestaurant.imageUrl}
+              alt={currentMeta.title}
+              className="pulse-detail-hero-img"
+            />
+            <div className="pulse-detail-hero-vignette" />
+          </div>
 
-          {/* Floating Actions Overlay */}
-          <div className="pulse-gallery-overlay-bar">
+          {/* Floating Actions Bar */}
+          <div className="pulse-gallery-overlay-bar" onClick={e => e.stopPropagation()}>
             <button
               type="button"
               className="pulse-gallery-circle-btn"
@@ -86,17 +215,53 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           </div>
 
-          {/* Thumbnail Strip */}
-          <div className="pulse-gallery-thumbnails">
-            {selectedRestaurant.galleryUrls.map((url, i) => (
-              <img
-                key={i}
-                src={url}
-                alt="thumb"
-                className={`pulse-gallery-thumb ${i === activeGalleryIdx ? 'active' : ''}`}
-                onClick={() => setActiveGalleryIdx(i)}
-              />
-            ))}
+          {/* Carousel Prev/Next Buttons */}
+          <button
+            type="button"
+            className="pulse-gallery-nav-arrow left"
+            onClick={handlePrevPhoto}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            type="button"
+            className="pulse-gallery-nav-arrow right"
+            onClick={handleNextPhoto}
+            aria-label="Next photo"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Bottom Bar: Tag + Animated Dots + Counter Button */}
+          <div className="pulse-hero-gallery-bottom-bar" onClick={e => e.stopPropagation()}>
+            <span className="pulse-hero-gallery-tag">
+              <Sparkles size={11} /> {currentMeta.tag}
+            </span>
+
+            {/* Pagination Dots */}
+            <div className="pulse-hero-dots-indicator">
+              {selectedRestaurant.galleryUrls.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Jump to photo ${i + 1}`}
+                  className={`pulse-hero-dot ${i === activeGalleryIdx ? 'active' : ''}`}
+                  onClick={() => setActiveGalleryIdx(i)}
+                />
+              ))}
+            </div>
+
+            {/* Expand / Counter Pill */}
+            <button
+              type="button"
+              className="pulse-gallery-count-pill"
+              onClick={() => setIsLightboxOpen(true)}
+              aria-label="Open Fullscreen Gallery"
+            >
+              <Maximize2 size={12} />
+              <span>{activeGalleryIdx + 1} / {selectedRestaurant.galleryUrls.length} • HD</span>
+            </button>
           </div>
         </div>
 
@@ -208,6 +373,64 @@ export const RestaurantDetailModal: React.FC = () => {
                 </div>
               </div>
 
+              {/* Club Atmosphere & Gallery Preview Section */}
+              <div className="pulse-detail-section">
+                <div className="pulse-gallery-section-header">
+                  <div>
+                    <h4 className="pulse-detail-section-title" style={{ margin: 0 }}>Club Atmosphere & Gallery</h4>
+                    <p className="pulse-gallery-section-sub">Verified high-definition captures of felts, tables & VIP lounges</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="pulse-see-all-photos-btn"
+                    onClick={() => setActiveTab('PHOTOS')}
+                  >
+                    <span>See All ({selectedRestaurant.galleryUrls.length})</span>
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+
+                <div className="pulse-overview-photo-mosaic">
+                  <div
+                    className="pulse-mosaic-item large"
+                    onClick={() => {
+                      setActiveGalleryIdx(0);
+                      setIsLightboxOpen(true);
+                    }}
+                  >
+                    <img src={selectedRestaurant.galleryUrls[0]} alt="Featured felt" className="pulse-mosaic-img" />
+                    <span className="pulse-mosaic-tag">Main RFID Pit</span>
+                    <div className="pulse-mosaic-zoom-pill"><Eye size={12} /> View HD</div>
+                  </div>
+
+                  <div className="pulse-mosaic-col">
+                    <div
+                      className="pulse-mosaic-item"
+                      onClick={() => {
+                        setActiveGalleryIdx(1);
+                        setIsLightboxOpen(true);
+                      }}
+                    >
+                      <img src={selectedRestaurant.galleryUrls[1]} alt="VIP Salon" className="pulse-mosaic-img" />
+                      <span className="pulse-mosaic-tag">VIP Salon</span>
+                    </div>
+                    <div
+                      className="pulse-mosaic-item more-overlay"
+                      onClick={() => {
+                        setActiveGalleryIdx(2);
+                        setIsLightboxOpen(true);
+                      }}
+                    >
+                      <img src={selectedRestaurant.galleryUrls[2]} alt="Bar & Dining" className="pulse-mosaic-img" />
+                      <div className="pulse-mosaic-more-badge">
+                        <Camera size={16} />
+                        <span>+{selectedRestaurant.galleryUrls.length - 2} More</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Location & Address */}
               <div className="pulse-detail-section">
                 <h4 className="pulse-detail-section-title">Location & Floor Security</h4>
@@ -235,7 +458,7 @@ export const RestaurantDetailModal: React.FC = () => {
                   <div className="pulse-venue-table-card">
                     <div className="pulse-vtc-top">
                       <div>
-                        <div className="pulse-vtc-name">Table 1 • ₹100/₹200 NLH</div>
+                        <div className="pulse-vtc-name">Table 1 • ₹100/₹200 Deepstack NLH</div>
                         <div className="pulse-vtc-sub">8/9 Players • Min Buy-in: ₹10,000</div>
                       </div>
                       <span className="pulse-card-avail-pill green">
@@ -338,7 +561,7 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tab 3: Dining */}
+          {/* Tab 4: Dining */}
           {activeTab === 'DINING' && (
             <div className="pulse-tab-content-block">
               <div className="pulse-detail-section">
@@ -361,24 +584,76 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tab 4: Photos */}
+          {/* Tab 5: PHOTOS (Proper Enhanced Gallery) */}
           {activeTab === 'PHOTOS' && (
             <div className="pulse-tab-content-block">
-              <div className="pulse-photos-masonry">
-                {selectedRestaurant.galleryUrls.map((url, i) => (
-                  <img
-                    key={i}
-                    src={url}
-                    alt="gallery"
-                    className="pulse-masonry-img"
-                    onClick={() => setActiveGalleryIdx(i)}
-                  />
+              {/* Photo Filter Pills & Slideshow Launch */}
+              <div className="pulse-photos-action-header">
+                <div className="pulse-photo-filter-chips">
+                  {[
+                    { id: 'ALL', label: `All (${selectedRestaurant.galleryUrls.length})` },
+                    { id: 'TABLES', label: 'Tables & Felts' },
+                    { id: 'VIP', label: 'VIP Sanctuaries' },
+                    { id: 'DINING', label: 'Bar & Dining' }
+                  ].map(chip => (
+                    <button
+                      key={chip.id}
+                      type="button"
+                      className={`pulse-pfilter-chip ${photoFilter === chip.id ? 'active' : ''}`}
+                      onClick={() => setPhotoFilter(chip.id)}
+                    >
+                      {chip.label}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  className="pulse-launch-slideshow-btn"
+                  onClick={() => {
+                    setActiveGalleryIdx(0);
+                    setIsLightboxOpen(true);
+                  }}
+                >
+                  <Maximize2 size={13} />
+                  <span>Slideshow Tour</span>
+                </button>
+              </div>
+
+              {/* Photos Gallery Grid */}
+              <div className="pulse-gallery-cards-grid">
+                {filteredPhotos.map((item) => (
+                  <div
+                    key={item.idx}
+                    className="pulse-gallery-card-item"
+                    onClick={() => {
+                      setActiveGalleryIdx(item.idx);
+                      setIsLightboxOpen(true);
+                    }}
+                  >
+                    <img
+                      src={item.url}
+                      alt={item.meta.title}
+                      className="pulse-gcard-img"
+                      loading="lazy"
+                    />
+                    <div className="pulse-gcard-overlay">
+                      <span className="pulse-gcard-tag">{item.meta.tag}</span>
+                      <div className="pulse-gcard-meta">
+                        <h5 className="pulse-gcard-title">{item.meta.title}</h5>
+                        <p className="pulse-gcard-sub">{item.meta.desc}</p>
+                      </div>
+                      <div className="pulse-gcard-zoom-icon">
+                        <Eye size={16} />
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Tab 5: Reviews */}
+          {/* Tab 6: Reviews */}
           {activeTab === 'REVIEWS' && (
             <div className="pulse-tab-content-block">
               <div className="pulse-reviews-summary">
@@ -425,6 +700,100 @@ export const RestaurantDetailModal: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* FULLSCREEN LIGHTBOX PHOTO VIEWER MODAL */}
+      {isLightboxOpen && (
+        <div className="pulse-lightbox-overlay" onClick={() => setIsLightboxOpen(false)}>
+          <div className="pulse-lightbox-content" onClick={e => e.stopPropagation()}>
+            {/* Top Bar */}
+            <div className="pulse-lightbox-header">
+              <div className="pulse-lightbox-counter">
+                <Camera size={16} />
+                <span>Photo {activeGalleryIdx + 1} of {selectedRestaurant.galleryUrls.length}</span>
+              </div>
+
+              <div className="pulse-lightbox-header-actions">
+                <button
+                  type="button"
+                  className={`pulse-lightbox-action-btn ${isZoomed ? 'active' : ''}`}
+                  onClick={() => setIsZoomed(!isZoomed)}
+                  title={isZoomed ? "Reset Zoom" : "Zoom In"}
+                  aria-label="Toggle Zoom"
+                >
+                  {isZoomed ? <ZoomOut size={18} /> : <ZoomIn size={18} />}
+                </button>
+                <button
+                  type="button"
+                  className="pulse-lightbox-close"
+                  onClick={() => setIsLightboxOpen(false)}
+                  aria-label="Close lightbox"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Main Lightbox Image Stage with Swipe Gestures */}
+            <div
+              className="pulse-lightbox-stage"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <button
+                type="button"
+                className="pulse-lightbox-nav prev"
+                onClick={handlePrevPhoto}
+                aria-label="Previous"
+              >
+                <ChevronLeft size={28} />
+              </button>
+
+              <div className={`pulse-lightbox-img-wrapper ${isZoomed ? 'zoomed' : ''}`}>
+                <img
+                  src={selectedRestaurant.galleryUrls[activeGalleryIdx]}
+                  alt={currentMeta.title}
+                  className="pulse-lightbox-main-img"
+                  style={{
+                    transform: isZoomed ? 'scale(1.55)' : 'scale(1)',
+                    transition: 'transform 0.25s ease'
+                  }}
+                  onClick={() => setIsZoomed(!isZoomed)}
+                />
+              </div>
+
+              <button
+                type="button"
+                className="pulse-lightbox-nav next"
+                onClick={handleNextPhoto}
+                aria-label="Next"
+              >
+                <ChevronRight size={28} />
+              </button>
+            </div>
+
+            {/* Bottom Caption Bar */}
+            <div className="pulse-lightbox-caption-bar">
+              <div className="pulse-lb-tag">{currentMeta.tag}</div>
+              <h4 className="pulse-lb-title">{currentMeta.title}</h4>
+              <p className="pulse-lb-desc">{currentMeta.desc}</p>
+            </div>
+
+            {/* Bottom Thumbnail Strip */}
+            <div className="pulse-lightbox-thumbnails">
+              {selectedRestaurant.galleryUrls.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt="strip thumb"
+                  className={`pulse-lb-thumb ${i === activeGalleryIdx ? 'active' : ''}`}
+                  onClick={() => setActiveGalleryIdx(i)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

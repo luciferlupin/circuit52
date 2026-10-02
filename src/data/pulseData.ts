@@ -96,7 +96,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     galleryUrls: [
       '/images/wynn.jpg',
       '/images/bobbys_room.jpg',
-      '/images/dining.jpg'
+      '/images/dining.jpg',
+      '/images/resorts_world.jpg',
+      '/images/pulse/rooftop_lounge.jpg'
     ],
     popularDishes: [
       { name: '₹100/₹200 Deepstack NLH', price: 10000, isVeg: false, tag: 'Bestseller Table' },
@@ -128,7 +130,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     galleryUrls: [
       '/images/aria.jpg',
       '/images/wynn.jpg',
-      '/images/resorts_world.jpg'
+      '/images/resorts_world.jpg',
+      '/images/bellagio.jpg',
+      '/images/dining.jpg'
     ],
     popularDishes: [
       { name: '₹200/₹500 Deepstack NLH (9-Max)', price: 20000, isVeg: false, tag: 'Most Popular' },
@@ -160,7 +164,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     galleryUrls: [
       '/images/bobbys_room.jpg',
       '/images/wynn.jpg',
-      '/images/dining.jpg'
+      '/images/dining.jpg',
+      '/images/pulse/rooftop_lounge.jpg',
+      '/images/bellagio.jpg'
     ],
     popularDishes: [
       { name: '₹1,000/₹2,000 VIP Mixed Game', price: 100000, isVeg: false, tag: 'Nosebleed Stakes' },
@@ -192,7 +198,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     galleryUrls: [
       '/images/resorts_world.jpg',
       '/images/aria.jpg',
-      '/images/wynn.jpg'
+      '/images/wynn.jpg',
+      '/images/bellagio.jpg',
+      '/images/dining.jpg'
     ],
     popularDishes: [
       { name: '₹100/₹200 Fast Action NLH', price: 10000, isVeg: false, tag: 'Instant Seat' },
@@ -223,7 +231,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     galleryUrls: [
       '/images/bellagio.jpg',
       '/images/bobbys_room.jpg',
-      '/images/dining.jpg'
+      '/images/dining.jpg',
+      '/images/wynn.jpg',
+      '/images/pulse/rooftop_lounge.jpg'
     ],
     popularDishes: [
       { name: '₹200/₹500 Deepstack NLH', price: 25000, isVeg: false, tag: 'Signature Game' },

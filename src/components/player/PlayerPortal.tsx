@@ -20,7 +20,10 @@ import {
   ChevronDown,
   Flame,
   MapPin,
-  Users
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  Camera
 } from 'lucide-react';
 import type { Club } from '../../types';
 
@@ -1093,36 +1096,126 @@ export const PlayerPortal: FC = () => {
               <div className="bottom-sheet-handle" />
 
               {/* Photo & Carousel Header */}
-              <div style={{ position: 'relative', height: '190px', borderRadius: '14px', overflow: 'hidden', marginBottom: '12px' }}>
+              <div style={{ position: 'relative', height: '220px', borderRadius: '14px', overflow: 'hidden', marginBottom: '14px', background: '#000' }}>
                 <img
                   src={detailedClub.galleryUrls[activeGalleryIndex] || detailedClub.imageUrl}
                   alt={detailedClub.displayName}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
 
+                {/* Vignette */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%)',
+                  pointerEvents: 'none'
+                }} />
+
+                {/* Close Button */}
                 <button
                   onClick={() => setDetailedClub(null)}
                   style={{
                     position: 'absolute',
                     top: '10px',
                     right: '10px',
-                    width: '28px',
-                    height: '28px',
+                    width: '32px',
+                    height: '32px',
                     borderRadius: '50%',
-                    background: 'rgba(0,0,0,0.6)',
-                    border: 'none',
+                    background: 'rgba(0,0,0,0.7)',
+                    backdropFilter: 'blur(6px)',
+                    border: '1px solid rgba(255,255,255,0.2)',
                     color: '#fff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    zIndex: 5
                   }}
                 >
-                  <X size={15} />
+                  <X size={16} />
                 </button>
 
+                {/* Prev & Next Arrows */}
+                <button
+                  type="button"
+                  onClick={() => setActiveGalleryIndex(prev => (prev - 1 + detailedClub.galleryUrls.length) % detailedClub.galleryUrls.length)}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '10px',
+                    transform: 'translateY(-50%)',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'rgba(0,0,0,0.75)',
+                    border: '1px solid rgba(59,130,246,0.4)',
+                    color: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    zIndex: 5
+                  }}
+                >
+                  <ChevronLeft size={18} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveGalleryIndex(prev => (prev + 1) % detailedClub.galleryUrls.length)}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    right: '10px',
+                    transform: 'translateY(-50%)',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'rgba(0,0,0,0.75)',
+                    border: '1px solid rgba(59,130,246,0.4)',
+                    color: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    zIndex: 5
+                  }}
+                >
+                  <ChevronRight size={18} />
+                </button>
+
+                {/* Counter Pill */}
+                <div style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  padding: '4px 10px',
+                  borderRadius: '9999px',
+                  background: 'rgba(4,10,28,0.85)',
+                  border: '1px solid rgba(59,130,246,0.4)',
+                  color: '#93c5fd',
+                  fontSize: '0.68rem',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  zIndex: 4
+                }}>
+                  <Camera size={12} />
+                  <span>{activeGalleryIndex + 1} / {detailedClub.galleryUrls.length}</span>
+                </div>
+
                 {/* Thumbnails */}
-                <div style={{ position: 'absolute', bottom: '8px', left: '10px', display: 'flex', gap: '5px' }}>
+                <div style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: '12px',
+                  right: '12px',
+                  display: 'flex',
+                  gap: '6px',
+                  overflowX: 'auto',
+                  zIndex: 4
+                }}>
                   {detailedClub.galleryUrls.map((url, idx) => (
                     <img
                       key={idx}
@@ -1130,12 +1223,14 @@ export const PlayerPortal: FC = () => {
                       alt="thumb"
                       onClick={() => setActiveGalleryIndex(idx)}
                       style={{
-                        width: '38px',
-                        height: '25px',
-                        borderRadius: '4px',
+                        width: '42px',
+                        height: '28px',
+                        borderRadius: '6px',
                         objectFit: 'cover',
-                        border: activeGalleryIndex === idx ? '2px solid var(--accent-live)' : '1px solid rgba(255,255,255,0.4)',
-                        cursor: 'pointer'
+                        border: activeGalleryIndex === idx ? '2px solid #3b82f6' : '1px solid rgba(255,255,255,0.3)',
+                        boxShadow: activeGalleryIndex === idx ? '0 0 10px rgba(59,130,246,0.8)' : 'none',
+                        cursor: 'pointer',
+                        flexShrink: 0
                       }}
                     />
                   ))}
