@@ -14,45 +14,47 @@ interface CategoryItem {
 const CATEGORIES: CategoryItem[] = [
   {
     id: 'DINING',
-    name: 'Dining',
-    tagline: 'Book Tables',
-    icon: '🍽️',
+    name: 'Cash Games',
+    tagline: 'NLH & PLO Felt',
+    badge: 'LIVE',
+    icon: '♠️',
     gradient: 'linear-gradient(135deg, #2563eb 0%, #0a1638 100%)'
   },
   {
     id: 'MOVIES',
-    name: 'Movies',
-    tagline: 'IMAX & 4DX',
-    badge: 'NEW',
-    icon: '🎬',
+    name: 'Tourneys',
+    tagline: 'Daily & Majors',
+    badge: 'HOT',
+    icon: '🏆',
     gradient: 'linear-gradient(135deg, #1d4ed8 0%, #050d24 100%)'
   },
   {
     id: 'EVENTS',
-    name: 'Events',
-    tagline: 'Live Gigs',
-    badge: 'HOT',
+    name: 'Series Gigs',
+    tagline: 'Satellites & Super Gigs',
+    badge: 'NEW',
     icon: '⚡',
     gradient: 'linear-gradient(135deg, #3b82f6 0%, #0c1c4d 100%)'
   },
   {
     id: 'NIGHTLIFE',
-    name: 'Nightlife',
-    tagline: 'Rooftops & Bars',
-    icon: '🍸',
+    name: 'VIP Salons',
+    tagline: "Bobby's & High Limit",
+    badge: 'VIP',
+    icon: '💎',
     gradient: 'linear-gradient(135deg, #1e40af 0%, #030816 100%)'
   },
   {
     id: 'ACTIVITIES',
-    name: 'Activities',
-    tagline: 'Workshops & Sports',
-    icon: '🎯',
+    name: 'PLO & Mixed',
+    tagline: '4/5-Card Omaha',
+    icon: '🃏',
     gradient: 'linear-gradient(135deg, #1e3a8a 0%, #060e22 100%)'
   },
   {
     id: 'EXPERIENCES',
-    name: 'Experiences',
-    tagline: 'Yachting & Spas',
+    name: 'Private Felt',
+    tagline: 'VIP Host Sessions',
     icon: '✨',
     gradient: 'linear-gradient(135deg, #2563eb 0%, #081330 100%)'
   }

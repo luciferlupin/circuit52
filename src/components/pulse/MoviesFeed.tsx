@@ -35,7 +35,7 @@ export const MoviesFeed: React.FC = () => {
           {/* Bottom Overlay Pills */}
           <div className="pulse-movie-bottom-tags">
             <span className="pulse-cert-pill">{movie.certification}</span>
-            <span className="pulse-format-tag">IMAX • 4DX</span>
+            <span className="pulse-format-tag">DEEPSTACK • PKO</span>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export const MoviesFeed: React.FC = () => {
         <div className="pulse-movie-info">
           <h4 className="pulse-movie-title">{movie.title}</h4>
           <div className="pulse-movie-genre">
-            {movie.genre.slice(0, 2).join(' / ')} • {movie.language.split(' ')[0]}
+            {movie.genre.slice(0, 2).join(' • ')} • {movie.runtime}
           </div>
 
           <button
@@ -55,7 +55,7 @@ export const MoviesFeed: React.FC = () => {
             }}
           >
             <Ticket size={13} />
-            <span>Book Tickets</span>
+            <span>Register Tourney Seat</span>
           </button>
         </div>
       </div>
@@ -64,12 +64,12 @@ export const MoviesFeed: React.FC = () => {
 
   return (
     <div className="pulse-movies-feed">
-      {/* SECTION 1: Now Showing in Cinemas */}
+      {/* SECTION 1: Daily & Weekend Poker Tournaments */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Now Showing</h3>
-            <p className="pulse-section-subtitle">Laser IMAX, 4DX, and Dolby Atmos screenings near you</p>
+            <h3 className="pulse-section-title">Daily & Weekend Tournaments</h3>
+            <p className="pulse-section-subtitle">Guaranteed prize pools, deepstack structures & live stream tables</p>
           </div>
         </div>
 
@@ -78,25 +78,25 @@ export const MoviesFeed: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: IMAX & Premium Formats Promo */}
+      {/* SECTION 2: Championship Major Banner */}
       <div className="pulse-imax-banner" onClick={() => setSelectedMovie(movies[0])}>
         <div className="pulse-imax-content">
-          <span className="pulse-badge-recent">EXCLUSIVE FORMAT</span>
-          <h3>IMAX with Laser: Unprecedented Contrast</h3>
-          <p>Dual 4K laser projection systems with 12-channel next-generation sound.</p>
-          <button type="button" className="btn btn-primary btn-sm">
+          <span className="pulse-badge-recent">CHAMPIONSHIP MAJOR</span>
+          <h3>₹50 Lakh GTD Aria Weekend Deepstack</h3>
+          <p>100,000 starting chip stack, 25-minute levels & live stream featured table.</p>
+          <button type="button" className="pulse-primary-cta-btn">
             <Sparkles size={13} />
-            <span>Book IMAX Screenings</span>
+            <span>Register Tournament Seat</span>
           </button>
         </div>
       </div>
 
-      {/* SECTION 3: Trending & Recommended */}
+      {/* SECTION 3: Trending Poker Majors & Satellites */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Trending & Recommended</h3>
-            <p className="pulse-section-subtitle">Highest rated theatrical releases this week</p>
+            <h3 className="pulse-section-title">Trending Poker Majors & Satellites</h3>
+            <p className="pulse-section-subtitle">High roller tournaments and national satellite qualifiers</p>
           </div>
         </div>
 

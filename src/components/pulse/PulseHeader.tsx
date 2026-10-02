@@ -79,7 +79,7 @@ export const PulseHeader: React.FC = () => {
         >
           <Search size={18} className="pulse-search-icon" />
           <span className="pulse-search-placeholder">
-            Search restaurants, movies, events & experiences
+            Search poker rooms, cash tables, tourneys (100/200, PLO)...
           </span>
           <div className="pulse-search-end-actions">
             <button
@@ -101,7 +101,7 @@ export const PulseHeader: React.FC = () => {
                 e.stopPropagation();
                 setIsFilterSheetOpen(true);
               }}
-              title="Filter by Distance, Rating, Cuisines"
+              title="Filter by Stakes, Game Type, Amenities"
             >
               <SlidersHorizontal size={15} />
             </button>
@@ -112,10 +112,10 @@ export const PulseHeader: React.FC = () => {
       {/* Live City Pulse Micro-Ticker */}
       <div className="pulse-city-ticker">
         <span className="pulse-ticker-tag">
-          <Flame size={12} /> TRENDING IN {currentLocation.name.toUpperCase()}
+          <Flame size={12} /> LIVE ACTION • {currentLocation.name.toUpperCase()}
         </span>
         <span className="pulse-ticker-text">
-          IMAX CHRONOS tickets selling fast • Bomba Pasta offers 20% off tonight
+          ₹200/₹500 PLO-5 active at Wynn • High Hand ₹50,000 at Aria • 42 Cash Tables Running
         </span>
       </div>
     </header>

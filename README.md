@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# circuit52
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A premium, mobile-first poker club discovery, live table waitlist, tournament booking, and going-out entertainment platform.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Club Discovery**: Explore premier poker rooms and high roller lounges with live stake tracking (NLH & PLO), RFID smart felts, and real-time waitlists.
+- **Tournaments & Events**: View schedules, blind structures, guaranteed prize pools, and register seats for major poker series.
+- **Dining & VIP Sanctuaries**: Reserve tableside dining, VIP passes, and private high-roller sanctuaries.
+- **Mobile-First Experience**: Dark mode UI with deep blacks and neon cyan accents, dynamic island status, bottom sheet navigation, and smooth micro-interactions.
+- **Club Partner Portal**: Dedicated management interface for venue operators to manage table lineups, player waitlists, and promotional events.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** + **TypeScript**
+- **Vite**
+- **Lucide Icons**
+- Pure CSS design system with responsive mobile shell
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Installation
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Development
+
+```bash
+npm run dev
+```
+
+### Production Build
+
+```bash
+npm run build
+```

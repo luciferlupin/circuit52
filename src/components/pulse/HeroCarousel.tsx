@@ -32,13 +32,13 @@ export const HeroCarousel: React.FC = () => {
     setCurrentIndex(prev => (prev - 1 + HERO_CAROUSEL_ITEMS.length) % HERO_CAROUSEL_ITEMS.length);
   };
 
-  const handleCtaClick = (item: typeof HERO_CAROUSEL_ITEMS[0]) => {
-    setActiveCategory(item.category);
-    if (item.category === 'MOVIES') {
+  const handleCtaClick = (item: (typeof HERO_CAROUSEL_ITEMS)[number]) => {
+    setActiveCategory(item.category as any);
+    if ((item.category as string) === 'MOVIES') {
       setSelectedMovie(movies[0] || null);
-    } else if (item.category === 'EVENTS') {
+    } else if ((item.category as string) === 'EVENTS') {
       setSelectedEvent(events[0] || null);
-    } else if (item.category === 'DINING') {
+    } else if ((item.category as string) === 'DINING') {
       setSelectedRestaurant(restaurants[0] || null);
     }
   };

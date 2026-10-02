@@ -59,11 +59,11 @@ export const RestaurantFeed: React.FC = () => {
             {/* Table Availability Pill */}
             {restaurant.isTableAvailable ? (
               <span className="pulse-card-avail-pill green">
-                <span className="pulse-dot-live" /> Table Available Tonight
+                <span className="pulse-dot-live" /> Seats Open Now
               </span>
             ) : (
               <span className="pulse-card-avail-pill orange">
-                <Clock size={11} /> {restaurant.tableWaitMinutes}m wait
+                <Clock size={11} /> {restaurant.tableWaitMinutes}m waitlist
               </span>
             )}
 
@@ -75,8 +75,8 @@ export const RestaurantFeed: React.FC = () => {
                 e.stopPropagation();
                 toggleSaveItem(restaurant.id);
               }}
-              title={isSaved ? 'Remove from Saved' : 'Save Restaurant'}
-              aria-label="Save restaurant"
+              title={isSaved ? 'Remove from Saved' : 'Save Poker Club'}
+              aria-label="Save poker club"
             >
               <Bookmark size={15} fill={isSaved ? '#3b82f6' : 'none'} color={isSaved ? '#3b82f6' : '#fff'} />
             </button>
@@ -107,16 +107,16 @@ export const RestaurantFeed: React.FC = () => {
             </div>
           </div>
 
-          {/* Cuisine & Subtitle */}
+          {/* Stakes & Subtitle */}
           <div className="pulse-card-cuisine">
             {restaurant.cuisine.join(' • ')}
           </div>
 
-          {/* Area & Price for Two */}
+          {/* Area & Min Buy-in */}
           <div className="pulse-card-meta-row">
             <span className="pulse-card-area">{restaurant.area}</span>
             <span className="pulse-card-meta-dot">•</span>
-            <span className="pulse-card-price">₹{restaurant.priceForTwo.toLocaleString()} for two</span>
+            <span className="pulse-card-price">From ₹{restaurant.priceForTwo.toLocaleString()} buy-in</span>
           </div>
         </div>
       </div>
@@ -125,19 +125,19 @@ export const RestaurantFeed: React.FC = () => {
 
   return (
     <div className="pulse-dining-feed">
-      {/* SECTION 1: Popular Near You */}
+      {/* SECTION 1: Live Cash Game Poker Clubs */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Popular Near You</h3>
-            <p className="pulse-section-subtitle">Trending tables and hot reservations today</p>
+            <h3 className="pulse-section-title">Live Cash Game Poker Clubs</h3>
+            <p className="pulse-section-subtitle">Active cash tables, real-time waitlists & instant seat booking</p>
           </div>
           <button
             type="button"
             className="pulse-section-see-all"
             onClick={() => setSelectedRestaurant(restaurants[0])}
           >
-            <span>See all</span>
+            <span>See all clubs</span>
             <ArrowRight size={14} />
           </button>
         </div>
@@ -147,12 +147,12 @@ export const RestaurantFeed: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: Date Night & Intimate Dining */}
+      {/* SECTION 2: High Roller & VIP Lounges */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Date-Night Restaurants</h3>
-            <p className="pulse-section-subtitle">Romantic ambient lighting, omakase & craft wine</p>
+            <h3 className="pulse-section-title">High Roller & VIP Penthouse Lounges</h3>
+            <p className="pulse-section-subtitle">Private cages, uncapped stakes, Bobby's Room & luxury felt</p>
           </div>
         </div>
 
@@ -161,12 +161,12 @@ export const RestaurantFeed: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 3: Hidden Gems & New In City */}
+      {/* SECTION 3: Action PLO & Deepstack Rooms */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Hidden Gems & Glasshouses</h3>
-            <p className="pulse-section-subtitle">Curated by local food editors and culinary critics</p>
+            <h3 className="pulse-section-title">Action PLO & Deepstack Cardrooms</h3>
+            <p className="pulse-section-subtitle">5-Card Omaha, Bomb Pots, and automatic card shuffler clubs</p>
           </div>
         </div>
 

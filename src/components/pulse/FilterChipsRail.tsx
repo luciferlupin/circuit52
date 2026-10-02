@@ -11,14 +11,13 @@ interface QuickFilterOption {
 
 const FILTER_OPTIONS: QuickFilterOption[] = [
   { id: 'NEAR_ME', label: 'Near Me', icon: '📍' },
-  { id: 'TOP_RATED', label: 'Top Rated ★4.5+', icon: '⭐' },
-  { id: 'TRENDING', label: 'Trending', icon: '🔥' },
-  { id: 'NEW', label: 'New in City', icon: '✨' },
-  { id: 'UNDER_500', label: 'Under ₹500', icon: '🏷️' },
-  { id: 'OFFERS', label: 'Great Offers', icon: '🎁' },
-  { id: 'OPEN_NOW', label: 'Open Now', icon: '🟢' },
-  { id: 'OUTDOOR', label: 'Rooftop & Outdoor', icon: '🌆' },
-  { id: 'PREMIUM', label: 'Luxury & VIP', icon: '💎' }
+  { id: 'TOP_RATED', label: 'Top Rated ★4.8+', icon: '⭐' },
+  { id: 'OPEN_NOW', label: 'Live Tables Now', icon: '♠️' },
+  { id: 'PREMIUM', label: 'High Roller VIP', icon: '💎' },
+  { id: 'OFFERS', label: 'High Hand Bonuses', icon: '🎁' },
+  { id: 'TRENDING', label: 'Hot Action PLO', icon: '🔥' },
+  { id: 'NEW', label: 'RFID Smart Felt', icon: '⚡' },
+  { id: 'UNDER_500', label: 'Mid Stakes (100/200)', icon: '🏷️' }
 ];
 
 export const FilterChipsRail: React.FC = () => {

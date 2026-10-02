@@ -12,228 +12,230 @@ import type {
 export const LOCATIONS: LocationItem[] = [
   {
     id: 'loc-1',
-    name: 'Indiranagar',
+    name: 'Indiranagar Club Corridor',
     city: 'Bengaluru',
     state: 'Karnataka',
-    popularSpots: ['100ft Road', '12th Main', 'Defence Colony', 'Koramangala']
+    popularSpots: ['100ft Road Club Row', '12th Main Felt', 'Defence Colony', 'Koramangala Room']
   },
   {
     id: 'loc-2',
-    name: 'Bandra West & BKC',
-    city: 'Mumbai',
-    state: 'Maharashtra',
-    popularSpots: ['Pali Hill', 'Carter Road', 'Maker Maxity', 'Juhu']
+    name: 'Goa Offshore Strip',
+    city: 'Goa',
+    state: 'Goa',
+    popularSpots: ['Mandovi Cruisers', 'Panjim Poker Row', 'Candolim Lounge', 'Baga Card Room']
   },
   {
     id: 'loc-3',
-    name: 'CyberHub & Golf Course',
-    city: 'Gurugram',
-    state: 'Haryana',
-    popularSpots: ['CyberHub', 'Horizon Centre', 'Sector 29', 'Golf Course Ext']
+    name: 'Las Vegas Strip Corridor',
+    city: 'Las Vegas',
+    state: 'Nevada',
+    popularSpots: ['Bellagio High Stakes', 'Wynn Grand Felt', 'Aria Poker Room', 'Resorts World Tech']
   },
   {
     id: 'loc-4',
-    name: 'Connaught Place & Aerocity',
-    city: 'New Delhi',
-    state: 'Delhi NCR',
-    popularSpots: ['Inner Circle', 'Worldmark Aerocity', 'Khan Market', 'Hauz Khas']
+    name: 'London Mayfair District',
+    city: 'London',
+    state: 'United Kingdom',
+    popularSpots: ['Mayfair Club', 'Crown Aspinalls', 'Les Ambassadeurs', 'Hippodrome Square']
   }
 ];
 
 export const HERO_CAROUSEL_ITEMS = [
   {
     id: 'hero-1',
-    label: 'CURATED WEEKEND',
-    headline: 'Your Weekend Starts Here',
-    subtext: 'Discover 42 live gigs, rooftop jazz bars, and trending tableside omakase.',
-    cta: 'Explore Weekend Guide',
-    category: 'EVENTS' as const,
-    imageUrl: '/images/pulse/concert_event.jpg'
+    label: 'HIGH STAKES ACTION',
+    headline: 'Wynn Grand High Roller Lounge',
+    subtext: '16 Live cash tables active. ₹100/₹200 to ₹1,000/₹2,000 NLH & PLO with RFID tracking.',
+    cta: 'Reserve Table Seat',
+    category: 'DINING' as const,
+    imageUrl: '/images/wynn.jpg'
   },
   {
     id: 'hero-2',
-    label: 'DATE NIGHT SPECIAL',
-    headline: 'Skyline Dining & Craft Cocktails',
-    subtext: 'Reserve rooftop tables with sunset vistas and complimentary chef pairings.',
-    cta: 'Book Intimate Tables',
-    category: 'DINING' as const,
-    imageUrl: '/images/pulse/rooftop_lounge.jpg'
+    label: 'WEEKEND CHAMPIONSHIP',
+    headline: 'Aria ₹50L GTD Deepstack Tourney',
+    subtext: 'Late registration open. 100k starting chips, 25-minute levels & live stream featured table.',
+    cta: 'Register Tourney Seat',
+    category: 'MOVIES' as const,
+    imageUrl: '/images/aria.jpg'
   },
   {
     id: 'hero-3',
-    label: 'CINEMATIC EVENT',
-    headline: 'CHRONOS: The IMAX Experience',
-    subtext: 'Advance bookings now open. Feel the bass in crystal-clear laser IMAX.',
-    cta: 'Reserve Seats',
-    category: 'MOVIES' as const,
-    imageUrl: '/images/pulse/cinema_poster.jpg'
+    label: 'PRIVATE VIP SANCTUARY',
+    headline: "Bobby's Room High Stakes Felt",
+    subtext: 'Exclusive high roller mixed games, private security cage & Michelin tableside dining.',
+    cta: 'Book VIP Pass',
+    category: 'NIGHTLIFE' as const,
+    imageUrl: '/images/bobbys_room.jpg'
   },
   {
     id: 'hero-4',
-    label: 'LIVE COMEDY',
-    headline: 'Laugh Out Loud This Friday',
-    subtext: 'Intimate comedy sessions featuring top touring headliners & craft brews.',
-    cta: 'Get Tickets from ₹499',
-    category: 'EVENTS' as const,
-    imageUrl: '/images/pulse/standup_comedy.jpg'
+    label: 'ACTION PLO-5 ROOM',
+    headline: 'Resorts World Tech Lounge',
+    subtext: 'Automatic card shufflers, USB felt chargers, zero-rake happy hours & ₹50k hourly high hand.',
+    cta: 'Join Live Waitlist',
+    category: 'DINING' as const,
+    imageUrl: '/images/resorts_world.jpg'
   }
 ];
 
 export const RESTAURANTS_DATA: Restaurant[] = [
   {
     id: 'rest-1',
-    name: 'Bomba Dining Room',
-    cuisine: ['Modern Italian', 'Artisanal Pasta', 'Wine Bar'],
-    rating: 4.8,
-    reviewCount: 1420,
+    name: 'Wynn Poker Room & High Roller Lounge',
+    cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'RFID Smart Felt'],
+    rating: 4.9,
+    reviewCount: 1840,
     distanceKm: 1.8,
-    priceForTwo: 1800,
-    area: '100ft Road, Indiranagar',
+    priceForTwo: 10000,
+    area: '100ft Road Club Row',
     isTableAvailable: true,
     tableWaitMinutes: 0,
-    featuredOffer: 'Flat 20% off with Pulse Pay',
-    imageUrl: '/images/pulse/bistro_dining.jpg',
+    featuredOffer: '₹500 Free Bonus Chips on ₹10k Buy-in',
+    imageUrl: '/images/wynn.jpg',
     galleryUrls: [
-      '/images/pulse/bistro_dining.jpg',
-      '/images/pulse/rooftop_lounge.jpg',
-      '/images/pulse/artisanal_sushi.jpg'
+      '/images/wynn.jpg',
+      '/images/bobbys_room.jpg',
+      '/images/dining.jpg'
     ],
     popularDishes: [
-      { name: 'Truffle Tagliolini', price: 680, isVeg: true, tag: "Chef's Signature" },
-      { name: 'Burrata di Puglia', price: 540, isVeg: true },
-      { name: 'Wood-fired Pepperoni Pizza', price: 720, isVeg: false, tag: 'Bestseller' },
-      { name: 'Smoked Tiramisu Al Forno', price: 420, isVeg: true }
+      { name: '₹100/₹200 Deepstack NLH', price: 10000, isVeg: false, tag: 'Bestseller Table' },
+      { name: '₹200/₹500 Action PLO-5', price: 25000, isVeg: false, tag: 'High Action' },
+      { name: '₹500/₹1000 High Roller Felt', price: 50000, isVeg: false, tag: 'VIP Stakes' },
+      { name: 'Bobby’s Mixed Game (PLO/Stud)', price: 100000, isVeg: false }
     ],
-    about: 'Bomba crafts hand-rolled pastas and heritage wood-fired pizzas paired with natural biodynamic wines in an intimate, modern velvet-accented setting overlooking the tree-lined avenues.',
-    address: 'Plot 482, 100ft Road, Stage 2, Indiranagar, Bengaluru',
+    about: 'The premier luxury poker destination featuring 28 custom felt tables with RFID tracking, automatic card shufflers, 24/7 dedicated cage cashiers, and complimentary tableside gourmet dining.',
+    address: 'Plot 482, 100ft Road, Stage 2, Indiranagar Poker Corridor',
     phone: '+91 80 4965 2200',
     isOpen: true,
-    timings: '12:00 PM – 11:30 PM',
-    facilities: ['Valet Parking', 'Cocktail Bar', 'Outdoor Balcony', 'Air Conditioned', 'Live Jazz Fridays'],
+    timings: '24 Hours Open • 7 Days a Week',
+    facilities: ['RFID Smart Felt', 'Automatic Shufflers', 'Complimentary Gourmet Dining', '24/7 Cashier Cage', 'Valet Parking', 'High Hand Hourly Jackpots'],
     sectionTag: 'POPULAR'
   },
   {
     id: 'rest-2',
-    name: 'Mizu Japanese Omakase',
-    cuisine: ['Japanese', 'Sushi & Sashimi', 'Izakaya'],
+    name: 'Aria Modern Poker Room & Tables',
+    cuisine: ['₹200/₹500 NLH', '₹500/₹1,000 High Stakes', 'Championship Felt'],
     rating: 4.9,
-    reviewCount: 980,
+    reviewCount: 1420,
     distanceKm: 2.4,
-    priceForTwo: 2600,
-    area: '12th Main, Indiranagar',
+    priceForTwo: 20000,
+    area: '12th Main Strip',
     isTableAvailable: true,
-    tableWaitMinutes: 10,
-    featuredOffer: 'Complimentary Sake flight on tables of 4+',
-    imageUrl: '/images/pulse/artisanal_sushi.jpg',
+    tableWaitMinutes: 5,
+    featuredOffer: '100% High Hand Bonus Match Today',
+    imageUrl: '/images/aria.jpg',
     galleryUrls: [
-      '/images/pulse/artisanal_sushi.jpg',
-      '/images/pulse/bistro_dining.jpg',
-      '/images/pulse/rooftop_lounge.jpg'
+      '/images/aria.jpg',
+      '/images/wynn.jpg',
+      '/images/resorts_world.jpg'
     ],
     popularDishes: [
-      { name: 'Truffle Salmon Nigiri (4 pcs)', price: 790, isVeg: false, tag: 'Must Try' },
-      { name: 'Bluefin Tuna Otoro Tartare', price: 920, isVeg: false },
-      { name: 'Avocado & Crispy Asparagus Roll', price: 580, isVeg: true },
-      { name: 'Matcha Fondant Lava', price: 450, isVeg: true }
+      { name: '₹200/₹500 Deepstack NLH (9-Max)', price: 20000, isVeg: false, tag: 'Most Popular' },
+      { name: '₹500/₹1,000 High Roller NLH', price: 50000, isVeg: false, tag: 'High Stakes' },
+      { name: '₹100/₹200 Beginner Fast-Fold', price: 10000, isVeg: false },
+      { name: 'PLO-4 Round of Each (ROE)', price: 30000, isVeg: false }
     ],
-    about: 'Mizu brings the art of Tokyo counter-dining with fresh fish air-flown weekly from Toyosu Market, paired with rare artisanal sakes in a minimalist cedarwood space.',
+    about: 'Sleek modern poker room designed with ergonomic custom leather chairs, premium ceramic clay chips, soundproof acoustic ceiling, and tableside USB ports.',
     address: '777, 12th Main Rd, HAL 2nd Stage, Indiranagar',
     phone: '+91 80 4128 9090',
     isOpen: true,
-    timings: '12:30 PM – 3:30 PM, 7:00 PM – 11:45 PM',
-    facilities: ['Chef Counter', 'Private Dining Room', 'Valet Parking', 'Handcrafted Mocktails'],
+    timings: '24 Hours Open • Daily Cash Games',
+    facilities: ['RFID Smart Tables', 'Private High Stakes Salon', 'Tableside Massage', 'Handcrafted Cocktails & Coffee', 'Direct Cage UPI Payouts'],
     sectionTag: 'DATE_NIGHT'
   },
   {
     id: 'rest-3',
-    name: 'Skyline Deck & Cocktail Bar',
-    cuisine: ['Contemporary Global', 'Tapas', 'Mixology'],
-    rating: 4.7,
-    reviewCount: 2150,
+    name: "Bobby's VIP High Stakes Room",
+    cuisine: ['₹1,000/₹2,000 Stakes', 'Private Mixed Games', 'VIP Salon'],
+    rating: 5.0,
+    reviewCount: 650,
     distanceKm: 3.2,
-    priceForTwo: 2200,
-    area: 'MG Road Rooftop',
+    priceForTwo: 50000,
+    area: 'High Roller Penthouse Row',
     isTableAvailable: true,
-    tableWaitMinutes: 15,
-    featuredOffer: 'Happy Hour 1+1 on Craft Cocktails till 8 PM',
-    imageUrl: '/images/pulse/rooftop_lounge.jpg',
+    tableWaitMinutes: 0,
+    featuredOffer: 'Zero Rake on Tables above ₹1,000/₹2,000',
+    imageUrl: '/images/bobbys_room.jpg',
     galleryUrls: [
-      '/images/pulse/rooftop_lounge.jpg',
-      '/images/pulse/bistro_dining.jpg',
-      '/images/pulse/concert_event.jpg'
+      '/images/bobbys_room.jpg',
+      '/images/wynn.jpg',
+      '/images/dining.jpg'
     ],
     popularDishes: [
-      { name: 'Smoked Rosemary Mezcalita', price: 620, isVeg: true, tag: 'Award Winner' },
-      { name: 'Wagyu Sliders (3 pcs)', price: 850, isVeg: false },
-      { name: 'Truffle Edamame Dumplings', price: 490, isVeg: true },
-      { name: 'Firecracker Prawn Skewers', price: 680, isVeg: false }
+      { name: '₹1,000/₹2,000 VIP Mixed Game', price: 100000, isVeg: false, tag: 'Nosebleed Stakes' },
+      { name: '₹500/₹1,000 NLH Uncapped', price: 50000, isVeg: false, tag: 'Deep Action' },
+      { name: '₹500/₹1,000 PLO-5 Big O', price: 50000, isVeg: false },
+      { name: 'Private Table Rental (Heads Up / 6-Max)', price: 150000, isVeg: false }
     ],
-    about: 'Elevated 24 floors above the cityscape, Skyline Deck offers unobstructed panoramic skyline views, fire pits, curated deep house sets, and cutting-edge craft mixology.',
-    address: '24th Floor, Barton Centre, MG Road, Bengaluru',
+    about: 'Legendary private poker sanctuary reserved for top professionals and high-net-worth players. Featuring crystal chandeliers, private security escorts, and private cage settlement.',
+    address: 'Penthouse Level, Barton Centre, Club District',
     phone: '+91 80 2558 7711',
     isOpen: true,
-    timings: '4:00 PM – 1:00 AM',
-    facilities: ['Rooftop Seating', 'Live DJ', 'Designated Smoking Area', 'Valet Parking'],
+    timings: '2:00 PM – 6:00 AM Daily',
+    facilities: ['Ultra Private Salon', 'Private Cage & Safe Deposit', 'Dedicated Butler Service', 'Private Cigar Lounge', 'Armored Transport'],
     sectionTag: 'TRENDING'
   },
   {
     id: 'rest-4',
-    name: 'Olive & Coal Smokehouse',
-    cuisine: ['Artisanal BBQ', 'Mediterranean', 'Craft Beers'],
-    rating: 4.6,
-    reviewCount: 840,
+    name: 'Resorts World High Tech Poker Lounge',
+    cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'Automated Shufflers'],
+    rating: 4.8,
+    reviewCount: 1120,
     distanceKm: 4.1,
-    priceForTwo: 1600,
-    area: 'Defence Colony',
-    isTableAvailable: false,
-    tableWaitMinutes: 30,
-    featuredOffer: '15% instant cashback on Axis Cards',
-    imageUrl: '/images/pulse/bistro_dining.jpg',
+    priceForTwo: 10000,
+    area: 'Defence Tech District',
+    isTableAvailable: true,
+    tableWaitMinutes: 10,
+    featuredOffer: 'Hourly ₹10,000 High Hand Bonus Active',
+    imageUrl: '/images/resorts_world.jpg',
     galleryUrls: [
-      '/images/pulse/bistro_dining.jpg',
-      '/images/pulse/artisanal_sushi.jpg'
+      '/images/resorts_world.jpg',
+      '/images/aria.jpg',
+      '/images/wynn.jpg'
     ],
     popularDishes: [
-      { name: 'Slow-Smoked Lamb Shanks', price: 950, isVeg: false, tag: 'Signature' },
-      { name: 'Charred Halloumi Salad', price: 460, isVeg: true },
-      { name: 'Craft IPA Pint', price: 380, isVeg: true }
+      { name: '₹100/₹200 Fast Action NLH', price: 10000, isVeg: false, tag: 'Instant Seat' },
+      { name: '₹200/₹500 PLO-5 Action Bomb Pot', price: 25000, isVeg: false, tag: 'Bomb Pots' },
+      { name: 'Nightly Sit & Go Turbo (6-Max)', price: 5000, isVeg: false }
     ],
-    about: 'Rustic Mediterranean smokehouse combining slow hickory smoking techniques with coastal olive oil traditions and local microbrews.',
+    about: 'The most technologically advanced poker club with electronic table displays, real-time hand history tracking, automated card shufflers, and live tournament clocks.',
     address: '92, 6th Cross, Defence Colony, Indiranagar',
     phone: '+91 80 4390 1200',
     isOpen: true,
-    timings: '12:00 PM – 11:00 PM',
-    facilities: ['Pet Friendly', 'Craft Brewery on Tap', 'Outdoor Courtyard'],
+    timings: '24 Hours Open',
+    facilities: ['RFID Smart Felt', 'Electronic Waitlist Kiosk', 'USB Fast Chargers at Every Seat', 'Tableside Food Delivery', 'Secure Parking'],
     sectionTag: 'NEW'
   },
   {
     id: 'rest-5',
-    name: 'Botanica Glasshouse Bistro',
-    cuisine: ['Farm-to-Table', 'European', 'Organic Coffee'],
-    rating: 4.7,
-    reviewCount: 1120,
+    name: 'Bellagio Luxury High Stakes Room',
+    cuisine: ['₹200/₹500 NLH', '₹500/₹1,000 PLO', 'Tableside Dining'],
+    rating: 4.9,
+    reviewCount: 2200,
     distanceKm: 2.9,
-    priceForTwo: 1400,
-    area: 'Lavelle Road',
+    priceForTwo: 25000,
+    area: 'Lavelle Luxury Enclave',
     isTableAvailable: true,
     tableWaitMinutes: 0,
-    featuredOffer: 'Complimentary artisan dessert with 2 mains',
-    imageUrl: '/images/pulse/rooftop_lounge.jpg',
+    featuredOffer: 'Complimentary Michelin Tableside Dining',
+    imageUrl: '/images/bellagio.jpg',
     galleryUrls: [
-      '/images/pulse/rooftop_lounge.jpg',
-      '/images/pulse/bistro_dining.jpg'
+      '/images/bellagio.jpg',
+      '/images/bobbys_room.jpg',
+      '/images/dining.jpg'
     ],
     popularDishes: [
-      { name: 'Wild Mushroom Risotto', price: 590, isVeg: true },
-      { name: 'Burnt Butter Gnocchi', price: 540, isVeg: true, tag: 'Bestseller' },
-      { name: 'Sea Salt Dark Chocolate Tart', price: 390, isVeg: true }
+      { name: '₹200/₹500 Deepstack NLH', price: 25000, isVeg: false, tag: 'Signature Game' },
+      { name: '₹500/₹1,000 High Roller PLO', price: 50000, isVeg: false, tag: 'Deepstack' },
+      { name: '₹100/₹200 Warmup Cash Table', price: 10000, isVeg: false }
     ],
-    about: 'Housed inside an architectural sunlit greenhouse surrounded by 200+ exotic plants, Botanica serves seasonal organic dishes harvested from local Karnataka farms.',
-    address: '14, Lavelle Road, Shanthala Nagar, Ashok Nagar',
+    about: 'Iconic poker institution boasting gold-trimmed felt, world-class dealers, European cash game structures, and complimentary tableside sommelier pairings.',
+    address: '14, Lavelle Road, Shanthala Nagar, Luxury Poker Corridor',
     phone: '+91 80 4112 3344',
     isOpen: true,
-    timings: '9:00 AM – 10:30 PM',
-    facilities: ['Outdoor Greenhouse', 'Breakfast Menu', 'Artisan Bakery', 'Free WiFi'],
+    timings: '24 Hours Open • 7 Days a Week',
+    facilities: ['RFID Felt Tables', 'Tableside Dining Menu', 'Sommelier Wine Service', 'Private Cashiers', 'VIP Valet'],
     sectionTag: 'HIDDEN_GEM'
   }
 ];
@@ -241,138 +243,132 @@ export const RESTAURANTS_DATA: Restaurant[] = [
 export const MOVIES_DATA: Movie[] = [
   {
     id: 'mov-1',
-    title: 'CHRONOS: Beyond The Edge',
-    genre: ['Sci-Fi', 'Adventure', 'Mystery'],
-    language: 'English (Original)',
-    certification: 'UA 13+',
-    rating: 9.1,
-    votesCount: '48.2k',
-    runtime: '2h 46m',
-    releaseDate: 'Fri, 27 Sep 2024',
-    posterUrl: '/images/pulse/cinema_poster.jpg',
-    backdropUrl: '/images/pulse/cinema_poster.jpg',
-    synopsis: 'When a mysterious cosmic monolith begins resonating with Earth’s quantum core, an elite expedition journeys across the event horizon to decipher an ancient message left before time itself began.',
+    title: 'Aria Weekend ₹50L GTD Deepstack Tourney',
+    genre: ['Deepstack', 'No-Limit Hold\'em', 'Championship'],
+    language: 'Freezeout • 100k Chips',
+    certification: 'A',
+    rating: 4.9,
+    votesCount: '1.2k Players',
+    runtime: 'Level 12 • 25m Blinds',
+    releaseDate: 'Tonight 8:00 PM',
+    posterUrl: '/images/aria.jpg',
+    backdropUrl: '/images/wynn.jpg',
+    synopsis: 'Premier weekend deepstack poker tournament with ₹50,00,000 guaranteed prize pool. 100,000 starting chip stack, 25-minute blind levels, and full live stream coverage on the final table.',
     cast: [
-      { name: 'Alexander Sterling', role: 'Commander David Vance' },
-      { name: 'Maya Lin', role: 'Dr. Evelyn Cross' },
-      { name: 'Marcus Brody', role: 'Chief Engineer Cole' }
+      { name: 'Floor Director', role: 'Vikram Mehta' },
+      { name: 'Lead Dealer', role: 'Kavita Roy' },
+      { name: 'Live Stream Host', role: 'Samir Grover' }
     ],
-    crew: {
-      director: 'Denis Villeneuve',
-      composer: 'Hans Zimmer'
-    },
+    crew: { director: 'Aria Poker Floor Management', composer: 'RFID Chip Track' },
     status: 'NOW_SHOWING',
     cinemas: [
       {
         id: 'cin-1',
-        name: 'PVR INOX: Nexus Koramangala',
-        chain: 'PVR INOX',
-        distanceKm: 2.1,
-        area: 'Koramangala, Bengaluru',
-        formats: ['IMAX', '4DX', '3D', '2D'],
+        name: 'Aria Main Tournament Arena',
+        chain: 'Aria Poker Club',
+        distanceKm: 2.4,
+        area: '12th Main Indiranagar',
+        formats: ['2D', 'IMAX'],
         showtimes: [
-          { id: 'st-1', time: '1:45 PM', format: 'IMAX', language: 'Eng', price: 450, screenName: 'IMAX Laser Screen 1', availability: 'FAST_FILLING' },
-          { id: 'st-2', time: '5:15 PM', format: 'IMAX', language: 'Eng', price: 550, screenName: 'IMAX Laser Screen 1', availability: 'ALMOST_FULL' },
-          { id: 'st-3', time: '8:45 PM', format: 'IMAX', language: 'Eng', price: 600, screenName: 'IMAX Laser Screen 1', availability: 'FAST_FILLING' },
-          { id: 'st-4', time: '10:30 PM', format: '4DX', language: 'Eng', price: 500, screenName: '4DX Screen 4', availability: 'AVAILABLE' }
-        ]
-      },
-      {
-        id: 'cin-2',
-        name: 'Cinepolis: 1MG Mall',
-        chain: 'Cinepolis',
-        distanceKm: 3.4,
-        area: 'MG Road, Trinity Metro',
-        formats: ['3D', '2D', '4DX'],
-        showtimes: [
-          { id: 'st-5', time: '3:00 PM', format: '3D', language: 'Eng', price: 320, screenName: 'VIP Atmos Screen 2', availability: 'AVAILABLE' },
-          { id: 'st-6', time: '6:30 PM', format: '3D', language: 'Eng', price: 380, screenName: 'VIP Atmos Screen 2', availability: 'FAST_FILLING' },
-          { id: 'st-7', time: '9:45 PM', format: '2D', language: 'Eng', price: 290, screenName: 'Audi 3', availability: 'AVAILABLE' }
-        ]
-      },
-      {
-        id: 'cin-3',
-        name: 'INOX: Garuda Mall',
-        chain: 'INOX',
-        distanceKm: 4.0,
-        area: 'Magrath Road, Ashok Nagar',
-        formats: ['IMAX', '2D'],
-        showtimes: [
-          { id: 'st-8', time: '4:20 PM', format: 'IMAX', language: 'Eng', price: 480, screenName: 'IMAX Screen 1', availability: 'AVAILABLE' },
-          { id: 'st-9', time: '7:45 PM', format: 'IMAX', language: 'Eng', price: 520, screenName: 'IMAX Screen 1', availability: 'FAST_FILLING' }
+          {
+            id: 'st-1',
+            time: '08:00 PM',
+            format: 'IMAX',
+            language: 'Flight A',
+            price: 15000,
+            screenName: 'Table Felt 01-10',
+            availability: 'FAST_FILLING'
+          },
+          {
+            id: 'st-2',
+            time: '10:30 PM',
+            format: '2D',
+            language: 'Turbo Flight B',
+            price: 15000,
+            screenName: 'Table Felt 11-18',
+            availability: 'AVAILABLE'
+          }
         ]
       }
     ]
   },
   {
     id: 'mov-2',
-    title: 'Shadow Protocol: Redline',
-    genre: ['Action', 'Thriller', 'Espionage'],
-    language: 'Hindi & English',
-    certification: 'UA 16+',
-    rating: 8.7,
-    votesCount: '32.1k',
-    runtime: '2h 18m',
-    releaseDate: 'Fri, 20 Sep 2024',
-    posterUrl: '/images/pulse/concert_event.jpg',
-    backdropUrl: '/images/pulse/concert_event.jpg',
-    synopsis: 'A covert intelligence agent goes rogue after discovering that the black-ops unit he trusted has fabricated a synthetic geopolitical crisis to trigger global market collapses.',
+    title: 'Wynn ₹10L GTD Nightly Bounty Blitz',
+    genre: ['PKO Bounty', 'Turbo Structure', 'NLH'],
+    language: '₹3,000 Bounty Per Knockout',
+    certification: 'A',
+    rating: 4.8,
+    votesCount: '840 Players',
+    runtime: '15m Blinds • Fast Paced',
+    releaseDate: 'Daily at 9:30 PM',
+    posterUrl: '/images/wynn.jpg',
+    backdropUrl: '/images/resorts_world.jpg',
+    synopsis: 'Nightly progressive knockout bounty poker tournament. Win ₹3,000 instantly in cash for every player you eliminate, plus battle for the ₹10 Lakh guaranteed main prize pool.',
     cast: [
-      { name: 'Vikram Malhotra', role: 'Agent Kabir Roy' },
-      { name: 'Sarah Deville', role: 'Director Hayes' }
+      { name: 'Floor Manager', role: 'Rajesh Sen' },
+      { name: 'Head Ref', role: 'Daniel D.' }
     ],
-    crew: {
-      director: 'Chad Stahelski'
-    },
+    crew: { director: 'Wynn Cardroom Operations' },
     status: 'NOW_SHOWING',
     cinemas: [
       {
-        id: 'cin-1',
-        name: 'PVR INOX: Nexus Koramangala',
-        chain: 'PVR INOX',
-        distanceKm: 2.1,
-        area: 'Koramangala',
-        formats: ['4DX', '2D'],
+        id: 'cin-2',
+        name: 'Wynn Tournament Felt',
+        chain: 'Wynn Grand Club',
+        distanceKm: 1.8,
+        area: '100ft Road Club Row',
+        formats: ['2D', '4DX'],
         showtimes: [
-          { id: 'st-10', time: '2:15 PM', format: '4DX', language: 'Hindi', price: 420, screenName: 'Screen 4', availability: 'AVAILABLE' },
-          { id: 'st-11', time: '6:00 PM', format: '4DX', language: 'Hindi', price: 480, screenName: 'Screen 4', availability: 'FAST_FILLING' },
-          { id: 'st-12', time: '9:30 PM', format: '2D', language: 'Hindi', price: 280, screenName: 'Screen 2', availability: 'AVAILABLE' }
+          {
+            id: 'st-3',
+            time: '09:30 PM',
+            format: '4DX',
+            language: 'Main Flight',
+            price: 8000,
+            screenName: 'Felt 01-08',
+            availability: 'FAST_FILLING'
+          }
         ]
       }
     ]
   },
   {
     id: 'mov-3',
-    title: 'Solaris: Genesis Wave',
-    genre: ['Animation', 'Fantasy', 'Sci-Fi'],
-    language: 'Japanese & English',
-    certification: 'U',
-    rating: 9.3,
-    votesCount: '19.4k',
-    runtime: '1h 55m',
-    releaseDate: 'Fri, 04 Oct 2024',
-    posterUrl: '/images/pulse/rooftop_lounge.jpg',
-    backdropUrl: '/images/pulse/rooftop_lounge.jpg',
-    synopsis: 'A young meteorologist apprentice and an awakened celestial star spirit unite to restore the lost harmonic frequencies of the floating cloud sanctuaries.',
+    title: "Bobby's Championship PLO ₹1 Crore GTD",
+    genre: ['Pot-Limit Omaha', 'High Stakes', '5-Card PLO'],
+    language: '₹50,000 Buy-in • Deep Stack',
+    certification: 'A',
+    rating: 5.0,
+    votesCount: '450 High Rollers',
+    runtime: '30m Blinds • 2-Day Major',
+    releaseDate: 'Saturday 6:00 PM',
+    posterUrl: '/images/bobbys_room.jpg',
+    backdropUrl: '/images/bobbys_room.jpg',
+    synopsis: 'The crown jewel of high stakes Pot Limit Omaha tournaments in the region. ₹1,00,00,000 guaranteed prize pool with standard 5-card Omaha rules and 200 big blind starting stacks.',
     cast: [
-      { name: 'Kaito Shindo', role: 'Riku' },
-      { name: 'Aoi Miyazaki', role: 'Lumina' }
+      { name: 'Tournament Host', role: 'Bobby Baldwin Suite' }
     ],
-    crew: {
-      director: 'Makoto Shinkai'
-    },
+    crew: { director: 'High Roller Series Committee' },
     status: 'TRENDING',
     cinemas: [
       {
-        id: 'cin-2',
-        name: 'Cinepolis: 1MG Mall',
-        chain: 'Cinepolis',
-        distanceKm: 3.4,
-        area: 'MG Road',
-        formats: ['IMAX', '2D'],
+        id: 'cin-3',
+        name: "Bobby's VIP Salon",
+        chain: "Bobby's Poker Room",
+        distanceKm: 3.2,
+        area: 'Penthouse Row',
+        formats: ['IMAX'],
         showtimes: [
-          { id: 'st-13', time: '4:00 PM', format: 'IMAX', language: 'Jap', price: 400, screenName: 'Screen 1', availability: 'FAST_FILLING' },
-          { id: 'st-14', time: '7:15 PM', format: '2D', language: 'Eng', price: 300, screenName: 'Screen 3', availability: 'AVAILABLE' }
+          {
+            id: 'st-4',
+            time: '06:00 PM',
+            format: 'IMAX',
+            language: 'Day 1 Flight',
+            price: 50000,
+            screenName: 'VIP Felt Salon',
+            availability: 'ALMOST_FULL'
+          }
         ]
       }
     ]
@@ -382,208 +378,204 @@ export const MOVIES_DATA: Movie[] = [
 export const EVENTS_DATA: EventItem[] = [
   {
     id: 'evt-1',
-    title: 'Sunburn Arena: Cosmic Frequency',
-    category: 'MUSIC',
-    dateBadge: 'SAT, 12 OCT',
-    fullDateTime: 'Saturday, 12 Oct 2024 • 5:00 PM Onwards',
-    venue: 'Bhartiya Mall Arena, North Bengaluru',
-    address: 'Thanisandra Main Rd, Kannuru, Bengaluru, Karnataka 560064',
-    distanceKm: 8.5,
-    priceStarting: 999,
-    interestedCount: 14200,
-    artworkUrl: '/images/pulse/concert_event.jpg',
+    title: 'National Poker Series - Main Event Satellite Super Gigs',
+    category: 'PARTIES',
+    dateBadge: 'TONIGHT, 9 PM',
+    fullDateTime: 'Friday, Oct 2 • 9:00 PM – 3:00 AM',
+    venue: 'Wynn Grand Poker Lounge',
+    address: '100ft Road Club Row, Indiranagar',
+    distanceKm: 1.8,
+    priceStarting: 5000,
+    interestedCount: 3200,
+    artworkUrl: '/images/wynn.jpg',
     artists: [
-      { name: 'Boris Brejcha', role: 'Headliner (High-Tech Minimal)' },
-      { name: 'Anyma Visuals', role: 'Live AV Performance' },
-      { name: 'Nora En Pure', role: 'Opening Deep House' }
+      { name: 'Vikram "Shark" Sethi', role: 'Keynote & Pro Player' },
+      { name: 'DJ Zedd Live', role: 'Tableside Music Session' }
     ],
     schedule: [
-      { time: '5:00 PM', activity: 'Gates Open & Resident DJs' },
-      { time: '6:30 PM', activity: 'Nora En Pure Sunset Session' },
-      { time: '8:30 PM', activity: 'Anyma AV Holographic Showcase' },
-      { time: '10:00 PM', activity: 'Boris Brejcha 2.5hr Extended Set' }
+      { time: '08:30 PM', activity: 'Player Registration & Welcome Drinks' },
+      { time: '09:00 PM', activity: 'Shuffle Up & Deal — Satellite Flight A' },
+      { time: '11:30 PM', activity: 'Late Reg Closes & High Hand Payout' },
+      { time: '02:00 AM', activity: 'Final 5 Seats Awarded for Main Event' }
     ],
-    about: 'The flagship electronic music spectacle returns with a 60-meter panoramic 4K LED stage, kinetic laser arrays, and world-renowned electronic titans for an unforgettable night.',
+    about: 'Mega satellite tournament awarding 5 guaranteed ₹1,00,000 Main Event seats. Features live DJ sets, complimentary cocktails, and RFID real-time player statistics.',
     terms: [
-      'Age restriction: 18+ only with government-issued photo ID.',
-      'Re-entry is not permitted under any circumstances.',
-      'Outside food, beverages, and recording equipment are strictly prohibited.'
+      'Entry restricted to players 21 years and older with valid government ID.',
+      'Starting stack: 50,000 chips with 15-minute blind levels.',
+      'RFID table card etiquette rules strictly enforced.',
+      'Non-refundable after registration closes.'
     ],
     isWeekendHighlight: true,
     isTrending: true
   },
   {
     id: 'evt-2',
-    title: 'Stand-Up Spotlight: Almost Famous',
-    category: 'COMEDY',
-    dateBadge: 'FRI, 04 OCT',
-    fullDateTime: 'Friday, 04 Oct 2024 • 8:00 PM – 9:45 PM',
-    venue: 'The Underground Comedy Club',
-    address: '42, Double Road, Indiranagar Stage 1, Bengaluru',
-    distanceKm: 1.6,
-    priceStarting: 499,
-    interestedCount: 3100,
-    artworkUrl: '/images/pulse/standup_comedy.jpg',
+    title: 'High Stakes PLO-5 Invitational Cash Night',
+    category: 'EXPERIENCES',
+    dateBadge: 'SAT, 10 PM',
+    fullDateTime: 'Saturday, Oct 3 • 10:00 PM – 6:00 AM',
+    venue: "Bobby's VIP High Stakes Room",
+    address: 'Penthouse Level, Barton Centre, Club District',
+    distanceKm: 3.2,
+    priceStarting: 50000,
+    interestedCount: 1850,
+    artworkUrl: '/images/bobbys_room.jpg',
     artists: [
-      { name: 'Kanan Gill', role: 'Headlining Standup' },
-      { name: 'Urooj Ashfaq', role: 'Featured Comedian' },
-      { name: 'Sonali Thakker', role: 'Host & MC' }
+      { name: 'High Roller Floor Staff', role: 'Dedicated Dealer & Butler' }
     ],
     schedule: [
-      { time: '7:30 PM', activity: 'Seating & Craft Beer Service' },
-      { time: '8:00 PM', activity: 'Opening Act' },
-      { time: '8:45 PM', activity: 'Headliner Solo Hour' }
+      { time: '09:45 PM', activity: 'Champagne Reception & Safe Deposit' },
+      { time: '10:00 PM', activity: 'Cards in the Air — Uncapped PLO-5' },
+      { time: '01:30 AM', activity: 'Midnight Tableside Wagyu Course' }
     ],
-    about: 'An intimate 90-seater comedy room where top national comics test fresh tour material. Every ticket includes 1 complimentary craft brew or mocktail.',
+    about: 'Invitation-only high action Pot Limit Omaha session featuring ₹500/₹1,000 blinds with mandatory straddle. Uncapped buy-in with private cage settlement.',
     terms: [
-      'Age limit: 16+ years.',
-      'Strict no-recording policy inside the auditorium.',
-      'Seating is on a first-come, first-served basis.'
+      'Minimum buy-in ₹50,000. No maximum limit.',
+      'Strict dress code: Smart casual or formal.',
+      'Private security valet and safe deposit facilities included.'
     ],
     isWeekendHighlight: true
   },
   {
     id: 'evt-3',
-    title: 'Electric Sundowner: Rooftop Sessions',
+    title: 'Aria Sunday Bounty Blitz & Player Meetup',
     category: 'PARTIES',
-    dateBadge: 'SUN, 06 OCT',
-    fullDateTime: 'Sunday, 06 Oct 2024 • 4:00 PM – 11:30 PM',
-    venue: 'Highline Terrace & Lawn',
-    address: 'Trinity Circle, MG Road, Bengaluru',
-    distanceKm: 3.0,
-    priceStarting: 799,
-    interestedCount: 5800,
-    artworkUrl: '/images/pulse/rooftop_lounge.jpg',
+    dateBadge: 'SUN, 4 PM',
+    fullDateTime: 'Sunday, Oct 4 • 4:00 PM – 10:00 PM',
+    venue: 'Aria Modern Poker Room',
+    address: '12th Main Strip, Indiranagar',
+    distanceKm: 2.4,
+    priceStarting: 10000,
+    interestedCount: 2400,
+    artworkUrl: '/images/aria.jpg',
     artists: [
-      { name: 'Madboy/Mink', role: 'Live Disco Funk' },
-      { name: 'DJ SA', role: 'Afrobeats & Hip Hop' }
+      { name: 'Kunal Patni', role: 'Guest Pro Bounty' }
     ],
     schedule: [
-      { time: '4:00 PM', activity: 'Sundowner Cocktails & Vinyl Sets' },
-      { time: '6:30 PM', activity: 'Golden Hour Live Band' },
-      { time: '9:00 PM', activity: 'Peak Rooftop Party' }
+      { time: '03:30 PM', activity: 'Pre-game Networking & Craft Coffee' },
+      { time: '04:00 PM', activity: 'Bounty Tournament Kickoff' },
+      { time: '08:00 PM', activity: 'Final Table Live Stream with Commentary' }
     ],
-    about: 'Spend Sunday sunset dancing atop the city skyline with artisan cocktail stations, artisanal wood-fired snacks, and infectious disco-funk grooves.',
+    about: 'Knock out special celebrity guest pro bounty players to win instantaneous ₹10,000 cash prizes per bounty tag, with full live stream coverage on big screens.',
     terms: [
-      'Strict dress code: Smart casuals / Chic eveningwear.',
-      'Entry strictly by couple or mixed groups after 7:00 PM.'
-    ],
-    isTrending: true
+      'Tournament structure: 20-minute levels, 75,000 starting chips.',
+      'Cash payout distributed immediately at cage upon exit.'
+    ]
   }
 ];
 
 export const EXPERIENCES_DATA: ExperienceItem[] = [
   {
     id: 'exp-1',
-    title: 'Artisan Sourdough & Pizza Masterclass',
-    category: 'Culinary Workshop',
-    duration: '3 hours',
+    title: 'VIP Private Felt & High Roller Host Experience',
+    category: 'VIP Salon',
+    duration: 'Full Evening (6h)',
     rating: 4.9,
     reviewsCount: 310,
-    pricePerPerson: 1850,
-    area: 'Indiranagar',
-    imageUrl: '/images/pulse/bistro_dining.jpg',
-    perks: ['All ingredients provided', 'Take home your baked sourdough loaf', 'Glass of organic wine included']
+    pricePerPerson: 25000,
+    area: 'Penthouse Salon',
+    imageUrl: '/images/bobbys_room.jpg',
+    perks: ['Private Dedicated Dealer', 'Complimentary Vintage Bar', 'Personal Valet', 'Private Security Cage']
   },
   {
     id: 'exp-2',
-    title: 'Private Sunset Sailing Experience',
-    category: 'Luxury Outdoor',
-    duration: '2.5 hours',
-    rating: 4.95,
-    reviewsCount: 140,
-    pricePerPerson: 3500,
-    area: 'Ulsoor Lake Yacht Club',
-    imageUrl: '/images/pulse/rooftop_lounge.jpg',
-    perks: ['Private skipper', 'Champagne & grazing board', 'Lifejackets & safety gear']
+    title: 'Masterclass: Deepstack Cash Exploits with Pro Coaches',
+    category: 'Coaching',
+    duration: '3 Hours',
+    rating: 4.8,
+    reviewsCount: 420,
+    pricePerPerson: 8500,
+    area: 'Aria Training Suite',
+    imageUrl: '/images/aria.jpg',
+    perks: ['Live RFID Hand History Analysis', '1-on-1 GTO Solver Review', 'VIP Cardroom Access']
   },
   {
     id: 'exp-3',
-    title: 'Neon Bowling & Arcade Night',
-    category: 'Gaming & Nightlife',
-    duration: '2 hours',
-    rating: 4.7,
-    reviewsCount: 890,
-    pricePerPerson: 650,
-    area: 'Koramangala',
-    imageUrl: '/images/pulse/concert_event.jpg',
-    perks: ['Unlimited arcade credits', '2 craft beers included', 'Shoe rental included']
+    title: 'Tableside Gourmet Dining & Private Poker Evening',
+    category: 'Dining & Cards',
+    duration: '4 Hours',
+    rating: 4.9,
+    reviewsCount: 195,
+    pricePerPerson: 12000,
+    area: 'Lavelle Luxury Enclave',
+    imageUrl: '/images/dining.jpg',
+    perks: ['5-Course Tasting Menu at Felt', 'Sommelier Wine Pairings', 'Reserved 9-Max Table']
   }
 ];
 
 export const INITIAL_BOOKINGS: Booking[] = [
   {
-    id: 'bk-901',
+    id: 'bk-1',
     type: 'RESTAURANT',
-    title: 'Bomba Dining Room',
-    venue: '100ft Road, Indiranagar',
-    date: 'Tonight, 02 Oct',
-    time: '8:30 PM',
+    title: 'Wynn Poker Room — Table 04',
+    venue: 'Wynn Grand Poker Lounge',
+    date: 'Today, 2 Oct',
+    time: '09:00 PM',
     status: 'UPCOMING',
-    details: 'Table for 2 Guests • Indoor Velvet Booth',
-    bookingCode: 'PLS-BM-8402',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PLS-BM-8402-BOMBA',
-    totalAmount: 0,
-    imageUrl: '/images/pulse/bistro_dining.jpg',
-    createdAt: 'Today, 4:15 PM'
+    details: 'Seat 6 (Cutoff) • ₹200/₹500 NLH • ₹25,000 Buy-in Reserved',
+    bookingCode: 'WYNN-POKER-9042',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=WYNN-POKER-9042-ALEX-SEAT-6',
+    totalAmount: 25000,
+    imageUrl: '/images/wynn.jpg',
+    createdAt: '2026-10-02T14:30:00Z'
   },
   {
-    id: 'bk-902',
+    id: 'bk-2',
     type: 'MOVIE',
-    title: 'CHRONOS: Beyond The Edge',
-    venue: 'PVR INOX: Nexus Koramangala (IMAX Laser)',
-    date: 'Tomorrow, 03 Oct',
-    time: '5:15 PM',
+    title: 'Aria Weekend ₹50L GTD Tourney',
+    venue: 'Aria Modern Poker Room',
+    date: 'Tomorrow, 3 Oct',
+    time: '08:00 PM',
     status: 'UPCOMING',
-    details: '2 Tickets • Prime Seats F11, F12 • 3D Glasses Included',
-    bookingCode: 'PLS-CR-1934',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PLS-CR-1934-CHRONOS',
-    totalAmount: 1100,
-    imageUrl: '/images/pulse/cinema_poster.jpg',
-    createdAt: 'Yesterday, 9:20 PM'
+    details: 'Seat Table Felt 04 (Seat 3) • 100k Chips Ready at Cage',
+    bookingCode: 'ARIA-TOURNEY-4819',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ARIA-TOURNEY-4819',
+    totalAmount: 15000,
+    imageUrl: '/images/aria.jpg',
+    createdAt: '2026-10-02T12:00:00Z'
   },
   {
-    id: 'bk-903',
+    id: 'bk-3',
     type: 'EVENT',
-    title: 'Stand-Up Spotlight: Almost Famous',
-    venue: 'The Underground Comedy Club, Indiranagar',
-    date: '28 Sep 2024',
-    time: '8:00 PM',
+    title: "Bobby's Room High Stakes Session",
+    venue: "Bobby's VIP High Stakes Room",
+    date: '28 Sep 2026',
+    time: '11:00 PM',
     status: 'PAST',
-    details: '2 General Admission Tickets',
-    bookingCode: 'PLS-CC-7719',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PLS-CC-7719-COMEDY',
-    totalAmount: 998,
-    imageUrl: '/images/pulse/standup_comedy.jpg',
-    createdAt: '25 Sep 2024'
+    details: 'VIP Table 1 (Seat 5) • ₹500/₹1,000 PLO-5 Session Completed',
+    bookingCode: 'BOBBY-VIP-1102',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=BOBBY-VIP-1102',
+    totalAmount: 50000,
+    imageUrl: '/images/bobbys_room.jpg',
+    createdAt: '2026-09-28T18:00:00Z'
   }
 ];
 
 export const SAVED_COLLECTIONS: SavedCollection[] = [
   {
     id: 'col-1',
-    name: 'Date Night',
-    icon: '✨',
+    name: 'High Stakes VIP',
+    icon: '💎',
     color: '#3b82f6',
-    itemIds: ['rest-1', 'rest-2', 'mov-1']
+    itemIds: ['rest-1', 'rest-3', 'mov-3']
   },
   {
     id: 'col-2',
-    name: 'Weekend Plans',
+    name: 'Weekend Action',
     icon: '🔥',
     color: '#2563eb',
-    itemIds: ['evt-1', 'rest-3', 'exp-1']
+    itemIds: ['evt-1', 'rest-2', 'mov-1']
   },
   {
     id: 'col-3',
-    name: 'Want to Try',
-    icon: '📌',
+    name: 'Action PLO Rooms',
+    icon: '♠️',
     color: '#1d4ed8',
-    itemIds: ['rest-4', 'mov-3', 'exp-2']
+    itemIds: ['rest-4', 'mov-2', 'exp-1']
   },
   {
     id: 'col-4',
-    name: 'Favourite Restaurants',
+    name: 'Favourite Cardrooms',
     icon: '❤️',
     color: '#60a5fa',
     itemIds: ['rest-1', 'rest-5']
@@ -593,48 +585,43 @@ export const SAVED_COLLECTIONS: SavedCollection[] = [
 export const OFFERS_DATA: OfferItem[] = [
   {
     id: 'off-1',
-    code: 'PULSE150',
-    title: 'Flat ₹150 OFF on First Reservation',
-    discountText: 'FLAT ₹150 OFF',
+    code: 'POKER500',
+    title: 'Flat ₹500 Bonus Chips on First Buy-in',
+    discountText: 'FLAT ₹500 CHIPS',
     category: 'FOR_YOU',
-    minOrder: 1000,
-    maxDiscount: 150,
-    description: 'Valid across all restaurants and table bookings in your city on bills above ₹1,000.',
-    validTill: '31 Oct 2024'
+    minOrder: 10000,
+    maxDiscount: 500,
+    description: 'Valid on your first cash game reservation at Wynn, Aria, or Bellagio. Bonus chips credited directly at the cashier cage.',
+    validTill: 'Valid till 31 Oct'
   },
   {
     id: 'off-2',
-    code: 'HDFCFEST',
-    title: '20% Instant Discount on HDFC Credit Cards',
-    discountText: '20% OFF UPTO ₹350',
-    category: 'BANK',
-    bankOrProvider: 'HDFC Bank',
-    minOrder: 1200,
-    maxDiscount: 350,
-    description: 'Applicable on dining, live events and movie ticket bookings using HDFC Bank Credit & Debit cards.',
-    validTill: '15 Nov 2024'
+    code: 'HIGHROLLER25',
+    title: '25% Extra Comp Points on Buy-ins ₹50,000+',
+    discountText: '25% COMP MATCH',
+    category: 'DINING',
+    minOrder: 50000,
+    maxDiscount: 12500,
+    description: 'Earn 25% accelerated VIP comp points redeemable for private penthouses, dining, and spa treatments.',
+    validTill: 'Valid on Weekends'
   },
   {
     id: 'off-3',
-    code: 'IMAXPASS',
-    title: 'Buy 1 Get 1 on IMAX Tickets',
-    discountText: 'BOGO 1+1 FREE',
-    category: 'MOVIES',
-    bankOrProvider: 'ICICI Bank',
-    minOrder: 500,
-    maxDiscount: 500,
-    description: 'Book 2 tickets for any IMAX or 4DX screening and get the second ticket 100% complimentary.',
-    validTill: '20 Oct 2024'
+    code: 'ZERORAKE',
+    title: 'Zero Rake Happy Hours (2 PM – 5 PM)',
+    discountText: '0% RAKE CAP',
+    category: 'BANK',
+    bankOrProvider: 'Pulse Obsidian Club',
+    description: 'Enjoy 100% rake-free action on all ₹100/₹200 and ₹200/₹500 tables booked between 2 PM and 5 PM.',
+    validTill: 'Valid Monday – Thursday'
   },
   {
     id: 'off-4',
-    code: 'EARLYBIRD',
-    title: '15% Off on Sunburn & Concert Arena Tickets',
-    discountText: '15% OFF',
+    code: 'HIGHHAND10K',
+    title: 'Instant ₹10,000 High Hand Bonus',
+    discountText: '₹10,000 JACKPOT',
     category: 'EVENTS',
-    minOrder: 999,
-    maxDiscount: 600,
-    description: 'Early bird special for upcoming live concerts and festival passes.',
-    validTill: '10 Oct 2024'
+    description: 'Hit Quads or better during any live cash game to win an instant ₹10,000 cashier payout bonus.',
+    validTill: 'Valid Everyday'
   }
 ];
