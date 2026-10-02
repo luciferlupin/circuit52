@@ -10,22 +10,54 @@ export const SimulatorDrawer: React.FC = () => {
     resetDemoData
   } = useCircuit();
 
-  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      background: 'rgba(8, 12, 20, 0.95)',
-      backdropFilter: 'blur(20px)',
-      borderTop: '1px solid var(--border-active)',
-      zIndex: 90,
-      padding: isExpanded ? '12px 20px' : '6px 20px',
-      boxShadow: '0 -4px 30px rgba(0, 0, 0, 0.7)',
-      transition: 'all 0.2s ease-in-out'
-    }}>
+    <>
+      {/* Floating Simulator Trigger Pill */}
+      {!isExpanded && (
+        <button
+          onClick={() => setIsExpanded(true)}
+          style={{
+            position: 'fixed',
+            bottom: '16px',
+            right: '16px',
+            zIndex: 95,
+            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+            border: '1px solid rgba(245, 158, 11, 0.4)',
+            color: '#fbbf24',
+            padding: '8px 14px',
+            borderRadius: '999px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.6), 0 0 12px rgba(245, 158, 11, 0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <Sparkles size={14} />
+          <span>Simulate Events</span>
+        </button>
+      )}
+
+      {/* Expanded Simulator Overlay Drawer */}
+      {isExpanded && (
+        <div style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: 'rgba(8, 12, 20, 0.98)',
+          backdropFilter: 'blur(20px)',
+          borderTop: '1px solid var(--border-active)',
+          zIndex: 100,
+          padding: '12px 20px',
+          boxShadow: '0 -8px 30px rgba(0, 0, 0, 0.85)',
+          animation: 'slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}>
       <div style={{
         maxWidth: '1280px',
         margin: '0 auto',
@@ -117,5 +149,7 @@ export const SimulatorDrawer: React.FC = () => {
         )}
       </div>
     </div>
+      )}
+    </>
   );
 };

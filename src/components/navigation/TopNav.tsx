@@ -52,7 +52,7 @@ export const TopNav: React.FC<TopNavProps> = ({ activePortal, setActivePortal })
                 <span className="badge-pulse" /> NETWORK
               </span>
             </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', letterSpacing: '0.02em' }}>
+            <div className="top-nav-subtitle" style={{ fontSize: '0.72rem', color: 'var(--text-dim)', letterSpacing: '0.02em' }}>
               LIVE TRUTH POKER OPERATING SYSTEM
             </div>
           </div>
@@ -125,27 +125,28 @@ export const TopNav: React.FC<TopNavProps> = ({ activePortal, setActivePortal })
       </nav>
 
       {/* User Context & Status */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="top-nav-user-meta" style={{ textAlign: 'right', display: 'flex', flexDirection: 'column' }}>
           <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-main)' }}>
-            {activePortal === 'PLAYER' ? 'Alex Morgan' : activePortal === 'CLUB' ? 'Floor Manager (David S.)' : 'Network Ops HQ'}
+            {activePortal === 'PLAYER' ? 'Alex Morgan' : activePortal === 'CLUB' ? 'Floor Manager' : 'Network HQ'}
           </span>
-          <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
-            {activePortal === 'PLAYER' ? 'Las Vegas Strip • Opted In' : activePortal === 'CLUB' ? 'Bellagio Poker Room' : 'Platform Super Admin'}
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-dim)' }}>
+            {activePortal === 'PLAYER' ? 'Las Vegas Strip' : activePortal === 'CLUB' ? 'Bellagio Floor' : 'Platform Super Admin'}
           </span>
         </div>
 
         <div style={{
-          width: '34px',
-          height: '34px',
+          width: '32px',
+          height: '32px',
           borderRadius: '50%',
           background: activePortal === 'PLAYER' ? '#06b6d4' : activePortal === 'CLUB' ? '#10b981' : '#8b5cf6',
           color: '#080c14',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontWeight: 700,
-          fontSize: '0.85rem'
+          fontWeight: 800,
+          fontSize: '0.8rem',
+          boxShadow: '0 0 10px rgba(0,0,0,0.5)'
         }}>
           {activePortal === 'PLAYER' ? 'AM' : activePortal === 'CLUB' ? 'FM' : 'HQ'}
         </div>
@@ -155,6 +156,15 @@ export const TopNav: React.FC<TopNavProps> = ({ activePortal, setActivePortal })
         @media (min-width: 860px) {
           .network-stats-pill {
             display: flex !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .top-nav-user-meta, .top-nav-subtitle {
+            display: none !important;
+          }
+          header {
+            height: 52px !important;
+            padding: 0 10px !important;
           }
         }
       `}</style>
