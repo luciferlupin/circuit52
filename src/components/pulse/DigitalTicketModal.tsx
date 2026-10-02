@@ -36,7 +36,7 @@ export const DigitalTicketModal: React.FC = () => {
           <div className="pulse-ticket-security-ribbon">
             <span className="pulse-shimmer-track" />
             <span className="pulse-security-text">
-              ● PULSE LIVE PASS • OFFICIAL DIGITAL TICKET • DO NOT DUPLICATE ●
+              ● CIRCUIT 52 VIP PASS • OFFICIAL RFID SEAT ADMISSION • DO NOT DUPLICATE ●
             </span>
           </div>
 

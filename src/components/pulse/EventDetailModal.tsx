@@ -104,14 +104,14 @@ export const EventDetailModal: React.FC = () => {
 
           {/* About */}
           <div className="pulse-detail-section">
-            <h4 className="pulse-detail-section-title">About the Event</h4>
+            <h4 className="pulse-detail-section-title">About this Invitational / Series Event</h4>
             <p className="pulse-detail-about-text">{selectedEvent.about}</p>
           </div>
 
-          {/* Artists Lineup */}
+          {/* Artists / Hosts Lineup */}
           {selectedEvent.artists && selectedEvent.artists.length > 0 && (
             <div className="pulse-detail-section">
-              <h4 className="pulse-detail-section-title">Featured Artists</h4>
+              <h4 className="pulse-detail-section-title">Featured Pros, Hosts & Commentators</h4>
               <div className="pulse-artists-list">
                 {selectedEvent.artists.map((artist, idx) => (
                   <div key={idx} className="pulse-artist-item">
@@ -131,7 +131,7 @@ export const EventDetailModal: React.FC = () => {
           {/* Schedule */}
           {selectedEvent.schedule && selectedEvent.schedule.length > 0 && (
             <div className="pulse-detail-section">
-              <h4 className="pulse-detail-section-title">Event Schedule & Set Times</h4>
+              <h4 className="pulse-detail-section-title">Blind Structure & Event Timeline</h4>
               <div className="pulse-schedule-timeline">
                 {selectedEvent.schedule.map((item, idx) => (
                   <div key={idx} className="pulse-timeline-row">
@@ -161,7 +161,7 @@ export const EventDetailModal: React.FC = () => {
         {/* Sticky Booking CTA */}
         <div className="pulse-event-sticky-bar">
           <div>
-            <div className="pulse-event-price-label">Starting Price</div>
+            <div className="pulse-event-price-label">Buy-in / Pass Price</div>
             <div className="pulse-event-price-amount">
               ₹{selectedEvent.priceStarting.toLocaleString()}
               <span className="pulse-price-note"> / pass</span>
@@ -186,7 +186,7 @@ export const EventDetailModal: React.FC = () => {
               onClick={() => bookEventTicket(selectedEvent, ticketQuantity)}
             >
               <Ticket size={16} />
-              <span>Book Now</span>
+              <span>Secure Seat / Pass</span>
             </button>
           </div>
         </div>

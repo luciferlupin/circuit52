@@ -33,7 +33,7 @@ export const FilterBottomSheet: React.FC = () => {
         <div className="pulse-filter-header">
           <div>
             <h3 className="pulse-filter-title">Filters</h3>
-            <p className="pulse-filter-sub">Tailor your dining & experiences</p>
+            <p className="pulse-filter-sub">Tailor your poker clubs & cash games</p>
           </div>
           <button
             type="button"
@@ -88,12 +88,12 @@ export const FilterBottomSheet: React.FC = () => {
 
           {/* Quick Toggles */}
           <div className="pulse-filter-group">
-            <label className="pulse-filter-label">Preferences & Highlights</label>
+            <label className="pulse-filter-label">Club Preferences & Highlights</label>
             <div className="pulse-filter-toggles-list">
               <label className="pulse-toggle-row">
                 <div>
                   <div className="pulse-toggle-title">Open Now Only</div>
-                  <div className="pulse-toggle-desc">Show only spots ready to welcome you right now</div>
+                  <div className="pulse-toggle-desc">Show only cardrooms with active live tables right now</div>
                 </div>
                 <input
                   type="checkbox"
@@ -105,8 +105,8 @@ export const FilterBottomSheet: React.FC = () => {
 
               <label className="pulse-toggle-row">
                 <div>
-                  <div className="pulse-toggle-title">Great Offers & Discounts</div>
-                  <div className="pulse-toggle-desc">Venues with active Pulse Pay perks or bank offers</div>
+                  <div className="pulse-toggle-title">VIP Reload Match & Perks</div>
+                  <div className="pulse-toggle-desc">Rooms with active reload match bonuses or food credits</div>
                 </div>
                 <input
                   type="checkbox"
@@ -118,8 +118,8 @@ export const FilterBottomSheet: React.FC = () => {
 
               <label className="pulse-toggle-row">
                 <div>
-                  <div className="pulse-toggle-title">Rooftop & Outdoor Seating</div>
-                  <div className="pulse-toggle-desc">Terraces, open skies, and glasshouse gardens</div>
+                  <div className="pulse-toggle-title">Private High Roller Salons</div>
+                  <div className="pulse-toggle-desc">Dedicated RFID streaming tables and high limit rooms</div>
                 </div>
                 <input
                   type="checkbox"

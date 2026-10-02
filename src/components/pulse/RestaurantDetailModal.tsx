@@ -23,7 +23,7 @@ export const RestaurantDetailModal: React.FC = () => {
   } = usePulse();
 
   const [activeGalleryIdx, setActiveGalleryIdx] = useState<number>(0);
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'MENU' | 'PHOTOS' | 'REVIEWS'>('OVERVIEW');
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'TABLES' | 'DINING' | 'PHOTOS' | 'REVIEWS'>('OVERVIEW');
 
   if (!selectedRestaurant) return null;
 
@@ -33,11 +33,11 @@ export const RestaurantDetailModal: React.FC = () => {
     if (navigator.share) {
       navigator.share({
         title: selectedRestaurant.name,
-        text: `Check out ${selectedRestaurant.name} on Pulse!`,
+        text: `Check out ${selectedRestaurant.name} on Circuit 52!`,
         url: window.location.href
       }).catch(() => {});
     } else {
-      alert(`Link copied: ${selectedRestaurant.name} on Pulse`);
+      alert(`Link copied: ${selectedRestaurant.name} on Circuit 52`);
     }
   };
 
@@ -113,7 +113,7 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
 
             <div className="pulse-detail-reviews-sub">
-              ★ {selectedRestaurant.rating.toFixed(1)} ({selectedRestaurant.reviewCount.toLocaleString()} reviews on Pulse)
+              ★ {selectedRestaurant.rating.toFixed(1)} ({selectedRestaurant.reviewCount.toLocaleString()} verified ratings on Circuit 52)
             </div>
 
             <div className="pulse-detail-cuisine-row">
@@ -125,7 +125,7 @@ export const RestaurantDetailModal: React.FC = () => {
                 <MapPin size={12} /> {selectedRestaurant.area} ({selectedRestaurant.distanceKm} km)
               </span>
               <span className="pulse-detail-pill">
-                ₹{selectedRestaurant.priceForTwo.toLocaleString()} for two
+                From ₹{selectedRestaurant.priceForTwo.toLocaleString()} buy-in
               </span>
               <span className={`pulse-detail-pill ${selectedRestaurant.isOpen ? 'open' : 'closed'}`}>
                 <Clock size={12} /> {selectedRestaurant.isOpen ? 'Open Now' : 'Closed'} • {selectedRestaurant.timings}
@@ -141,7 +141,7 @@ export const RestaurantDetailModal: React.FC = () => {
               onClick={() => setIsTableSheetOpen(true)}
             >
               <CalendarDays size={16} />
-              <span>Reserve Table</span>
+              <span>Reserve Seat</span>
             </button>
             <button
               type="button"
@@ -157,7 +157,7 @@ export const RestaurantDetailModal: React.FC = () => {
               onClick={() => window.open(`tel:${selectedRestaurant.phone}`)}
             >
               <Phone size={16} />
-              <span>Call</span>
+              <span>Call Club</span>
             </button>
           </div>
 
@@ -166,15 +166,15 @@ export const RestaurantDetailModal: React.FC = () => {
             <div className="pulse-detail-offer-banner">
               <Sparkles size={16} className="pulse-offer-sparkle" />
               <div>
-                <div className="pulse-offer-title">EXCLUSIVE PULSE PERK</div>
+                <div className="pulse-offer-title">EXCLUSIVE CIRCUIT 52 PERK</div>
                 <div className="pulse-offer-desc">{selectedRestaurant.featuredOffer}</div>
               </div>
             </div>
           )}
 
-          {/* Tabs: Overview, Menu, Photos, Reviews */}
+          {/* Tabs: Overview, Tables, Dining, Photos, Reviews */}
           <div className="pulse-detail-tabs-bar">
-            {(['OVERVIEW', 'MENU', 'PHOTOS', 'REVIEWS'] as const).map(tab => (
+            {(['OVERVIEW', 'TABLES', 'DINING', 'PHOTOS', 'REVIEWS'] as const).map(tab => (
               <button
                 key={tab}
                 type="button"
@@ -191,32 +191,13 @@ export const RestaurantDetailModal: React.FC = () => {
             <div className="pulse-tab-content-block">
               {/* About */}
               <div className="pulse-detail-section">
-                <h4 className="pulse-detail-section-title">About the Restaurant</h4>
+                <h4 className="pulse-detail-section-title">About the Poker Club & Lounge</h4>
                 <p className="pulse-detail-about-text">{selectedRestaurant.about}</p>
               </div>
 
-              {/* Popular Dishes */}
+              {/* Club Amenities & Smart Technology */}
               <div className="pulse-detail-section">
-                <h4 className="pulse-detail-section-title">Popular Dishes</h4>
-                <div className="pulse-dishes-grid">
-                  {selectedRestaurant.popularDishes.map((dish, i) => (
-                    <div key={i} className="pulse-dish-card">
-                      <div className="pulse-dish-info">
-                        <div className="pulse-dish-header">
-                          <span className={`pulse-veg-indicator ${dish.isVeg ? 'veg' : 'non-veg'}`} />
-                          <span className="pulse-dish-name">{dish.name}</span>
-                        </div>
-                        {dish.tag && <span className="pulse-dish-tag">{dish.tag}</span>}
-                      </div>
-                      <span className="pulse-dish-price">₹{dish.price}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Facilities */}
-              <div className="pulse-detail-section">
-                <h4 className="pulse-detail-section-title">Amenities & Facilities</h4>
+                <h4 className="pulse-detail-section-title">Club Amenities & Technology</h4>
                 <div className="pulse-facilities-tags">
                   {selectedRestaurant.facilities.map((fac, i) => (
                     <span key={i} className="pulse-facility-tag">
@@ -229,7 +210,7 @@ export const RestaurantDetailModal: React.FC = () => {
 
               {/* Location & Address */}
               <div className="pulse-detail-section">
-                <h4 className="pulse-detail-section-title">Location & Contact</h4>
+                <h4 className="pulse-detail-section-title">Location & Floor Security</h4>
                 <p className="pulse-detail-address-text">{selectedRestaurant.address}</p>
                 <div className="pulse-detail-contact-row">
                   <span>Phone: {selectedRestaurant.phone}</span>
@@ -238,27 +219,113 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tab 2: Menu */}
-          {activeTab === 'MENU' && (
+          {/* Tab 2: Live Cash Tables */}
+          {activeTab === 'TABLES' && (
             <div className="pulse-tab-content-block">
-              <div className="pulse-menu-list">
-                {selectedRestaurant.popularDishes.map((dish, i) => (
-                  <div key={i} className="pulse-menu-row">
-                    <div>
-                      <div className="pulse-dish-header">
-                        <span className={`pulse-veg-indicator ${dish.isVeg ? 'veg' : 'non-veg'}`} />
-                        <span className="pulse-dish-name">{dish.name}</span>
-                      </div>
-                      <span className="pulse-dish-sub">Prepared fresh with artisanal ingredients</span>
-                    </div>
-                    <span className="pulse-dish-price">₹{dish.price}</span>
+              <div className="pulse-detail-section">
+                <div className="pulse-live-action-banner">
+                  <div className="pulse-lab-left">
+                    <span className="pulse-dot-live" />
+                    <strong>Live Cash Game Tables</strong>
                   </div>
-                ))}
+                  <span className="pulse-lab-count">3 Tables Active</span>
+                </div>
+
+                <div className="pulse-tables-list">
+                  <div className="pulse-venue-table-card">
+                    <div className="pulse-vtc-top">
+                      <div>
+                        <div className="pulse-vtc-name">Table 1 • ₹100/₹200 NLH</div>
+                        <div className="pulse-vtc-sub">8/9 Players • Min Buy-in: ₹10,000</div>
+                      </div>
+                      <span className="pulse-card-avail-pill green">
+                        <span className="pulse-dot-live" /> 1 Seat Open
+                      </span>
+                    </div>
+                    <div className="pulse-vtc-footer">
+                      <span className="pulse-vtc-felt-tag">RFID Smart Felt • Auto Shuffler</span>
+                      <button
+                        type="button"
+                        className="pulse-vtc-reserve-btn"
+                        onClick={() => setIsTableSheetOpen(true)}
+                      >
+                        Reserve Seat
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="pulse-venue-table-card">
+                    <div className="pulse-vtc-top">
+                      <div>
+                        <div className="pulse-vtc-name">Table 2 • ₹200/₹500 PLO-5 Action</div>
+                        <div className="pulse-vtc-sub">7/9 Players • Min Buy-in: ₹25,000</div>
+                      </div>
+                      <span className="pulse-card-avail-pill green">
+                        <span className="pulse-dot-live" /> 2 Seats Open
+                      </span>
+                    </div>
+                    <div className="pulse-vtc-footer">
+                      <span className="pulse-vtc-felt-tag">Deepstack • Double Board Bomb Pots</span>
+                      <button
+                        type="button"
+                        className="pulse-vtc-reserve-btn"
+                        onClick={() => setIsTableSheetOpen(true)}
+                      >
+                        Reserve Seat
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="pulse-venue-table-card">
+                    <div className="pulse-vtc-top">
+                      <div>
+                        <div className="pulse-vtc-name">Table 3 • ₹500/₹1,000 High Roller Mixed</div>
+                        <div className="pulse-vtc-sub">9/9 Players • Min Buy-in: ₹50,000</div>
+                      </div>
+                      <span className="pulse-card-avail-pill orange">
+                        <Clock size={11} /> 15m waitlist (2 in queue)
+                      </span>
+                    </div>
+                    <div className="pulse-vtc-footer">
+                      <span className="pulse-vtc-felt-tag">Private VIP Salon • Uncapped</span>
+                      <button
+                        type="button"
+                        className="pulse-vtc-reserve-btn"
+                        onClick={() => setIsTableSheetOpen(true)}
+                      >
+                        Join Waitlist
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Tab 3: Photos */}
+          {/* Tab 3: Dining */}
+          {activeTab === 'DINING' && (
+            <div className="pulse-tab-content-block">
+              <div className="pulse-detail-section">
+                <h4 className="pulse-detail-section-title">VIP Tableside Dining & Beverages</h4>
+                <div className="pulse-menu-list">
+                  {selectedRestaurant.popularDishes.map((dish, i) => (
+                    <div key={i} className="pulse-menu-row">
+                      <div>
+                        <div className="pulse-dish-header">
+                          <span className={`pulse-veg-indicator ${dish.isVeg ? 'veg' : 'non-veg'}`} />
+                          <span className="pulse-dish-name">{dish.name}</span>
+                        </div>
+                        <span className="pulse-dish-sub">Prepared fresh tableside with artisanal ingredients</span>
+                      </div>
+                      <span className="pulse-dish-price">₹{dish.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 4: Photos */}
           {activeTab === 'PHOTOS' && (
             <div className="pulse-tab-content-block">
               <div className="pulse-photos-masonry">
@@ -275,7 +342,7 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tab 4: Reviews */}
+          {/* Tab 5: Reviews */}
           {activeTab === 'REVIEWS' && (
             <div className="pulse-tab-content-block">
               <div className="pulse-reviews-summary">
@@ -294,13 +361,13 @@ export const RestaurantDetailModal: React.FC = () => {
                 <div className="pulse-reviewer-row">
                   <div className="pulse-reviewer-avatar">RK</div>
                   <div>
-                    <div className="pulse-reviewer-name">Rohan Kapoor</div>
-                    <div className="pulse-review-date">Verified Diner • 2 days ago</div>
+                    <div className="pulse-reviewer-name">Rohan "Shark" Kapoor</div>
+                    <div className="pulse-review-date">Verified Player • 2 days ago</div>
                   </div>
                   <div className="pulse-rating-box">5.0 ★</div>
                 </div>
                 <p className="pulse-review-body">
-                  "Exquisite experience! The Truffle Tagliolini was prepared to perfection. Incredible city skyline views and top notch hospitality."
+                  "Exquisite high stakes felt! The RFID smart table tracking is seamless, zero dealer mistakes, and the tableside Wagyu was prepared to perfection. Top tier poker operating experience."
                 </p>
               </div>
             </div>
@@ -310,15 +377,15 @@ export const RestaurantDetailModal: React.FC = () => {
         {/* Sticky Bottom Reservation CTA */}
         <div className="pulse-detail-sticky-bar">
           <div>
-            <div className="pulse-sticky-avail">Table Available Tonight</div>
-            <div className="pulse-sticky-sub">Instant confirmation via Pulse</div>
+            <div className="pulse-sticky-avail">Live Tables Running Tonight</div>
+            <div className="pulse-sticky-sub">Instant seat booking via Circuit 52</div>
           </div>
           <button
             type="button"
             className="pulse-primary-cta-btn"
             onClick={() => setIsTableSheetOpen(true)}
           >
-            Reserve Table
+            Reserve Table Seat
           </button>
         </div>
       </div>

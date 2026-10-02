@@ -23,7 +23,7 @@ export const LocationSelectorModal: React.FC = () => {
         <div className="pulse-location-sheet-header">
           <div>
             <h3 className="pulse-location-sheet-title">Select Your City & Area</h3>
-            <p className="pulse-location-sheet-sub">Discover dining, movies and events near you</p>
+            <p className="pulse-location-sheet-sub">Discover live poker clubs, tournaments and felts near you</p>
           </div>
           <button
             type="button"

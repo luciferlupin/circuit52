@@ -175,10 +175,10 @@ export const PulseProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([
-    'Bomba Pasta',
-    'IMAX Laser',
-    'Sunburn Arena',
-    'Rooftop Lounge'
+    'Wynn Poker Room',
+    '₹100/₹200 NLH',
+    'Aria Deepstack Major',
+    "Bobby's Room VIP"
   ]);
 
   // Filters

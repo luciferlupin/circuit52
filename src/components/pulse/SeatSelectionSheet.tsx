@@ -19,7 +19,7 @@ export const SeatSelectionSheet: React.FC = () => {
   const seatLayout = useMemo(() => {
     const layout: { tierName: string; price: number; rows: { rowLabel: string; seats: Seat[] }[] }[] = [];
 
-    // Recliner Rows (Row H)
+    // VIP Stream Table Rows (Row H)
     const reclinerRows = ['H'].map(rowLabel => ({
       rowLabel,
       seats: Array.from({ length: 8 }, (_, i) => {
@@ -36,9 +36,9 @@ export const SeatSelectionSheet: React.FC = () => {
         };
       })
     }));
-    layout.push({ tierName: 'VIP Recliners', price: (activeShowtime?.price || 450) + 200, rows: reclinerRows });
+    layout.push({ tierName: 'VIP High Roller Stream Table', price: (activeShowtime?.price || 450) + 200, rows: reclinerRows });
 
-    // Premium Rows (Rows E, F, G)
+    // Premium RFID Smart Felt Rows (Rows E, F, G)
     const premiumRows = ['E', 'F', 'G'].map(rowLabel => ({
       rowLabel,
       seats: Array.from({ length: 14 }, (_, i) => {
@@ -55,9 +55,9 @@ export const SeatSelectionSheet: React.FC = () => {
         };
       })
     }));
-    layout.push({ tierName: 'Prime Laser Lounge', price: activeShowtime?.price || 450, rows: premiumRows });
+    layout.push({ tierName: 'Prime Smart Felt Table (RFID)', price: activeShowtime?.price || 450, rows: premiumRows });
 
-    // Regular Rows (Rows A, B, C, D)
+    // Regular Deepstack Flight Rows (Rows A, B, C, D)
     const regularRows = ['A', 'B', 'C', 'D'].map(rowLabel => ({
       rowLabel,
       seats: Array.from({ length: 14 }, (_, i) => {
@@ -74,7 +74,7 @@ export const SeatSelectionSheet: React.FC = () => {
         };
       })
     }));
-    layout.push({ tierName: 'Standard Audi', price: Math.max(200, (activeShowtime?.price || 450) - 120), rows: regularRows });
+    layout.push({ tierName: 'Deepstack Flight Table', price: Math.max(200, (activeShowtime?.price || 450) - 120), rows: regularRows });
 
     return layout;
   }, [activeShowtime, selectedSeats]);
@@ -118,11 +118,11 @@ export const SeatSelectionSheet: React.FC = () => {
           </div>
           <div className="pulse-legend-item">
             <span className="pulse-seat-sample sold" />
-            <span>Sold</span>
+            <span>Reserved</span>
           </div>
           <div className="pulse-legend-item">
             <span className="pulse-seat-sample recliner" />
-            <span>Recliner</span>
+            <span>VIP Felt</span>
           </div>
         </div>
 
@@ -131,7 +131,7 @@ export const SeatSelectionSheet: React.FC = () => {
           {/* Curved Screen Indicator */}
           <div className="pulse-screen-indicator-box">
             <div className="pulse-screen-curve" />
-            <span className="pulse-screen-text">ALL EYES THIS WAY • 4K LASER SCREEN</span>
+            <span className="pulse-screen-text">CIRCUIT 52 FEATURED RFID STREAM TABLE</span>
           </div>
 
           {/* Seat Grid Sections */}
@@ -204,7 +204,7 @@ export const SeatSelectionSheet: React.FC = () => {
             disabled={selectedSeats.length === 0}
             onClick={confirmMovieSeatsBooking}
           >
-            <span>Continue to Checkout</span>
+            <span>Proceed to Buy-in Checkout</span>
             <ArrowRight size={16} />
           </button>
         </div>

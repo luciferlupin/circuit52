@@ -30,7 +30,7 @@ export const SavedView: React.FC = () => {
       {/* Header */}
       <div className="pulse-page-header">
         <h2 className="pulse-page-title">Saved & Collections</h2>
-        <p className="pulse-page-sub">{totalSavedCount} curated spots and experiences</p>
+        <p className="pulse-page-sub">{totalSavedCount} curated poker rooms, tournaments and high-roller gigs</p>
       </div>
 
       {/* Collections Row */}
@@ -59,7 +59,7 @@ export const SavedView: React.FC = () => {
         <button
           type="button"
           className="pulse-collection-pill add"
-          onClick={() => alert('New collection created: "Nightlife Picks"')}
+          onClick={() => alert('New collection created: "High Roller Picks"')}
         >
           <Plus size={14} />
           <span>New</span>
@@ -72,21 +72,21 @@ export const SavedView: React.FC = () => {
           <div className="pulse-empty-state-card">
             <Bookmark size={36} className="pulse-empty-icon" />
             <h4>No saved items yet</h4>
-            <p>Tap the bookmark icon on any restaurant, movie or event to save it to your wishlist.</p>
+            <p>Tap the bookmark icon on any club, tournament or series gig to save it to your lineup.</p>
             <button
               type="button"
               className="pulse-primary-cta-btn"
               onClick={() => setActiveTab('HOME')}
             >
-              Browse Experiences
+              Browse Action
             </button>
           </div>
         ) : (
           <>
-            {/* Saved Restaurants */}
+            {/* Saved Poker Clubs */}
             {savedRestaurants.length > 0 && (
               <div className="pulse-saved-section">
-                <span className="pulse-saved-section-title">RESTAURANTS ({savedRestaurants.length})</span>
+                <span className="pulse-saved-section-title">POKER CLUBS & ROOMS ({savedRestaurants.length})</span>
                 <div className="pulse-saved-cards-list">
                   {savedRestaurants.map(r => (
                     <div
@@ -115,7 +115,7 @@ export const SavedView: React.FC = () => {
                             <span>{r.rating}</span>
                             <Star size={10} fill="#93c5fd" color="#93c5fd" />
                           </div>
-                          <span className="pulse-saved-price">₹{r.priceForTwo} for two</span>
+                          <span className="pulse-saved-price">Buy-in from ₹{r.priceForTwo.toLocaleString()}</span>
                         </div>
                       </div>
                     </div>
@@ -124,10 +124,10 @@ export const SavedView: React.FC = () => {
               </div>
             )}
 
-            {/* Saved Movies */}
+            {/* Saved Tournaments */}
             {savedMovies.length > 0 && (
               <div className="pulse-saved-section">
-                <span className="pulse-saved-section-title">MOVIES ({savedMovies.length})</span>
+                <span className="pulse-saved-section-title">TOURNAMENTS & CHAMPIONSHIPS ({savedMovies.length})</span>
                 <div className="pulse-saved-cards-list">
                   {savedMovies.map(m => (
                     <div
@@ -162,10 +162,10 @@ export const SavedView: React.FC = () => {
               </div>
             )}
 
-            {/* Saved Events */}
+            {/* Saved Series Events */}
             {savedEvents.length > 0 && (
               <div className="pulse-saved-section">
-                <span className="pulse-saved-section-title">LIVE EVENTS ({savedEvents.length})</span>
+                <span className="pulse-saved-section-title">SERIES & HIGH ROLLER GIGS ({savedEvents.length})</span>
                 <div className="pulse-saved-cards-list">
                   {savedEvents.map(e => (
                     <div

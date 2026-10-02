@@ -7,19 +7,19 @@ import {
   TrendingUp,
   History,
   Star,
-  Utensils,
-  Film,
+  Trophy,
+  Flame,
   Ticket
 } from 'lucide-react';
 
 const TRENDING_TAGS = [
-  'Bomba Pasta',
-  'IMAX Laser',
-  'Sunburn Cosmic Frequency',
-  'Mizu Omakase',
-  'Rooftop Cocktails',
-  'Standup Comedy',
-  'Truffle Pizza'
+  '₹100/₹200 NLH Cash',
+  'Wynn High Roller Lounge',
+  '₹50L Aria Deepstack',
+  'PLO-5 Action Rooms',
+  "Bobby's Room VIP Felt",
+  'RFID Smart Tables',
+  '₹200/₹500 Stakes'
 ];
 
 export const UniversalSearchModal: React.FC = () => {
@@ -84,7 +84,7 @@ export const UniversalSearchModal: React.FC = () => {
           <Search size={18} className="pulse-search-icon" />
           <input
             type="text"
-            placeholder="Search restaurants, movies, events & experiences..."
+            placeholder="Search poker rooms, cash stakes (100/200, PLO), tourneys..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             onKeyDown={e => {
@@ -156,7 +156,7 @@ export const UniversalSearchModal: React.FC = () => {
             {/* Trending Near You */}
             <div className="pulse-search-section">
               <span className="pulse-search-section-title">
-                <TrendingUp size={14} /> TRENDING NEAR YOU
+                <TrendingUp size={14} /> TRENDING ACTION
               </span>
 
               <div className="pulse-trending-chips-wrap">
@@ -181,9 +181,9 @@ export const UniversalSearchModal: React.FC = () => {
           <div className="pulse-live-search-results">
             {searchResults.totalCount === 0 ? (
               <div className="pulse-no-results-box">
-                <div className="pulse-no-results-emoji">🔍</div>
+                <div className="pulse-no-results-emoji">♠️</div>
                 <h4>No results found for "{searchQuery}"</h4>
-                <p>Try searching for "Bomba", "IMAX", "Sunburn" or "Italian"</p>
+                <p>Try searching for "Wynn", "Aria", "PLO", "100/200" or "Deepstack"</p>
               </div>
             ) : (
               <>
@@ -191,8 +191,8 @@ export const UniversalSearchModal: React.FC = () => {
                 {searchResults.restaurants.length > 0 && (
                   <div className="pulse-search-category-group">
                     <div className="pulse-search-group-header">
-                      <Utensils size={14} />
-                      <span>RESTAURANTS ({searchResults.restaurants.length})</span>
+                      <Flame size={14} />
+                      <span>POKER CLUBS & ROOMS ({searchResults.restaurants.length})</span>
                     </div>
 
                     <div className="pulse-search-group-items">
@@ -210,7 +210,7 @@ export const UniversalSearchModal: React.FC = () => {
                           <div className="pulse-search-item-meta">
                             <div className="pulse-search-item-title">{rest.name}</div>
                             <div className="pulse-search-item-sub">
-                              {rest.cuisine.slice(0, 2).join(', ')} • {rest.area}
+                              {rest.cuisine.slice(0, 2).join(' • ')} • {rest.area}
                             </div>
                           </div>
                           <div className="pulse-rating-box">
@@ -227,8 +227,8 @@ export const UniversalSearchModal: React.FC = () => {
                 {searchResults.movies.length > 0 && (
                   <div className="pulse-search-category-group">
                     <div className="pulse-search-group-header">
-                      <Film size={14} />
-                      <span>MOVIES ({searchResults.movies.length})</span>
+                      <Trophy size={14} />
+                      <span>TOURNAMENTS & CHAMPIONSHIPS ({searchResults.movies.length})</span>
                     </div>
 
                     <div className="pulse-search-group-items">
@@ -246,11 +246,19 @@ export const UniversalSearchModal: React.FC = () => {
                           <div className="pulse-search-item-meta">
                             <div className="pulse-search-item-title">{mov.title}</div>
                             <div className="pulse-search-item-sub">
-                              {mov.genre.join(', ')} • {mov.certification}
+                              {mov.genre.join(', ')} • {mov.runtime}
                             </div>
                           </div>
-                          <button type="button" className="btn btn-primary btn-sm">
-                            Book
+                          <button
+                            type="button"
+                            className="pulse-search-action-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedMovie(mov);
+                              setIsSearchModalOpen(false);
+                            }}
+                          >
+                            Register
                           </button>
                         </div>
                       ))}
@@ -263,7 +271,7 @@ export const UniversalSearchModal: React.FC = () => {
                   <div className="pulse-search-category-group">
                     <div className="pulse-search-group-header">
                       <Ticket size={14} />
-                      <span>LIVE EVENTS ({searchResults.events.length})</span>
+                      <span>SERIES & SPECIAL GIGS ({searchResults.events.length})</span>
                     </div>
 
                     <div className="pulse-search-group-items">
@@ -284,7 +292,7 @@ export const UniversalSearchModal: React.FC = () => {
                               {evt.dateBadge} • {evt.venue}
                             </div>
                           </div>
-                          <span className="pulse-search-price">₹{evt.priceStarting}</span>
+                          <span className="pulse-search-price">From ₹{evt.priceStarting.toLocaleString()}</span>
                         </div>
                       ))}
                     </div>

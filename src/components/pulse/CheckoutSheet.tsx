@@ -215,8 +215,8 @@ export const CheckoutSheet: React.FC = () => {
                 </div>
                 <Wallet size={20} className="pulse-pm-icon" />
                 <div className="pulse-pm-meta">
-                  <div className="pulse-pm-title">Pulse Wallet & PayLater</div>
-                  <div className="pulse-pm-sub">Balance: ₹4,500 available</div>
+                  <div className="pulse-pm-title">Circuit 52 Vault & Table Pass</div>
+                  <div className="pulse-pm-sub">Balance: ₹25,000 High-Roller Credit</div>
                 </div>
               </div>
 

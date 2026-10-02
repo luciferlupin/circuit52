@@ -65,11 +65,11 @@ export const TableBookingSheet: React.FC = () => {
         </div>
 
         <div className="pulse-booking-scroll-body">
-          {/* STEP 1: Select Guests (− 2 +) */}
+          {/* STEP 1: Select Players */}
           <div className="pulse-booking-section">
             <label className="pulse-step-label">
               <Users size={15} />
-              <span>STEP 1 • NUMBER OF GUESTS</span>
+              <span>STEP 1 • NUMBER OF PLAYERS</span>
             </label>
 
             <div className="pulse-guest-stepper">
@@ -84,14 +84,14 @@ export const TableBookingSheet: React.FC = () => {
 
               <div className="pulse-guest-count-box">
                 <span className="pulse-guest-number">{tableGuests}</span>
-                <span className="pulse-guest-sub">{tableGuests === 1 ? 'Guest' : 'Guests'}</span>
+                <span className="pulse-guest-sub">{tableGuests === 1 ? 'Player' : 'Players'}</span>
               </div>
 
               <button
                 type="button"
                 className="pulse-stepper-btn"
-                onClick={() => setTableGuests(Math.min(12, tableGuests + 1))}
-                disabled={tableGuests >= 12}
+                onClick={() => setTableGuests(Math.min(9, tableGuests + 1))}
+                disabled={tableGuests >= 9}
               >
                 <Plus size={18} />
               </button>
@@ -123,28 +123,28 @@ export const TableBookingSheet: React.FC = () => {
             </div>
           </div>
 
-          {/* STEP 3: Choose Time Slots */}
+          {/* STEP 3: Choose Session Time Slots */}
           <div className="pulse-booking-section">
             <div className="pulse-step-header-with-toggle">
               <label className="pulse-step-label">
-                <span>STEP 3 • CHOOSE TIME</span>
+                <span>STEP 3 • CHOOSE SESSION TIME</span>
               </label>
 
-              {/* Lunch / Dinner Selector */}
+              {/* Dinner / Lunch Selector */}
               <div className="pulse-period-toggle">
                 <button
                   type="button"
                   className={`pulse-period-btn ${mealPeriod === 'DINNER' ? 'active' : ''}`}
                   onClick={() => setMealPeriod('DINNER')}
                 >
-                  Dinner
+                  Evening Prime
                 </button>
                 <button
                   type="button"
                   className={`pulse-period-btn ${mealPeriod === 'LUNCH' ? 'active' : ''}`}
                   onClick={() => setMealPeriod('LUNCH')}
                 >
-                  Lunch
+                  Afternoon
                 </button>
               </div>
             </div>
@@ -167,11 +167,11 @@ export const TableBookingSheet: React.FC = () => {
             </div>
           </div>
 
-          {/* STEP 4: Available Offers */}
+          {/* STEP 4: Available Club Perks */}
           <div className="pulse-booking-section">
             <label className="pulse-step-label">
               <Tag size={14} />
-              <span>STEP 4 • APPLIED DINING OFFER</span>
+              <span>STEP 4 • APPLIED CLUB REWARD & PERK</span>
             </label>
 
             <div className="pulse-booking-offers-list">
@@ -183,10 +183,10 @@ export const TableBookingSheet: React.FC = () => {
                   <div className={`pulse-radio-circle ${selectedOffer === 'PULSE20' ? 'checked' : ''}`} />
                 </div>
                 <div>
-                  <div className="pulse-offer-card-title">Flat 20% OFF with Pulse Pay</div>
-                  <div className="pulse-offer-card-sub">Automatic discount on your food and beverage bill</div>
+                  <div className="pulse-offer-card-title">100% Reload Bonus Match</div>
+                  <div className="pulse-offer-card-sub">Complimentary chips & high-roller tournament credit</div>
                 </div>
-                <span className="pulse-offer-code-badge">PULSE20</span>
+                <span className="pulse-offer-code-badge">VIPRELOAD</span>
               </div>
 
               <div
@@ -197,10 +197,10 @@ export const TableBookingSheet: React.FC = () => {
                   <div className={`pulse-radio-circle ${selectedOffer === 'DESSERT' ? 'checked' : ''}`} />
                 </div>
                 <div>
-                  <div className="pulse-offer-card-title">Complimentary Signature Dessert</div>
-                  <div className="pulse-offer-card-sub">Chef’s tasting treat with minimum 2 mains</div>
+                  <div className="pulse-offer-card-title">Complimentary Table Hospitality</div>
+                  <div className="pulse-offer-card-sub">Chef’s tasting appetizers and crafted drinks at your felt</div>
                 </div>
-                <span className="pulse-offer-code-badge">SWEET</span>
+                <span className="pulse-offer-code-badge">FNBVIP</span>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ export const TableBookingSheet: React.FC = () => {
           {/* Instant Guarantee Note */}
           <div className="pulse-booking-guarantee-note">
             <ShieldCheck size={16} />
-            <span>Zero cancellation fee • Free booking • Instant confirmation</span>
+            <span>Zero cancellation fee • Instant table confirmation • Reserved VIP felt</span>
           </div>
         </div>
 
@@ -216,7 +216,7 @@ export const TableBookingSheet: React.FC = () => {
         <div className="pulse-booking-footer">
           <div className="pulse-booking-summary-pill">
             <span className="pulse-summary-text">
-              <strong>{tableGuests} Guests</strong> • {tableDate}, {tableTime}
+              <strong>{tableGuests} {tableGuests === 1 ? 'Player' : 'Players'}</strong> • {tableDate}, {tableTime}
             </span>
             <span className="pulse-summary-badge">FREE</span>
           </div>
@@ -227,7 +227,7 @@ export const TableBookingSheet: React.FC = () => {
             onClick={() => confirmTableBooking(selectedRestaurant, selectedOffer)}
           >
             <Sparkles size={16} />
-            <span>Confirm Reservation</span>
+            <span>Confirm Table Reservation</span>
           </button>
         </div>
       </div>

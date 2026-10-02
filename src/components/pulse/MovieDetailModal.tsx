@@ -87,7 +87,7 @@ export const MovieDetailModal: React.FC = () => {
             onClick={() => setShowTrailer(true)}
           >
             <Play size={20} fill="#fff" />
-            <span>Watch Trailer</span>
+            <span>Stream Highlights</span>
           </button>
         </div>
 
@@ -105,7 +105,7 @@ export const MovieDetailModal: React.FC = () => {
                   <Star size={12} fill="#93c5fd" color="#93c5fd" />
                   <span>{selectedMovie.rating.toFixed(1)}</span>
                 </div>
-                <span className="pulse-votes-text">{selectedMovie.votesCount} Votes</span>
+                <span className="pulse-votes-text">{selectedMovie.votesCount} Entries</span>
               </div>
 
               <h2 className="pulse-movie-detail-title">{selectedMovie.title}</h2>
@@ -126,18 +126,18 @@ export const MovieDetailModal: React.FC = () => {
 
           {/* Synopsis */}
           <div className="pulse-detail-section">
-            <h4 className="pulse-detail-section-title">Synopsis</h4>
+            <h4 className="pulse-detail-section-title">Tournament Structure & Format</h4>
             <p className="pulse-detail-about-text">{selectedMovie.synopsis}</p>
           </div>
 
           {/* Cast & Crew */}
           <div className="pulse-detail-section">
-            <h4 className="pulse-detail-section-title">Top Cast & Director</h4>
+            <h4 className="pulse-detail-section-title">Featured Pros & Tournament Director</h4>
             <div className="pulse-cast-carousel">
               <div className="pulse-cast-card">
-                <div className="pulse-cast-avatar">DV</div>
+                <div className="pulse-cast-avatar">TD</div>
                 <span className="pulse-cast-name">{selectedMovie.crew.director}</span>
-                <span className="pulse-cast-role">Director</span>
+                <span className="pulse-cast-role">Tournament Director</span>
               </div>
               {selectedMovie.cast.map((c, i) => (
                 <div key={i} className="pulse-cast-card">
@@ -153,8 +153,8 @@ export const MovieDetailModal: React.FC = () => {
           <div className="pulse-detail-section" id="cinemas-section">
             <div className="pulse-section-header">
               <div>
-                <h4 className="pulse-detail-section-title">Select Cinema & Showtimes</h4>
-                <p className="pulse-section-subtitle">Real-time seat availability & IMAX Laser pricing</p>
+                <h4 className="pulse-detail-section-title">Select Host Club & Starting Flight</h4>
+                <p className="pulse-section-subtitle">Real-time seat availability & RFID table buy-ins</p>
               </div>
             </div>
 
@@ -250,7 +250,7 @@ export const MovieDetailModal: React.FC = () => {
           <div className="pulse-modal-overlay" onClick={() => setShowTrailer(false)}>
             <div className="pulse-trailer-box" onClick={e => e.stopPropagation()}>
               <div className="pulse-trailer-header">
-                <span>Official Theatrical Trailer</span>
+                <span>Official Tournament Livestream & Highlight Reel</span>
                 <button type="button" onClick={() => setShowTrailer(false)} className="pulse-close-btn">
                   <X size={16} />
                 </button>
