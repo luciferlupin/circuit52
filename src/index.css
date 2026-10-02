@@ -5478,4 +5478,1200 @@ input, select, textarea {
   }
 }
 
+/* ==========================================================================
+   CIRCUIT 52 — 3D FLOATING GLOWING GLASS TICKET & GAMIFICATION SYSTEM
+   ========================================================================== */
+
+/* 22. 3D Floating Glowing Glass Ticket */
+.pulse-ticket-flip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-ticket-flip-btn:hover {
+  background: rgba(37, 99, 235, 0.35);
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.pulse-3d-ticket-stage {
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  cursor: grab;
+}
+
+.pulse-3d-ticket-stage:active {
+  cursor: grabbing;
+}
+
+.pulse-3d-ticket-wrapper {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: ticketFloatLevitate 4.5s ease-in-out infinite;
+}
+
+@keyframes ticketFloatLevitate {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+.pulse-3d-glass-card {
+  position: relative;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(10, 23, 60, 0.94) 0%, rgba(1, 4, 12, 0.98) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(37, 99, 235, 0.35);
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pulse-3d-glass-card.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.pulse-ticket-glare-effect {
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at 35% 30%, rgba(96, 165, 250, 0.16) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pulse-card-suit-decorations {
+  position: absolute;
+  right: 12px;
+  top: 40px;
+  display: flex;
+  gap: 8px;
+  opacity: 0.12;
+  font-size: 1.4rem;
+  pointer-events: none;
+  user-select: none;
+  color: #93c5fd;
+}
+
+.pulse-ticket-hero-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px 12px;
+}
+
+.pulse-ticket-art-wrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.pulse-ticket-thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.pulse-ticket-chip-medallion {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+}
+
+.pulse-chip-svg {
+  animation: chipSpinGlow 8s linear infinite;
+}
+
+@keyframes chipSpinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pulse-ticket-hero-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.pulse-ticket-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  margin-bottom: 4px;
+}
+
+.pulse-rfid-chip-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.18);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+}
+
+.pulse-t-val-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Dynamic QR Scanner Beam */
+.pulse-qr-code-frame {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+}
+
+.pulse-qr-code-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pulse-qr-scan-bar {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2563eb, #60a5fa, #2563eb, transparent);
+  box-shadow: 0 0 10px #3b82f6, 0 0 20px #60a5fa;
+  border-radius: 2px;
+  animation: qrScanLaser 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes qrScanLaser {
+  0% { top: 6px; }
+  100% { top: calc(100% - 9px); }
+}
+
+.pulse-qr-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #2563eb;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.pulse-qr-corner.top-left { top: 4px; left: 4px; border-width: 2px 0 0 2px; }
+.pulse-qr-corner.top-right { top: 4px; right: 4px; border-width: 2px 2px 0 0; }
+.pulse-qr-corner.btm-left { bottom: 4px; left: 4px; border-width: 0 0 2px 2px; }
+.pulse-qr-corner.btm-right { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; }
+
+.pulse-ticket-booking-code {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 22, 56, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.pulse-ticket-booking-code strong {
+  color: #f8fafc;
+  letter-spacing: 0.05em;
+}
+
+.pulse-copy-icon-btn {
+  background: none;
+  border: none;
+  color: #93c5fd;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.pulse-copied-toast {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  animation: pulseScaleUp 0.15s ease-out;
+}
+
+.pulse-ticket-perks-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 0 10px 14px;
+}
+
+.pulse-perk-item {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Reverse Side Styling */
+.pulse-ticket-back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(8, 17, 38, 0.8);
+}
+
+.pulse-tb-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: #93c5fd;
+}
+
+.pulse-tb-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.pulse-tb-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.pulse-tb-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pulse-tb-label {
+  font-size: 0.64rem;
+  font-weight: 800;
+  color: #60a5fa;
+  letter-spacing: 0.05em;
+}
+
+.pulse-tb-val {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pulse-tb-sub {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.pulse-tb-rules-list {
+  padding-left: 16px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pulse-tb-security-stamp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(10, 23, 60, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.pulse-tb-stamp-title {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #93c5fd;
+}
+
+.pulse-tb-stamp-sub {
+  font-size: 0.62rem;
+  color: #64748b;
+}
+
+.pulse-tb-concierge-phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  padding-top: 4px;
+}
+
+/* ==========================================================================
+   CIRCUIT 52 GAMIFICATION COMPONENTS
+   ========================================================================== */
+
+/* Level Progression Card */
+.pulse-gamification-card {
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0a173d 0%, #020716 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.pulse-gamify-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pulse-gh-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pulse-level-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid #60a5fa;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.pulse-level-badge span {
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: #93c5fd;
+  line-height: 1;
+}
+
+.pulse-level-badge strong {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.pulse-tier-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-xp-text {
+  font-size: 0.72rem;
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.pulse-xp-to-go {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.2);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.pulse-xp-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(2, 6, 18, 0.8);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.pulse-xp-fill {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 50%, #93c5fd 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+}
+
+.pulse-xp-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: xpShimmer 2.5s infinite;
+}
+
+@keyframes xpShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.pulse-gamify-perk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* 7-Day Table Streak Card */
+.pulse-streak-card {
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #091636 0%, #01040f 100%);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  margin-bottom: 12px;
+}
+
+.pulse-streak-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pulse-streak-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse-streak-flame {
+  color: #60a5fa;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+  animation: flamePulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes flamePulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5)); }
+  100% { transform: scale(1.15); filter: drop-shadow(0 0 14px rgba(59, 130, 246, 1)); }
+}
+
+.pulse-streak-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-streak-sub {
+  font-size: 0.72rem;
+  color: #60a5fa;
+}
+
+.pulse-streak-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.pulse-streak-days-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.pulse-streak-day-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 2px;
+  border-radius: 8px;
+  background: rgba(2, 6, 18, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.pulse-streak-day-box.completed {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: rgba(10, 23, 60, 0.6);
+}
+
+.pulse-streak-day-box.today {
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.pulse-s-day-name {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+}
+
+.pulse-s-dot {
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Daily Mystery Chip Card */
+.pulse-mystery-chip-card {
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, rgba(8, 17, 40, 0.9) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  margin-bottom: 12px;
+}
+
+.pulse-mc-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pulse-mc-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(10, 24, 64, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+}
+
+.pulse-mc-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-mc-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.pulse-roll-chip-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid rgba(96, 165, 250, 0.5);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.5);
+  transition: all 0.2s ease;
+}
+
+.pulse-roll-chip-btn:hover {
+  background: #3b82f6;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.7);
+}
+
+.pulse-mc-reward-revealed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(37, 99, 235, 0.22);
+  border: 1px solid #60a5fa;
+  animation: pulseScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pulse-reward-sparkle {
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.pulse-reward-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #60a5fa;
+  letter-spacing: 0.05em;
+}
+
+.pulse-reward-val {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Badges & Milestones */
+.pulse-achievements-section {
+  margin-bottom: 14px;
+}
+
+.pulse-badge-count-text {
+  font-size: 0.72rem;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.pulse-achievements-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-achievement-card {
+  flex: 0 0 135px;
+  padding: 12px 10px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #091638 0%, #01040d 100%);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.pulse-achievement-card.locked {
+  opacity: 0.6;
+  border-color: rgba(59, 130, 246, 0.12);
+}
+
+.pulse-ach-icon-circle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(10, 24, 64, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.pulse-ach-lock {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  color: #94a3b8;
+  background: #020612;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+.pulse-ach-name {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.pulse-ach-desc {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+.pulse-ach-progress-pill {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.2);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   CIRCUIT 52 SETTINGS MODAL & CLUB HOUSE RULES
+   ========================================================================== */
+
+/* Settings Sheet */
+.pulse-settings-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 520px;
+  margin: 0 auto;
+  height: 90dvh;
+  max-height: 850px;
+  background: linear-gradient(180deg, #020718 0%, #000000 100%);
+  border-top-left-radius: var(--radius-sheet);
+  border-top-right-radius: var(--radius-sheet);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-bottom: none;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(37, 99, 235, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 300;
+  overflow: hidden;
+  animation: pulseSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pulse-settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.18);
+  background: rgba(2, 6, 18, 0.85);
+}
+
+.pulse-settings-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-settings-scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-settings-identity-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #091638 0%, #020512 100%);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+}
+
+.pulse-settings-avatar {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #0a1638 100%);
+  border: 2px solid #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.pulse-settings-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: #2563eb;
+  border-radius: 50%;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-settings-id-meta {
+  flex: 1;
+}
+
+.pulse-settings-player-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-settings-player-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.pulse-profile-tier-pill.mini {
+  padding: 2px 7px;
+  font-size: 0.62rem;
+}
+
+.pulse-settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pulse-settings-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #60a5fa;
+  letter-spacing: 0.05em;
+}
+
+.pulse-settings-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(8, 17, 40, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.16);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+.pulse-settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.pulse-settings-row:not(:last-child) {
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.pulse-sr-info {
+  flex: 1;
+}
+
+.pulse-sr-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pulse-sr-desc {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.pulse-settings-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 18px max(16px, env(safe-area-inset-bottom, 16px));
+  background: rgba(2, 6, 18, 0.98);
+  border-top: 1px solid rgba(59, 130, 246, 0.25);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Club House Rules Grid in Restaurant Detail */
+.pulse-club-rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .pulse-club-rules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pulse-rule-card {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #091638 0%, #01040e 100%);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pulse-rc-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #60a5fa;
+  letter-spacing: 0.05em;
+}
+
+.pulse-rc-val {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-rc-desc {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   CIRCUIT 52 NOTIFICATIONS MODAL
+   ========================================================================== */
+
+.pulse-notifications-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 520px;
+  margin: 0 auto;
+  height: 75dvh;
+  max-height: 700px;
+  background: linear-gradient(180deg, #030818 0%, #000000 100%);
+  border-top-left-radius: var(--radius-sheet);
+  border-top-right-radius: var(--radius-sheet);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-bottom: none;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(37, 99, 235, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 300;
+  overflow: hidden;
+  animation: pulseSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pulse-notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(2, 6, 18, 0.85);
+}
+
+.pulse-nh-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pulse-nh-icon {
+  color: #60a5fa;
+}
+
+.pulse-notifications-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-notifications-sub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.pulse-notifications-scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-notif-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #081432 0%, #01040f 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-notif-item.unread {
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.2);
+}
+
+.pulse-notif-item:hover {
+  transform: translateY(-1px);
+  border-color: #60a5fa;
+}
+
+.pulse-notif-icon-col {
+  flex-shrink: 0;
+}
+
+.pulse-ni-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ni-bubble.green {
+  background: rgba(37, 99, 235, 0.25);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.pulse-ni-bubble.flame {
+  background: rgba(29, 78, 216, 0.25);
+  color: #93c5fd;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+}
+
+.pulse-ni-bubble.blue {
+  background: rgba(37, 99, 235, 0.25);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.pulse-ni-bubble.gold {
+  background: rgba(30, 58, 138, 0.3);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.pulse-notif-content-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.pulse-notif-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.pulse-notif-title {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pulse-notif-time {
+  font-size: 0.65rem;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.pulse-notif-msg {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.pulse-notif-action-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+.pulse-notifications-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px));
+  background: rgba(2, 6, 18, 0.98);
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  justify-content: center;
+}
+
+.pulse-notif-clear-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.pulse-notif-clear-btn:hover {
+  color: #ffffff;
+}
+
+
+
 

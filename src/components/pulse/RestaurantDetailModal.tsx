@@ -23,7 +23,7 @@ export const RestaurantDetailModal: React.FC = () => {
   } = usePulse();
 
   const [activeGalleryIdx, setActiveGalleryIdx] = useState<number>(0);
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'TABLES' | 'DINING' | 'PHOTOS' | 'REVIEWS'>('OVERVIEW');
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'TABLES' | 'RULES' | 'DINING' | 'PHOTOS' | 'REVIEWS'>('OVERVIEW');
 
   if (!selectedRestaurant) return null;
 
@@ -172,16 +172,16 @@ export const RestaurantDetailModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tabs: Overview, Tables, Dining, Photos, Reviews */}
+          {/* Tabs: Overview, Tables, Rules, Dining, Photos, Reviews */}
           <div className="pulse-detail-tabs-bar">
-            {(['OVERVIEW', 'TABLES', 'DINING', 'PHOTOS', 'REVIEWS'] as const).map(tab => (
+            {(['OVERVIEW', 'TABLES', 'RULES', 'DINING', 'PHOTOS', 'REVIEWS'] as const).map(tab => (
               <button
                 key={tab}
                 type="button"
                 className={`pulse-detail-tab-btn ${activeTab === tab ? 'active' : ''}`}
                 onClick={() => setActiveTab(tab)}
               >
-                {tab}
+                {tab === 'RULES' ? 'RULES & RAKE' : tab}
               </button>
             ))}
           </div>
@@ -291,11 +291,47 @@ export const RestaurantDetailModal: React.FC = () => {
                       <button
                         type="button"
                         className="pulse-vtc-reserve-btn"
-                        onClick={() => setIsTableSheetOpen(true)}
+                        onClick={() => {
+                          alert('Joined Table 3 Waitlist! You are Queue #2. Circuit 52 will hold your seat for 180 seconds when ready.');
+                        }}
                       >
-                        Join Waitlist
+                        Join Waitlist (#2)
                       </button>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 3: House Rules & Rake */}
+          {activeTab === 'RULES' && (
+            <div className="pulse-tab-content-block">
+              <div className="pulse-detail-section">
+                <h4 className="pulse-detail-section-title">Club Operating Rules & Rake Caps</h4>
+                <div className="pulse-club-rules-grid">
+                  <div className="pulse-rule-card">
+                    <div className="pulse-rc-title">RAKE STRUCTURE</div>
+                    <div className="pulse-rc-val">5% Capped at ₹500</div>
+                    <div className="pulse-rc-desc">Strict "No Flop, No Drop" policy enforced on all pots.</div>
+                  </div>
+
+                  <div className="pulse-rule-card">
+                    <div className="pulse-rc-title">RUN IT TWICE POLICY</div>
+                    <div className="pulse-rc-val">Double Board Allowed</div>
+                    <div className="pulse-rc-desc">Available upon agreement on all all-in heads-up showdowns.</div>
+                  </div>
+
+                  <div className="pulse-rule-card">
+                    <div className="pulse-rc-title">STRADDLE RULES</div>
+                    <div className="pulse-rc-val">Mississippi Straddle</div>
+                    <div className="pulse-rc-desc">Button or UTG straddle allowed up to 4x big blind.</div>
+                  </div>
+
+                  <div className="pulse-rule-card">
+                    <div className="pulse-rc-title">RFID CHIP VERIFICATION</div>
+                    <div className="pulse-rc-val">100% Anti-Counterfeit</div>
+                    <div className="pulse-rc-desc">All high-denomination chips embedded with 13.56 MHz RFID tags.</div>
                   </div>
                 </div>
               </div>

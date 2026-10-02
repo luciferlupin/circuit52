@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { usePulse } from '../../context/PulseContext';
+import { NotificationModal } from './NotificationModal';
 import {
   MapPin,
   ChevronDown,
@@ -20,6 +21,7 @@ export const PulseHeader: React.FC = () => {
     bookings
   } = usePulse();
 
+  const [isNotifOpen, setIsNotifOpen] = useState<boolean>(false);
   const upcomingCount = bookings.filter(b => b.status === 'UPCOMING').length;
 
   return (
@@ -51,13 +53,11 @@ export const PulseHeader: React.FC = () => {
           {/* Notification / Alert Icon */}
           <button
             className="pulse-icon-btn"
-            onClick={() => setActiveTab('BOOKINGS')}
-            title="My Bookings & Alerts"
+            onClick={() => setIsNotifOpen(true)}
+            title="Live Table Notifications & Alerts"
           >
             <Bell size={18} />
-            {upcomingCount > 0 && (
-              <span className="pulse-badge-dot">{upcomingCount}</span>
-            )}
+            <span className="pulse-badge-dot">{upcomingCount > 0 ? upcomingCount : 2}</span>
           </button>
 
           {/* User Profile Avatar */}
@@ -118,6 +118,12 @@ export const PulseHeader: React.FC = () => {
           ₹200/₹500 PLO-5 active at Wynn • High Hand ₹50,000 at Aria • 42 Cash Tables Running
         </span>
       </div>
+
+      {/* Live Notifications Modal */}
+      <NotificationModal
+        isOpen={isNotifOpen}
+        onClose={() => setIsNotifOpen(false)}
+      />
     </header>
   );
 };
