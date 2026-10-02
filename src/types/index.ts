@@ -72,6 +72,14 @@ export interface Club {
   phone: string;
   coordinates: { lat: number; lng: number };
   stakesSummary: string[];
+  imageUrl: string;
+  galleryUrls: string[];
+  rating: number;
+  reviewCount: number;
+  priceRange: string;
+  vibeTags: string[];
+  featuredOffer?: string;
+  menuHighlights?: string[];
 }
 
 export interface WaitlistEntry {

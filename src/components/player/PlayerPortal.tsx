@@ -12,10 +12,95 @@ import {
   CheckCircle2,
   XCircle,
   Plus,
-  Navigation,
-  Compass
+  Compass,
+  Star,
+  Utensils,
+  Sparkles,
+  X,
+  PhoneCall
 } from 'lucide-react';
 import type { Club } from '../../types';
+
+interface StoryItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  clubName: string;
+  imageUrl: string;
+  badge: string;
+  description: string;
+  ctaText: string;
+  clubId: string;
+}
+
+const DISTRICT_STORIES: StoryItem[] = [
+  {
+    id: 'st-1',
+    title: "Tonight's Action",
+    subtitle: '$25k GTD Event',
+    clubName: 'Bellagio Poker Room',
+    imageUrl: '/images/bellagio.jpg',
+    badge: 'LIVE TONIGHT',
+    description: 'The Bellagio 2:00 PM Deepstack is down to the final 4 tables. High stakes cash games are overflowing with 18 live tables active right now.',
+    ctaText: 'Join Waitlist',
+    clubId: 'c1'
+  },
+  {
+    id: 'st-2',
+    title: 'Bobby\'s Room',
+    subtitle: 'VIP High Roller',
+    clubName: 'Bellagio VIP',
+    imageUrl: '/images/bobbys_room.jpg',
+    badge: 'EXCLUSIVE VIP',
+    description: 'Bobby\'s Room has $10/$25 and $25/$50 NLH running with complimentary vintage bourbon and private tableside dining service.',
+    ctaText: 'View VIP Stakes',
+    clubId: 'c1'
+  },
+  {
+    id: 'st-3',
+    title: 'Tableside Wagyu',
+    subtitle: 'Gourmet Perks',
+    clubName: 'Wynn & Encore',
+    imageUrl: '/images/dining.jpg',
+    badge: 'DISTRICT DINING',
+    description: 'Michelin-adjacent tableside dining served directly to poker players. Enjoy wagyu sliders, smoked rosemary cocktails, and artisan sushi rolls while you play.',
+    ctaText: 'View Menu & Reserve',
+    clubId: 'c3'
+  },
+  {
+    id: 'st-4',
+    title: 'Aria High Energy',
+    subtitle: 'Deep PLO Action',
+    clubName: 'Aria Poker Room',
+    imageUrl: '/images/aria.jpg',
+    badge: 'HIGH STAKES PLO',
+    description: 'Aria is hosting 4 tables of deep $2/$5 and $5/$10 PLO with average stacks exceeding 500 big blinds.',
+    ctaText: 'Join Omaha Queue',
+    clubId: 'c2'
+  },
+  {
+    id: 'st-5',
+    title: 'Cyberpunk Poker',
+    subtitle: 'RFID Smart Tables',
+    clubName: 'Resorts World',
+    imageUrl: '/images/resorts_world.jpg',
+    badge: 'TECH FORWARD',
+    description: 'Experience futuristic contactless poker gaming with 100% automated shufflers, instant RFID chip scanners, and cashless mobile payouts.',
+    ctaText: 'Explore Tech Lounge',
+    clubId: 'c4'
+  },
+  {
+    id: 'st-6',
+    title: 'Gold Chandeliers',
+    subtitle: 'Signature Series',
+    clubName: 'Wynn Poker Room',
+    imageUrl: '/images/wynn.jpg',
+    badge: '$250k GTD',
+    description: 'The Wynn Signature Series kicks off tomorrow morning with a massive $250,000 guarantee. Register today via Circuit 52.',
+    ctaText: 'Follow Tournament',
+    clubId: 'c3'
+  }
+];
 
 export const PlayerPortal: FC = () => {
   const {
@@ -33,15 +118,20 @@ export const PlayerPortal: FC = () => {
   } = useCircuit();
 
   const [activeTab, setActiveTab] = useState<'LIVE' | 'MAP' | 'TOURNAMENTS' | 'WAITLIST' | 'MY_POKER'>('LIVE');
-  const [selectedGameFilter, setSelectedGameFilter] = useState<string>('ALL');
+  const [selectedCuratedCategory, setSelectedCuratedCategory] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedClubForModal, setSelectedClubForModal] = useState<Club | null>(null);
+  
+  // Modals & Drawers
+  const [detailedClub, setDetailedClub] = useState<Club | null>(null);
+  const [activeStory, setActiveStory] = useState<StoryItem | null>(null);
   const [showJoinModal, setShowJoinModal] = useState<boolean>(false);
+  const [selectedClubForModal, setSelectedClubForModal] = useState<Club | null>(null);
   const [showReportModal, setShowReportModal] = useState<boolean>(false);
   const [showSessionModal, setShowSessionModal] = useState<boolean>(false);
   const [reportReason, setReportReason] = useState<string>('TABLE_COUNT_INACCURATE');
   const [reportDetails, setReportDetails] = useState<string>('');
   const [selectedPinClub, setSelectedPinClub] = useState<Club | null>(clubs[0]);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
 
   // Session form state
   const [newSessionVenue, setNewSessionVenue] = useState<string>('Bellagio Poker Room');
@@ -54,7 +144,6 @@ export const PlayerPortal: FC = () => {
   const userOffer = waitlists.find(w => w.playerName.includes('Alex Morgan') && w.state === 'OFFERED');
   const userQueues = waitlists.filter(w => w.playerName.includes('Alex Morgan') && (w.state === 'QUEUED' || w.state === 'CONFIRMED'));
 
-  // Calculate countdown time for offer
   const getOfferTimeLeft = (expiresAt?: string) => {
     if (!expiresAt) return '0:00';
     const diff = Math.max(0, Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000));
@@ -65,28 +154,40 @@ export const PlayerPortal: FC = () => {
 
   // Filtered clubs
   const filteredClubs = clubs.filter(c => {
-    const matchesSearch = c.displayName.toLowerCase().includes(searchQuery.toLowerCase()) || c.address.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesGame = selectedGameFilter === 'ALL' || c.stakesSummary.some(s => s.includes(selectedGameFilter));
-    return matchesSearch && matchesGame;
+    const matchesSearch = c.displayName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          c.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          c.vibeTags.some(v => v.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    let matchesCategory = true;
+    if (selectedCuratedCategory === 'HIGH_STAKES') {
+      matchesCategory = c.vibeTags.includes('Bobby\'s Room VIP') || c.stakesSummary.some(s => s.includes('5/10') || s.includes('10/25'));
+    } else if (selectedCuratedCategory === 'DINING') {
+      matchesCategory = Boolean(c.menuHighlights && c.menuHighlights.length > 0);
+    } else if (selectedCuratedCategory === 'FAST_SEATING') {
+      matchesCategory = c.distanceKm < 3.0 && c.freshnessLabel === 'LIVE';
+    } else if (selectedCuratedCategory === 'PLO') {
+      matchesCategory = c.stakesSummary.some(s => s.includes('PLO'));
+    }
+
+    return matchesSearch && matchesCategory;
   }).sort((a, b) => b.discoveryScore - a.discoveryScore);
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 16px' }} className="animate-fade-in">
-      {/* Active Seat Offer Urgent Banner */}
+    <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '16px' }} className="animate-fade-in">
+      {/* Active Seat Offer High Priority Banner */}
       {userOffer && (
         <div style={{
-          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.15) 100%)',
+          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%)',
           border: '2px solid var(--accent-recent)',
           borderRadius: 'var(--radius-lg)',
           padding: '16px 20px',
-          marginBottom: '24px',
+          marginBottom: '20px',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '16px',
-          boxShadow: '0 0 25px rgba(245, 158, 11, 0.3)',
-          animation: 'pulse 2s infinite'
+          boxShadow: '0 0 25px rgba(245, 158, 11, 0.35)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             <div style={{
@@ -115,8 +216,8 @@ export const PlayerPortal: FC = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{ textAlign: 'right', marginRight: '6px' }}>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Offer Expires In
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+                Expires In
               </div>
               <div className="mono" style={{ fontSize: '1.35rem', fontWeight: 800, color: '#f87171' }}>
                 {getOfferTimeLeft(userOffer.offerExpiresAt)}
@@ -142,7 +243,72 @@ export const PlayerPortal: FC = () => {
         </div>
       )}
 
-      {/* Player App Navigation Tabs */}
+      {/* DISTRICT STORIES REEL STRIP (ZOMATO DISTRICT STYLE) */}
+      <div style={{ marginBottom: '22px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+          <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
+            DISTRICT SPOTLIGHTS & TONIGHT'S STORIES
+          </span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--accent-live)', fontWeight: 600 }}>
+            ● Live Updates
+          </span>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          gap: '14px',
+          overflowX: 'auto',
+          paddingBottom: '8px',
+          scrollbarWidth: 'none'
+        }}>
+          {DISTRICT_STORIES.map(story => (
+            <div
+              key={story.id}
+              onClick={() => setActiveStory(story)}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '6px',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              {/* Glowing Story Circle Ring */}
+              <div style={{
+                width: '74px',
+                height: '74px',
+                borderRadius: '50%',
+                padding: '3px',
+                background: 'linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #f59e0b 100%)',
+                boxShadow: '0 0 12px rgba(16, 185, 129, 0.4)',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
+              onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+              >
+                <img
+                  src={story.imageUrl}
+                  alt={story.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '2px solid #080c14'
+                  }}
+                />
+              </div>
+
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-main)', textAlign: 'center', maxWidth: '80px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {story.title}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Player App Navigation Tabs */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -158,7 +324,7 @@ export const PlayerPortal: FC = () => {
             onClick={() => setActiveTab('LIVE')}
             className={`btn btn-sm ${activeTab === 'LIVE' ? 'btn-primary' : 'btn-subtle'}`}
           >
-            <Flame size={16} /> Live Now ({clubs.length})
+            <Flame size={16} /> District Clubs ({clubs.length})
           </button>
 
           <button
@@ -208,37 +374,34 @@ export const PlayerPortal: FC = () => {
           <MapPin size={15} style={{ color: 'var(--accent-live)' }} />
           <span>Las Vegas Strip</span>
           <span style={{ color: 'var(--text-dim)' }}>•</span>
-          <span className="mono" style={{ color: 'var(--text-main)' }}>25 km Radius</span>
+          <span className="mono" style={{ color: 'var(--text-main)' }}>25 km Scope</span>
         </div>
       </div>
 
-      {/* TAB 1: LIVE NOW FEED */}
+      {/* TAB 1: DISTRICT CLUBS FEED */}
       {activeTab === 'LIVE' && (
         <div>
-          {/* Search & Filter Bar */}
+          {/* Search & Curated Category Pills */}
           <div style={{
             display: 'flex',
-            flexWrap: 'wrap',
-            gap: '12px',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '20px'
+            flexDirection: 'column',
+            gap: '14px',
+            marginBottom: '22px'
           }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '10px',
               background: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-md)',
-              padding: '6px 14px',
-              flex: '1',
-              minWidth: '240px'
+              borderRadius: 'var(--radius-lg)',
+              padding: '10px 16px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
             }}>
-              <Search size={16} style={{ color: 'var(--text-dim)' }} />
+              <Search size={18} style={{ color: 'var(--text-dim)' }} />
               <input
                 type="text"
-                placeholder="Search poker rooms, stakes, games..."
+                placeholder="Search luxury rooms, high stakes, wagyu dining, PLO action..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
@@ -246,55 +409,102 @@ export const PlayerPortal: FC = () => {
                   border: 'none',
                   color: 'var(--text-main)',
                   outline: 'none',
-                  fontSize: '0.88rem',
+                  fontSize: '0.92rem',
                   width: '100%'
                 }}
               />
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', overflowX: 'auto' }}>
-              {['ALL', 'NLH', 'PLO', '1/3', '2/5', '5/10'].map(filter => (
+            {/* Curated District Going-Out Filters */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+              {[
+                { id: 'ALL', label: '🔥 All Venues' },
+                { id: 'HIGH_STAKES', label: '💎 High Stakes & VIP Lounges' },
+                { id: 'DINING', label: '🍽 Tableside Wagyu & Drinks' },
+                { id: 'PLO', label: '♠️ Deep PLO Action' },
+                { id: 'FAST_SEATING', label: '⚡ Fast Seating (<10m)' }
+              ].map(cat => (
                 <button
-                  key={filter}
-                  onClick={() => setSelectedGameFilter(filter)}
-                  className={`chip ${selectedGameFilter === filter ? 'active' : ''}`}
+                  key={cat.id}
+                  onClick={() => setSelectedCuratedCategory(cat.id)}
+                  className={`chip ${selectedCuratedCategory === cat.id ? 'active' : ''}`}
+                  style={{ whiteSpace: 'nowrap' }}
                 >
-                  {filter}
+                  {cat.label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Ranked Club Cards Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '20px' }}>
+          {/* Cards Grid: Zomato District Style with Hero Photos */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(370px, 1fr))', gap: '24px' }}>
             {filteredClubs.map(club => {
               const clubTables = tables.filter(t => t.clubId === club.id && (t.status === 'ACTIVE' || t.status === 'FULL'));
               const activeCount = clubTables.length || (club.id === 'c2' ? 15 : club.id === 'c3' ? 19 : club.id === 'c4' ? 9 : 0);
-              const waitCount = club.id === 'c1' ? 15 : club.id === 'c2' ? 11 : club.id === 'c3' ? 14 : 4;
+              const waitCount = club.id === 'c1' ? 14 : club.id === 'c2' ? 11 : club.id === 'c3' ? 14 : 4;
 
               return (
-                <div key={club.id} className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                  {/* Card Header */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <h3 style={{ fontSize: '1.15rem' }}>{club.displayName}</h3>
-                        {club.isVerified && (
-                          <span title="Verified Room">
-                            <ShieldCheck size={16} style={{ color: 'var(--accent-live)' }} />
-                          </span>
-                        )}
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                        <MapPin size={13} /> {club.distanceKm} km away &nbsp;•&nbsp; {club.city}
-                      </div>
-                    </div>
+                <div
+                  key={club.id}
+                  className="glass-panel"
+                  style={{
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    position: 'relative'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.6)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'var(--shadow-card)';
+                  }}
+                >
+                  {/* HERO PHOTO WITH GRADIENT OVERLAY */}
+                  <div
+                    onClick={() => setDetailedClub(club)}
+                    style={{
+                      height: '210px',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <img
+                      src={club.imageUrl}
+                      alt={club.displayName}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.4s ease'
+                      }}
+                    />
 
-                    {/* Freshness Badge */}
-                    <div>
+                    {/* Gradient Scrim */}
+                    <div style={{
+                      position: 'absolute',
+                      top: 0, left: 0, right: 0, bottom: 0,
+                      background: 'linear-gradient(to top, rgba(8, 12, 20, 0.95) 0%, rgba(8, 12, 20, 0.2) 60%, transparent 100%)'
+                    }} />
+
+                    {/* Top Badges: Rating & Freshness */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      right: '12px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center'
+                    }}>
+                      {/* Freshness Badge */}
                       {club.freshnessLabel === 'LIVE' && (
                         <span className="badge badge-live">
-                          <span className="badge-pulse" /> LIVE ({club.lastUpdatedMinutesAgo}m)
+                          <span className="badge-pulse" /> LIVE TRUTH ({club.lastUpdatedMinutesAgo}m)
                         </span>
                       )}
                       {club.freshnessLabel === 'RECENT' && (
@@ -312,110 +522,168 @@ export const PlayerPortal: FC = () => {
                           UNAVAILABLE
                         </span>
                       )}
+
+                      {/* Zomato District Gold Rating Badge */}
+                      <div style={{
+                        background: 'rgba(15, 23, 42, 0.85)',
+                        backdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(251, 191, 36, 0.4)',
+                        borderRadius: 'var(--radius-full)',
+                        padding: '4px 10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        color: '#fbbf24',
+                        fontWeight: 800,
+                        fontSize: '0.82rem',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
+                      }}>
+                        <Star size={13} fill="#fbbf24" />
+                        <span>{club.rating}</span>
+                        <span style={{ color: 'var(--text-dim)', fontSize: '0.72rem', fontWeight: 500 }}>
+                          ({club.reviewCount})
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Title on Image */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      left: '16px',
+                      right: '16px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-end'
+                    }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <h3 style={{ fontSize: '1.25rem', color: '#fff', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                            {club.displayName}
+                          </h3>
+                          {club.isVerified && (
+                            <span title="Verified Room">
+                              <ShieldCheck size={17} style={{ color: 'var(--accent-live)' }} />
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.8)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <MapPin size={12} /> {club.distanceKm} km away • {club.city}
+                        </div>
+                      </div>
+
+                      <div style={{ fontSize: '0.75rem', color: '#fbbf24', fontWeight: 700 }}>
+                        {club.priceRange.split('•')[0]}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Operational Telemetry Matrix */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    padding: '12px',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-subtle)',
-                    textAlign: 'center'
-                  }}>
-                    <div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Live Tables</div>
-                      <div className="mono" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-live)' }}>
-                        {activeCount}
+                  {/* CARD BODY CONTENT */}
+                  <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {/* Live Room Telemetry Bar */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, 1fr)',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      padding: '10px',
+                      borderRadius: 'var(--radius-md)',
+                      border: '1px solid var(--border-subtle)',
+                      textAlign: 'center'
+                    }}>
+                      <div>
+                        <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Live Tables</div>
+                        <div className="mono" style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent-live)' }}>
+                          {activeCount}
+                        </div>
+                      </div>
+                      <div style={{ borderLeft: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)' }}>
+                        <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Waiting</div>
+                        <div className="mono" style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent-recent)' }}>
+                          {waitCount}
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Action Score</div>
+                        <div className="mono" style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
+                          {club.actionScore}
+                        </div>
                       </div>
                     </div>
-                    <div style={{ borderLeft: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)' }}>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Waiting</div>
-                      <div className="mono" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-recent)' }}>
-                        {waitCount}
-                      </div>
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Action Score</div>
-                      <div className="mono" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                        {club.actionScore}
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Stakes Active Summary */}
-                  <div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', textTransform: 'uppercase', marginBottom: '6px' }}>
-                      Running Stakes & Limits
-                    </div>
+                    {/* Vibe Tags */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                      {club.stakesSummary.map((stake, idx) => (
+                      {club.vibeTags.map((tag, idx) => (
                         <span key={idx} style={{
-                          fontSize: '0.75rem',
+                          fontSize: '0.72rem',
                           background: 'rgba(255, 255, 255, 0.05)',
                           border: '1px solid var(--border-subtle)',
-                          borderRadius: 'var(--radius-sm)',
-                          padding: '3px 7px',
-                          color: 'var(--text-main)'
+                          borderRadius: 'var(--radius-full)',
+                          padding: '2px 8px',
+                          color: 'var(--text-muted)'
                         }}>
-                          {stake}
+                          {tag}
                         </span>
                       ))}
                     </div>
-                  </div>
 
-                  {/* Discovery Ranking Transparency Footer */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    fontSize: '0.74rem',
-                    color: 'var(--text-dim)',
-                    borderTop: '1px solid var(--border-subtle)',
-                    paddingTop: '12px'
-                  }}>
-                    <span>Discovery Score: <strong style={{ color: 'var(--text-main)' }}>{club.discoveryScore}</strong></span>
-                    <button
-                      onClick={() => {
-                        setSelectedClubForModal(club);
-                        setShowReportModal(true);
-                      }}
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        color: 'var(--text-dim)',
-                        fontSize: '0.72rem',
-                        cursor: 'pointer',
-                        textDecoration: 'underline'
-                      }}
-                    >
-                      Report Inaccuracy
-                    </button>
-                  </div>
+                    {/* Special District Perk / Offer Banner */}
+                    {club.featuredOffer && (
+                      <div style={{
+                        padding: '8px 12px',
+                        background: 'linear-gradient(90deg, rgba(251, 191, 36, 0.1) 0%, rgba(16, 185, 129, 0.08) 100%)',
+                        border: '1px solid rgba(251, 191, 36, 0.25)',
+                        borderRadius: 'var(--radius-sm)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '0.76rem',
+                        color: '#fbbf24'
+                      }}>
+                        <Sparkles size={14} style={{ color: '#fbbf24', flexShrink: 0 }} />
+                        <span>{club.featuredOffer}</span>
+                      </div>
+                    )}
 
-                  {/* Action CTAs */}
-                  <div style={{ display: 'flex', gap: '10px', marginTop: 'auto' }}>
-                    <button
-                      onClick={() => {
-                        setSelectedClubForModal(club);
-                        setShowJoinModal(true);
-                      }}
-                      className="btn btn-primary"
-                      style={{ flex: 1 }}
-                      disabled={club.freshnessLabel === 'UNAVAILABLE'}
-                    >
-                      Join Waitlist
-                    </button>
+                    {/* Tableside Food & Drinks Highlights */}
+                    {club.menuHighlights && club.menuHighlights.length > 0 && (
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.74rem',
+                        color: 'var(--text-dim)'
+                      }}>
+                        <Utensils size={13} style={{ color: 'var(--accent-cyan)' }} />
+                        <span><strong>Tableside:</strong> {club.menuHighlights.join(' • ')}</span>
+                      </div>
+                    )}
 
-                    <button
-                      onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(club.address)}`, '_blank')}
-                      className="btn btn-outline"
-                      title="Get Directions"
-                    >
-                      <Navigation size={15} />
-                    </button>
+                    {/* Action CTAs */}
+                    <div style={{ display: 'flex', gap: '10px', marginTop: 'auto', paddingTop: '6px' }}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedClubForModal(club);
+                          setShowJoinModal(true);
+                        }}
+                        className="btn btn-primary"
+                        style={{ flex: 1, padding: '10px 14px' }}
+                        disabled={club.freshnessLabel === 'UNAVAILABLE'}
+                      >
+                        Join Waitlist
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDetailedClub(club);
+                        }}
+                        className="btn btn-outline"
+                        style={{ padding: '10px 14px' }}
+                      >
+                        Explore Venue
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -451,7 +719,6 @@ export const PlayerPortal: FC = () => {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            {/* Grid Lines Overlay */}
             <div style={{
               position: 'absolute',
               top: 0, left: 0, right: 0, bottom: 0,
@@ -459,7 +726,6 @@ export const PlayerPortal: FC = () => {
               backgroundSize: '40px 40px'
             }} />
 
-            {/* Strip Highway Representation */}
             <div style={{
               position: 'absolute',
               width: '8px',
@@ -473,15 +739,14 @@ export const PlayerPortal: FC = () => {
               </span>
             </div>
 
-            {/* Venue Pins */}
             {clubs.map((c, index) => {
               const offsets = [
-                { top: '48%', left: '42%' }, // Bellagio
-                { top: '56%', left: '38%' }, // Aria
-                { top: '35%', left: '50%' }, // Wynn
-                { top: '24%', left: '56%' }, // Resorts World
-                { top: '41%', left: '46%' }, // Venetian
-                { top: '12%', left: '75%' }  // Golden Nugget (Downtown)
+                { top: '48%', left: '42%' },
+                { top: '56%', left: '38%' },
+                { top: '35%', left: '50%' },
+                { top: '24%', left: '56%' },
+                { top: '41%', left: '46%' },
+                { top: '12%', left: '75%' }
               ];
               const pos = offsets[index] || { top: '50%', left: '50%' };
               const isSelected = selectedPinClub?.id === c.id;
@@ -501,7 +766,7 @@ export const PlayerPortal: FC = () => {
                   }}
                 >
                   <div style={{
-                    padding: '6px 10px',
+                    padding: '6px 12px',
                     borderRadius: 'var(--radius-full)',
                     background: isSelected ? 'var(--accent-live)' : 'rgba(15, 23, 42, 0.9)',
                     color: isSelected ? '#022c22' : 'var(--text-main)',
@@ -511,18 +776,18 @@ export const PlayerPortal: FC = () => {
                     boxShadow: isSelected ? '0 0 20px rgba(16, 185, 129, 0.6)' : '0 4px 10px rgba(0,0,0,0.5)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '5px'
+                    gap: '6px'
                   }}>
                     <span>♠</span>
                     <span>{c.displayName.split(' ')[0]}</span>
                     <span style={{
                       background: isSelected ? '#047857' : 'rgba(255,255,255,0.15)',
                       color: '#fff',
-                      padding: '1px 5px',
+                      padding: '1px 6px',
                       borderRadius: '999px',
                       fontSize: '0.7rem'
                     }}>
-                      {c.stakesSummary.length * 3 + 2}
+                      ★ {c.rating}
                     </span>
                   </div>
                 </div>
@@ -530,7 +795,6 @@ export const PlayerPortal: FC = () => {
             })}
           </div>
 
-          {/* Selected Venue Drawer */}
           {selectedPinClub && (
             <div style={{
               marginTop: '20px',
@@ -544,19 +808,32 @@ export const PlayerPortal: FC = () => {
               justifyContent: 'space-between',
               gap: '16px'
             }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <h4 style={{ fontSize: '1.1rem' }}>{selectedPinClub.displayName}</h4>
-                  <span className={`badge badge-${selectedPinClub.freshnessLabel.toLowerCase()}`}>
-                    {selectedPinClub.freshnessLabel}
-                  </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <img
+                  src={selectedPinClub.imageUrl}
+                  alt={selectedPinClub.displayName}
+                  style={{ width: '64px', height: '64px', borderRadius: '10px', objectFit: 'cover' }}
+                />
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <h4 style={{ fontSize: '1.1rem' }}>{selectedPinClub.displayName}</h4>
+                    <span className={`badge badge-${selectedPinClub.freshnessLabel.toLowerCase()}`}>
+                      {selectedPinClub.freshnessLabel}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                    {selectedPinClub.address} • {selectedPinClub.distanceKm} km from current location
+                  </p>
                 </div>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                  {selectedPinClub.address} &nbsp;•&nbsp; {selectedPinClub.distanceKm} km from current location
-                </p>
               </div>
 
               <div style={{ display: 'flex', gap: '10px' }}>
+                <button
+                  onClick={() => setDetailedClub(selectedPinClub)}
+                  className="btn btn-outline btn-sm"
+                >
+                  View Club Profile
+                </button>
                 <button
                   onClick={() => {
                     setSelectedClubForModal(selectedPinClub);
@@ -565,12 +842,6 @@ export const PlayerPortal: FC = () => {
                   className="btn btn-primary btn-sm"
                 >
                   Join Remote Waitlist
-                </button>
-                <button
-                  onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(selectedPinClub.address)}`, '_blank')}
-                  className="btn btn-outline btn-sm"
-                >
-                  Get Directions
                 </button>
               </div>
             </div>
@@ -611,7 +882,6 @@ export const PlayerPortal: FC = () => {
                     <span className="badge badge-live">{trn.state}</span>
                   </div>
 
-                  {/* Financials & Stack Box */}
                   <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
@@ -641,7 +911,6 @@ export const PlayerPortal: FC = () => {
                     </div>
                   </div>
 
-                  {/* Live Clock Strip if Running */}
                   {trn.state === 'RUNNING' && (
                     <div style={{
                       padding: '12px',
@@ -772,10 +1041,9 @@ export const PlayerPortal: FC = () => {
         </div>
       )}
 
-      {/* TAB 5: MY POKER OS (PRIVATE) */}
+      {/* TAB 5: MY POKER OS */}
       {activeTab === 'MY_POKER' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Privacy Seal Banner */}
           <div style={{
             padding: '14px 18px',
             background: 'rgba(139, 92, 246, 0.1)',
@@ -796,7 +1064,6 @@ export const PlayerPortal: FC = () => {
             </div>
           </div>
 
-          {/* Performance Summary Metrics */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
             <div className="glass-panel" style={{ padding: '16px' }}>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Bankroll Balance</div>
@@ -829,9 +1096,7 @@ export const PlayerPortal: FC = () => {
             </div>
           </div>
 
-          {/* Session Tracker & Journal */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px' }}>
-            {/* Sessions Column */}
             <div className="glass-panel" style={{ padding: '20px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
                 <h4 style={{ fontSize: '1.1rem' }}>Recent Poker Sessions</h4>
@@ -877,7 +1142,6 @@ export const PlayerPortal: FC = () => {
               </div>
             </div>
 
-            {/* Hand Journal Column */}
             <div className="glass-panel" style={{ padding: '20px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
                 <h4 style={{ fontSize: '1.1rem' }}>Strategy & Hand Journal</h4>
@@ -915,6 +1179,327 @@ export const PlayerPortal: FC = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FULL DISTRICT VENUE PROFILE MODAL (ZOMATO DISTRICT DETAIL VIEW) */}
+      {detailedClub && (
+        <div className="modal-overlay" onClick={() => setDetailedClub(null)}>
+          <div
+            className="modal-content"
+            onClick={e => e.stopPropagation()}
+            style={{
+              maxWidth: '780px',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              padding: 0,
+              borderRadius: 'var(--radius-lg)'
+            }}
+          >
+            {/* Gallery Carousel Header */}
+            <div style={{ position: 'relative', height: '320px', background: '#000' }}>
+              <img
+                src={detailedClub.galleryUrls[activeGalleryIndex] || detailedClub.imageUrl}
+                alt={detailedClub.displayName}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setDetailedClub(null)}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'rgba(0,0,0,0.6)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  color: '#fff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer'
+                }}
+              >
+                <X size={18} />
+              </button>
+
+              {/* Gallery Thumbnails Strip */}
+              <div style={{
+                position: 'absolute',
+                bottom: '16px',
+                left: '20px',
+                display: 'flex',
+                gap: '8px'
+              }}>
+                {detailedClub.galleryUrls.map((url, idx) => (
+                  <img
+                    key={idx}
+                    src={url}
+                    alt="gallery thumb"
+                    onClick={() => setActiveGalleryIndex(idx)}
+                    style={{
+                      width: '50px',
+                      height: '35px',
+                      borderRadius: '6px',
+                      objectFit: 'cover',
+                      cursor: 'pointer',
+                      border: activeGalleryIndex === idx ? '2px solid var(--accent-live)' : '1px solid rgba(255,255,255,0.4)',
+                      opacity: activeGalleryIndex === idx ? 1 : 0.7
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Profile Content Body */}
+            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {/* Title & Rating Header */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <h2 style={{ fontSize: '1.6rem' }}>{detailedClub.displayName}</h2>
+                    {detailedClub.isVerified && (
+                      <ShieldCheck size={20} style={{ color: 'var(--accent-live)' }} />
+                    )}
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                    {detailedClub.address} • {detailedClub.distanceKm} km away
+                  </div>
+                </div>
+
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{
+                    background: 'rgba(251, 191, 36, 0.15)',
+                    border: '1px solid rgba(251, 191, 36, 0.4)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '6px 12px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    color: '#fbbf24',
+                    fontWeight: 800,
+                    fontSize: '1.1rem'
+                  }}>
+                    <Star size={16} fill="#fbbf24" />
+                    <span>{detailedClub.rating}</span>
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '2px' }}>
+                    {detailedClub.reviewCount} player reviews
+                  </div>
+                </div>
+              </div>
+
+              {/* Vibe & Atmosphere Tags */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {detailedClub.vibeTags.map((v, i) => (
+                  <span key={i} className="chip" style={{ fontSize: '0.78rem' }}>
+                    {v}
+                  </span>
+                ))}
+              </div>
+
+              {/* District Perk / Offer Banner */}
+              {detailedClub.featuredOffer && (
+                <div style={{
+                  padding: '14px 18px',
+                  background: 'linear-gradient(90deg, rgba(251, 191, 36, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%)',
+                  border: '1px solid rgba(251, 191, 36, 0.35)',
+                  borderRadius: 'var(--radius-md)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  <Sparkles size={22} style={{ color: '#fbbf24' }} />
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: '0.9rem', color: '#fbbf24' }}>
+                      DISTRICT EXCLUSIVE PERK
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-main)', marginTop: '2px' }}>
+                      {detailedClub.featuredOffer}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Live Tables Running Now */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', marginBottom: '12px' }}>Live Games Running Now</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px' }}>
+                  {detailedClub.stakesSummary.map((s, idx) => (
+                    <div key={idx} style={{
+                      padding: '10px 14px',
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: 'var(--radius-md)'
+                    }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{s}</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--accent-live)', marginTop: '2px' }}>
+                        ● Active Table
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tableside Dining Menu Preview */}
+              {detailedClub.menuHighlights && (
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', marginBottom: '12px' }}>Tableside Gourmet Food & Cocktails</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+                    {detailedClub.menuHighlights.map((dish, i) => (
+                      <div key={i} style={{
+                        padding: '12px',
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid var(--border-subtle)',
+                        borderRadius: 'var(--radius-md)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px'
+                      }}>
+                        <Utensils size={16} style={{ color: 'var(--accent-cyan)' }} />
+                        <span style={{ fontSize: '0.88rem', fontWeight: 600 }}>{dish}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Venue Amenities */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', marginBottom: '10px' }}>Venue Amenities</h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {detailedClub.amenities.map((a, i) => (
+                    <span key={i} style={{
+                      fontSize: '0.78rem',
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid var(--border-subtle)',
+                      padding: '4px 10px',
+                      borderRadius: 'var(--radius-sm)',
+                      color: 'var(--text-muted)'
+                    }}>
+                      ✓ {a}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sticky Action Footer */}
+              <div style={{
+                display: 'flex',
+                gap: '12px',
+                borderTop: '1px solid var(--border-subtle)',
+                paddingTop: '20px',
+                marginTop: '10px'
+              }}>
+                <button
+                  onClick={() => {
+                    setDetailedClub(null);
+                    setSelectedClubForModal(detailedClub);
+                    setShowJoinModal(true);
+                  }}
+                  className="btn btn-primary"
+                  style={{ flex: 2, padding: '12px' }}
+                >
+                  Join Remote Waitlist
+                </button>
+
+                <button
+                  onClick={() => window.open(`tel:${detailedClub.phone}`)}
+                  className="btn btn-outline"
+                  style={{ flex: 1 }}
+                >
+                  <PhoneCall size={16} /> Call Room
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* STORY VIEWER MODAL */}
+      {activeStory && (
+        <div className="modal-overlay" onClick={() => setActiveStory(null)}>
+          <div
+            className="modal-content"
+            onClick={e => e.stopPropagation()}
+            style={{
+              maxWidth: '460px',
+              padding: 0,
+              overflow: 'hidden',
+              borderRadius: 'var(--radius-lg)',
+              background: '#080c14'
+            }}
+          >
+            <div style={{ position: 'relative', height: '360px' }}>
+              <img
+                src={activeStory.imageUrl}
+                alt={activeStory.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+
+              <div style={{
+                position: 'absolute',
+                top: 0, left: 0, right: 0, bottom: 0,
+                background: 'linear-gradient(to top, #080c14 0%, transparent 60%)'
+              }} />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveStory(null)}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  background: 'rgba(0,0,0,0.6)',
+                  border: 'none',
+                  color: '#fff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer'
+                }}
+              >
+                <X size={18} />
+              </button>
+
+              <div style={{ position: 'absolute', bottom: '16px', left: '20px', right: '20px' }}>
+                <span className="badge badge-live" style={{ marginBottom: '6px' }}>
+                  {activeStory.badge}
+                </span>
+                <h3 style={{ fontSize: '1.4rem', color: '#fff' }}>{activeStory.title}</h3>
+                <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.8)' }}>
+                  {activeStory.clubName}
+                </div>
+              </div>
+            </div>
+
+            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                {activeStory.description}
+              </p>
+
+              <button
+                onClick={() => {
+                  const targetClub = clubs.find(c => c.id === activeStory.clubId);
+                  setActiveStory(null);
+                  if (targetClub) {
+                    setSelectedClubForModal(targetClub);
+                    setShowJoinModal(true);
+                  }
+                }}
+                className="btn btn-primary"
+                style={{ width: '100%', padding: '12px' }}
+              >
+                {activeStory.ctaText}
+              </button>
             </div>
           </div>
         </div>

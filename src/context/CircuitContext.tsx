@@ -72,7 +72,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['Tableside Dining', 'High Stakes Bobby\'s Room', 'Valet Parking', 'Cocktail Service', 'USB Ports'],
     phone: '+1 (702) 693-7290',
     coordinates: { lat: 36.1126, lng: -115.1767 },
-    stakesSummary: ['1/3 NLH (5)', '2/5 NLH (6)', '5/10 NLH (2)', '2/5 PLO (4)', '10/25 NLH (1)']
+    stakesSummary: ['1/3 NLH (5)', '2/5 NLH (6)', '5/10 NLH (2)', '2/5 PLO (4)', '10/25 NLH (1)'],
+    imageUrl: '/images/bellagio.jpg',
+    galleryUrls: ['/images/bellagio.jpg', '/images/bobbys_room.jpg', '/images/dining.jpg'],
+    rating: 4.9,
+    reviewCount: 1420,
+    priceRange: '$$$$ • Avg Buy-in $500 - $5,000',
+    vibeTags: ['Legendary Room', 'Bobby\'s Room VIP', 'Tableside Wagyu', 'High Energy'],
+    featuredOffer: 'Complimentary Valet & Tableside Champagne for $5/$10+ Players',
+    menuHighlights: ['Wagyu Truffle Sliders', 'Smoked Rosemary Old Fashioned', 'Caviar Blinis']
   },
   {
     id: 'c2',
@@ -92,7 +100,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['The Ivey Room', 'Self-Serve Drink Station', 'Comfort Seating', 'Free WiFi'],
     phone: '+1 (702) 590-7232',
     coordinates: { lat: 36.1073, lng: -115.1764 },
-    stakesSummary: ['1/3 NLH (4)', '2/5 NLH (5)', '5/10 NLH (3)', '2/5 PLO (3)']
+    stakesSummary: ['1/3 NLH (4)', '2/5 NLH (5)', '5/10 NLH (3)', '2/5 PLO (3)'],
+    imageUrl: '/images/aria.jpg',
+    galleryUrls: ['/images/aria.jpg', '/images/dining.jpg', '/images/bobbys_room.jpg'],
+    rating: 4.8,
+    reviewCount: 980,
+    priceRange: '$$$ • Avg Buy-in $300 - $2,500',
+    vibeTags: ['Ultra Modern', 'The Ivey Room', 'Deep PLO Action', 'Craft Cocktails'],
+    featuredOffer: 'Zero-Wait VIP Seating on Friday Nights with 24h Pass',
+    menuHighlights: ['Prime Ribeye Bites', 'Hibiscus Mezcal Sour', 'Artisan Sushi Roll']
   },
   {
     id: 'c3',
@@ -112,7 +128,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['Spacious 28-Table Room', 'Personal USBs', 'Luxury Decor', 'Dedicated Cashier'],
     phone: '+1 (702) 770-7654',
     coordinates: { lat: 36.1297, lng: -115.1654 },
-    stakesSummary: ['1/3 NLH (6)', '2/5 NLH (6)', '5/10 NLH (3)', '2/5 PLO (4)', 'Mixed (1)']
+    stakesSummary: ['1/3 NLH (6)', '2/5 NLH (6)', '5/10 NLH (3)', '2/5 PLO (4)', 'Mixed (1)'],
+    imageUrl: '/images/wynn.jpg',
+    galleryUrls: ['/images/wynn.jpg', '/images/dining.jpg', '/images/bellagio.jpg'],
+    rating: 4.9,
+    reviewCount: 1850,
+    priceRange: '$$$$ • Avg Buy-in $500 - $10,000',
+    vibeTags: ['Gold Chandeliers', 'Championship Arena', 'Luxury Hospitality', 'Immaculate Felt'],
+    featuredOffer: '$250k GTD Signature Series Entry Pass Available',
+    menuHighlights: ['Maine Lobster Rolls', 'Vintage Bourbon Flight', 'Truffle Parmesan Fries']
   },
   {
     id: 'c4',
@@ -132,7 +156,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['RFID Table Scanners', 'Automated Shufflers', 'Digital Waitlist Displays'],
     phone: '+1 (702) 676-7000',
     coordinates: { lat: 36.1362, lng: -115.1668 },
-    stakesSummary: ['1/3 NLH (3)', '2/5 NLH (4)', '2/5 PLO (2)']
+    stakesSummary: ['1/3 NLH (3)', '2/5 NLH (4)', '2/5 PLO (2)'],
+    imageUrl: '/images/resorts_world.jpg',
+    galleryUrls: ['/images/resorts_world.jpg', '/images/aria.jpg', '/images/dining.jpg'],
+    rating: 4.6,
+    reviewCount: 640,
+    priceRange: '$$$ • Avg Buy-in $300 - $1,500',
+    vibeTags: ['Cyberpunk Neon', 'RFID Smart Tables', 'Cashless Gaming', 'High Tech Lounge'],
+    featuredOffer: 'Instant Mobile Table Registration via Smart NFC',
+    menuHighlights: ['Peking Duck Bao Buns', 'Tokyo Highball', 'Crispy Pork Belly Skewers']
   },
   {
     id: 'c5',
@@ -152,7 +184,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['High Volume Tournaments', 'Large Wait Area', 'Deepstack Extravaganza'],
     phone: '+1 (702) 414-7657',
     coordinates: { lat: 36.1212, lng: -115.1697 },
-    stakesSummary: ['1/3 NLH (4)', '2/5 NLH (3)', '2/5 PLO (2)']
+    stakesSummary: ['1/3 NLH (4)', '2/5 NLH (3)', '2/5 PLO (2)'],
+    imageUrl: '/images/dining.jpg',
+    galleryUrls: ['/images/dining.jpg', '/images/wynn.jpg'],
+    rating: 4.5,
+    reviewCount: 1120,
+    priceRange: '$$ • Avg Buy-in $200 - $1,000',
+    vibeTags: ['Massive Room', 'Deepstack Extravaganza', 'Non-Stop Games'],
+    featuredOffer: 'Daily Tournament Rakeback Voucher',
+    menuHighlights: ['Artisanal Pizza', 'Craft Beer Selection', 'Italian Gelato']
   },
   {
     id: 'c6',
@@ -172,7 +212,15 @@ const INITIAL_CLUBS: Club[] = [
     amenities: ['Historic Downtown Room', 'Uncapped Buy-ins', 'Billiards'],
     phone: '+1 (702) 385-7111',
     coordinates: { lat: 36.1699, lng: -115.1444 },
-    stakesSummary: ['Unverified — Contact Front Desk']
+    stakesSummary: ['Unverified — Contact Front Desk'],
+    imageUrl: '/images/bobbys_room.jpg',
+    galleryUrls: ['/images/bobbys_room.jpg', '/images/bellagio.jpg'],
+    rating: 4.3,
+    reviewCount: 520,
+    priceRange: '$$ • Avg Buy-in $100 - $500',
+    vibeTags: ['Historic Fremont', 'Uncapped Cash Games', 'Old School Vegas'],
+    featuredOffer: 'Fremont Experience Night Pass',
+    menuHighlights: ['Classic Casino Burger', 'Draft IPA', 'Buffalo Wings']
   }
 ];
 
