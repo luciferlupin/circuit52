@@ -35,22 +35,35 @@ export const LocationSelectorModal: React.FC = () => {
         </div>
 
         {/* Current Location Auto-Detect Button */}
-        <div className="pulse-detect-location-box" onClick={() => alert('GPS location verified: Indiranagar, Bengaluru')}>
+        <div
+          className="pulse-detect-location-box"
+          onClick={() => {
+            setCurrentLocation(LOCATIONS[0]);
+            setIsLocationModalOpen(false);
+          }}
+        >
           <div className="pulse-detect-icon-box">
             <Compass size={18} />
           </div>
           <div className="pulse-detect-meta">
             <span className="pulse-detect-title">Use Current GPS Location</span>
-            <span className="pulse-detect-sub">Accuracy within 25 meters</span>
+            <span className="pulse-detect-sub">Auto-verified: Indiranagar, Bengaluru</span>
           </div>
         </div>
 
         {/* Popular Metro Cities List */}
         <div className="pulse-cities-list">
-          <span className="pulse-cities-group-label">POPULAR HUBS</span>
+          <span className="pulse-cities-group-label">POPULAR POKER HUBS</span>
 
           {LOCATIONS.map(loc => {
             const isSelected = currentLocation.id === loc.id;
+            const clubCountBadge = loc.city === 'Bengaluru'
+              ? '5 Live Clubs'
+              : loc.city === 'Goa'
+              ? '3 Offshore Casinos'
+              : loc.city === 'Delhi NCR'
+              ? '3 High Roller Lounges'
+              : '4 World Series Venues';
 
             return (
               <div
@@ -65,10 +78,10 @@ export const LocationSelectorModal: React.FC = () => {
                   <div className="pulse-city-name-row">
                     <MapPin size={15} className="pulse-city-pin" />
                     <strong>{loc.name}</strong>
-                    <span className="pulse-city-state">• {loc.city}, {loc.state}</span>
+                    <span className="pulse-city-badge-chip">{clubCountBadge}</span>
                   </div>
                   <div className="pulse-city-spots">
-                    Popular: {loc.popularSpots.join(', ')}
+                    {loc.city}, {loc.state} • {loc.popularSpots.slice(0, 2).join(', ')}
                   </div>
                 </div>
 

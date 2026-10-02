@@ -11,78 +11,115 @@ import type {
 
 export const LOCATIONS: LocationItem[] = [
   {
-    id: 'loc-1',
-    name: 'Indiranagar Club Corridor',
+    id: 'loc-blr',
+    name: 'Bengaluru Card Room Hub',
     city: 'Bengaluru',
     state: 'Karnataka',
-    popularSpots: ['100ft Road Club Row', '12th Main Felt', 'Defence Colony', 'Koramangala Room']
+    popularSpots: ['Indiranagar 100ft Rd', 'Koramangala 5th Block', 'Lavelle Road Salon', 'Defence Colony Felt']
   },
   {
-    id: 'loc-2',
-    name: 'Goa Offshore Strip',
+    id: 'loc-goa',
+    name: 'Goa Offshore Cruise Strip',
     city: 'Goa',
     state: 'Goa',
-    popularSpots: ['Mandovi Cruisers', 'Panjim Poker Row', 'Candolim Lounge', 'Baga Card Room']
+    popularSpots: ['MV Deltin Royale', 'MV Big Daddy', 'Casino Pride 2 Riverboat', 'Panjim Poker Row']
   },
   {
-    id: 'loc-3',
+    id: 'loc-del',
+    name: 'Delhi NCR High Stakes Corridor',
+    city: 'Delhi NCR',
+    state: 'Delhi / Haryana',
+    popularSpots: ['Golf Course Road (DLF 5)', 'Aerocity Worldmark', 'Cyber Hub VIP Felt', 'South Delhi Salons']
+  },
+  {
+    id: 'loc-vegas',
     name: 'Las Vegas Strip Corridor',
     city: 'Las Vegas',
     state: 'Nevada',
     popularSpots: ['Bellagio High Stakes', 'Wynn Grand Felt', 'Aria Poker Room', 'Resorts World Tech']
-  },
-  {
-    id: 'loc-4',
-    name: 'London Mayfair District',
-    city: 'London',
-    state: 'United Kingdom',
-    popularSpots: ['Mayfair Club', 'Crown Aspinalls', 'Les Ambassadeurs', 'Hippodrome Square']
   }
 ];
 
 export const HERO_CAROUSEL_ITEMS = [
   {
     id: 'hero-1',
-    label: 'HIGH STAKES ACTION',
-    headline: 'Wynn Grand High Roller Lounge',
-    subtext: '16 Live tables active • ₹100/₹200 to ₹1k/₹2k NLH & PLO',
-    cta: 'Reserve Table Seat',
+    label: 'OFFSHORE RIVERBOAT POKER',
+    headline: 'Deltin Royale WPT Live Arena Goa',
+    subtext: 'Asia’s premier floating poker room • 24/7 RFID tables & Mandovi river views',
+    cta: 'Reserve Riverboat Seat',
     category: 'DINING' as const,
-    imageUrl: '/images/wynn.jpg'
+    imageUrl: '/images/deltin_royale.jpg'
   },
   {
     id: 'hero-2',
-    label: 'WEEKEND CHAMPIONSHIP',
-    headline: 'Aria ₹50L GTD Deepstack Tourney',
-    subtext: 'Late registration open • 100k chips • 25m levels',
-    cta: 'Register Tourney Seat',
-    category: 'MOVIES' as const,
-    imageUrl: '/images/aria.jpg'
+    label: 'HIGH ACTION CARD ROOM',
+    headline: 'Rockets Poker Room & Lounge Bangalore',
+    subtext: 'Indiranagar 100ft Rd • Live LED tickers, craft beer & action cash games',
+    cta: 'Book Table Seat',
+    category: 'DINING' as const,
+    imageUrl: '/images/bangalore_rockets.jpg'
   },
   {
     id: 'hero-3',
-    label: 'PRIVATE VIP SANCTUARY',
-    headline: "Bobby's Room High Stakes Felt",
-    subtext: 'High roller mixed games • Private cage & dining',
-    cta: 'Book VIP Pass',
+    label: 'EXCLUSIVE EXECUTIVE FELT',
+    headline: 'The Club 52 VIP Lounge Delhi NCR',
+    subtext: 'Golf Course Road Gurugram • High roller PLO-5 & private vault cage',
+    cta: 'Reserve VIP Salon',
     category: 'NIGHTLIFE' as const,
-    imageUrl: '/images/bobbys_room.jpg'
+    imageUrl: '/images/delhi_club.jpg'
   },
   {
     id: 'hero-4',
-    label: 'ACTION PLO-5 ROOM',
-    headline: 'Resorts World Tech Lounge',
-    subtext: 'Auto shufflers • RFID felt • ₹50k hourly high hand',
+    label: 'MEGA YACHT POKER ARENA',
+    headline: 'Big Daddy Spartan LIVE Goa',
+    subtext: 'Glass-canopy deck • High-stakes double board bomb pots & IPC championship',
     cta: 'Join Live Waitlist',
     category: 'DINING' as const,
-    imageUrl: '/images/resorts_world.jpg'
+    imageUrl: '/images/big_daddy.jpg'
   }
 ];
 
 export const RESTAURANTS_DATA: Restaurant[] = [
+  // ==================== BENGALURU (BANGALORE) POKER CLUBS ====================
   {
-    id: 'rest-1',
+    id: 'rest-blr-1',
+    name: 'Rockets Poker Room & Sports Lounge',
+    city: 'Bengaluru',
+    cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'Live Blinds Ticker'],
+    rating: 4.9,
+    reviewCount: 1680,
+    distanceKm: 1.2,
+    priceForTwo: 10000,
+    area: 'Indiranagar 100ft Road',
+    isTableAvailable: true,
+    tableWaitMinutes: 0,
+    featuredOffer: '₹1,000 Free Reload Chips on ₹10k Buy-in',
+    imageUrl: '/images/bangalore_rockets.jpg',
+    galleryUrls: [
+      '/images/bangalore_rockets.jpg',
+      '/images/wynn.jpg',
+      '/images/aria.jpg',
+      '/images/dining.jpg',
+      '/images/pulse/rooftop_lounge.jpg'
+    ],
+    popularDishes: [
+      { name: '₹100/₹200 Deepstack NLH (9-Max)', price: 10000, isVeg: false, tag: 'Most Popular' },
+      { name: '₹200/₹500 Action PLO-5', price: 25000, isVeg: false, tag: 'High Action' },
+      { name: '₹500/₹1,000 High Stakes Cash', price: 50000, isVeg: false, tag: 'VIP Stakes' },
+      { name: 'Craft IPA Brew & Tableside Burger', price: 850, isVeg: false }
+    ],
+    about: 'Legendary Bengaluru poker room in Indiranagar featuring live LED tournament tickers, RFID smart tables, artisan craft brews on tap, ergonomic gaming chairs, and nonstop cash games.',
+    address: '468, 100ft Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038',
+    phone: '+91 80 4155 7700',
+    isOpen: true,
+    timings: '24 Hours Open • 7 Days a Week',
+    facilities: ['RFID Smart Tables', 'Live Blinds LED Ticker', 'Artisan Craft Beer Bar', 'Automated Shufflers', 'Valet Parking', 'Hourly High Hand Bonus'],
+    sectionTag: 'POPULAR'
+  },
+  {
+    id: 'rest-blr-2',
     name: 'Wynn Poker Room & High Roller Lounge',
+    city: 'Bengaluru',
     cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'RFID Smart Felt'],
     rating: 4.9,
     reviewCount: 1840,
@@ -95,9 +132,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     imageUrl: '/images/wynn.jpg',
     galleryUrls: [
       '/images/wynn.jpg',
+      '/images/bangalore_rockets.jpg',
       '/images/bobbys_room.jpg',
       '/images/dining.jpg',
-      '/images/resorts_world.jpg',
       '/images/pulse/rooftop_lounge.jpg'
     ],
     popularDishes: [
@@ -106,8 +143,8 @@ export const RESTAURANTS_DATA: Restaurant[] = [
       { name: '₹500/₹1000 High Roller Felt', price: 50000, isVeg: false, tag: 'VIP Stakes' },
       { name: 'Bobby’s Mixed Game (PLO/Stud)', price: 100000, isVeg: false }
     ],
-    about: 'The premier luxury poker destination featuring 28 custom felt tables with RFID tracking, automatic card shufflers, 24/7 dedicated cage cashiers, and complimentary tableside gourmet dining.',
-    address: 'Plot 482, 100ft Road, Stage 2, Indiranagar Poker Corridor',
+    about: 'The premier luxury poker destination featuring custom felt tables with RFID tracking, automatic card shufflers, 24/7 dedicated cage cashiers, and complimentary tableside gourmet dining.',
+    address: 'Plot 482, 100ft Road, Stage 2, Indiranagar Poker Corridor, Bengaluru',
     phone: '+91 80 4965 2200',
     isOpen: true,
     timings: '24 Hours Open • 7 Days a Week',
@@ -115,8 +152,9 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     sectionTag: 'POPULAR'
   },
   {
-    id: 'rest-2',
+    id: 'rest-blr-3',
     name: 'Aria Modern Poker Room & Tables',
+    city: 'Bengaluru',
     cuisine: ['₹200/₹500 NLH', '₹500/₹1,000 High Stakes', 'Championship Felt'],
     rating: 4.9,
     reviewCount: 1420,
@@ -129,8 +167,8 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     imageUrl: '/images/aria.jpg',
     galleryUrls: [
       '/images/aria.jpg',
+      '/images/bangalore_rockets.jpg',
       '/images/wynn.jpg',
-      '/images/resorts_world.jpg',
       '/images/bellagio.jpg',
       '/images/dining.jpg'
     ],
@@ -141,7 +179,7 @@ export const RESTAURANTS_DATA: Restaurant[] = [
       { name: 'PLO-4 Round of Each (ROE)', price: 30000, isVeg: false }
     ],
     about: 'Sleek modern poker room designed with ergonomic custom leather chairs, premium ceramic clay chips, soundproof acoustic ceiling, and tableside USB ports.',
-    address: '777, 12th Main Rd, HAL 2nd Stage, Indiranagar',
+    address: '777, 12th Main Rd, HAL 2nd Stage, Indiranagar, Bengaluru',
     phone: '+91 80 4128 9090',
     isOpen: true,
     timings: '24 Hours Open • Daily Cash Games',
@@ -149,75 +187,42 @@ export const RESTAURANTS_DATA: Restaurant[] = [
     sectionTag: 'DATE_NIGHT'
   },
   {
-    id: 'rest-3',
-    name: "Bobby's VIP High Stakes Room",
-    cuisine: ['₹1,000/₹2,000 Stakes', 'Private Mixed Games', 'VIP Salon'],
-    rating: 5.0,
-    reviewCount: 650,
-    distanceKm: 3.2,
-    priceForTwo: 50000,
-    area: 'High Roller Penthouse Row',
+    id: 'rest-blr-4',
+    name: 'The Royal Flush Sports Lounge',
+    city: 'Bengaluru',
+    cuisine: ['₹100/₹200 Fast Cash', '₹200/₹500 PLO Round of Each', 'Sports Bar'],
+    rating: 4.8,
+    reviewCount: 960,
+    distanceKm: 3.5,
+    priceForTwo: 10000,
+    area: 'Koramangala 5th Block',
     isTableAvailable: true,
     tableWaitMinutes: 0,
-    featuredOffer: 'Zero Rake on Tables above ₹1,000/₹2,000',
-    imageUrl: '/images/bobbys_room.jpg',
-    galleryUrls: [
-      '/images/bobbys_room.jpg',
-      '/images/wynn.jpg',
-      '/images/dining.jpg',
-      '/images/pulse/rooftop_lounge.jpg',
-      '/images/bellagio.jpg'
-    ],
-    popularDishes: [
-      { name: '₹1,000/₹2,000 VIP Mixed Game', price: 100000, isVeg: false, tag: 'Nosebleed Stakes' },
-      { name: '₹500/₹1,000 NLH Uncapped', price: 50000, isVeg: false, tag: 'Deep Action' },
-      { name: '₹500/₹1,000 PLO-5 Big O', price: 50000, isVeg: false },
-      { name: 'Private Table Rental (Heads Up / 6-Max)', price: 150000, isVeg: false }
-    ],
-    about: 'Legendary private poker sanctuary reserved for top professionals and high-net-worth players. Featuring crystal chandeliers, private security escorts, and private cage settlement.',
-    address: 'Penthouse Level, Barton Centre, Club District',
-    phone: '+91 80 2558 7711',
-    isOpen: true,
-    timings: '2:00 PM – 6:00 AM Daily',
-    facilities: ['Ultra Private Salon', 'Private Cage & Safe Deposit', 'Dedicated Butler Service', 'Private Cigar Lounge', 'Armored Transport'],
-    sectionTag: 'TRENDING'
-  },
-  {
-    id: 'rest-4',
-    name: 'Resorts World High Tech Poker Lounge',
-    cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'Automated Shufflers'],
-    rating: 4.8,
-    reviewCount: 1120,
-    distanceKm: 4.1,
-    priceForTwo: 10000,
-    area: 'Defence Tech District',
-    isTableAvailable: true,
-    tableWaitMinutes: 10,
-    featuredOffer: 'Hourly ₹10,000 High Hand Bonus Active',
+    featuredOffer: 'Complimentary Table Hospitality & Appetizers',
     imageUrl: '/images/resorts_world.jpg',
     galleryUrls: [
       '/images/resorts_world.jpg',
+      '/images/bangalore_rockets.jpg',
       '/images/aria.jpg',
-      '/images/wynn.jpg',
-      '/images/bellagio.jpg',
       '/images/dining.jpg'
     ],
     popularDishes: [
       { name: '₹100/₹200 Fast Action NLH', price: 10000, isVeg: false, tag: 'Instant Seat' },
-      { name: '₹200/₹500 PLO-5 Action Bomb Pot', price: 25000, isVeg: false, tag: 'Bomb Pots' },
+      { name: '₹200/₹500 PLO-5 Bomb Pots', price: 25000, isVeg: false, tag: 'Bomb Pots' },
       { name: 'Nightly Sit & Go Turbo (6-Max)', price: 5000, isVeg: false }
     ],
-    about: 'The most technologically advanced poker club with electronic table displays, real-time hand history tracking, automated card shufflers, and live tournament clocks.',
-    address: '92, 6th Cross, Defence Colony, Indiranagar',
-    phone: '+91 80 4390 1200',
+    about: 'Energetic sports poker lounge in Koramangala boasting multi-screen sports broadcasts, dedicated dealer training, and fast-paced cash tables.',
+    address: '68, Jyoti Nivas College Rd, 5th Block, Koramangala, Bengaluru, Karnataka 560095',
+    phone: '+91 80 4220 8899',
     isOpen: true,
-    timings: '24 Hours Open',
-    facilities: ['RFID Smart Felt', 'Electronic Waitlist Kiosk', 'USB Fast Chargers at Every Seat', 'Tableside Food Delivery', 'Secure Parking'],
+    timings: '12:00 PM – 4:00 AM Daily',
+    facilities: ['Sports Screen Walls', 'RFID Smart Felt', 'Electronic Waitlist', 'Dedicated Dining Bar', 'Secure Valet'],
     sectionTag: 'NEW'
   },
   {
-    id: 'rest-5',
+    id: 'rest-blr-5',
     name: 'Bellagio Luxury High Stakes Room',
+    city: 'Bengaluru',
     cuisine: ['₹200/₹500 NLH', '₹500/₹1,000 PLO', 'Tableside Dining'],
     rating: 4.9,
     reviewCount: 2200,
@@ -241,12 +246,220 @@ export const RESTAURANTS_DATA: Restaurant[] = [
       { name: '₹100/₹200 Warmup Cash Table', price: 10000, isVeg: false }
     ],
     about: 'Iconic poker institution boasting gold-trimmed felt, world-class dealers, European cash game structures, and complimentary tableside sommelier pairings.',
-    address: '14, Lavelle Road, Shanthala Nagar, Luxury Poker Corridor',
+    address: '14, Lavelle Road, Shanthala Nagar, Luxury Poker Corridor, Bengaluru',
     phone: '+91 80 4112 3344',
     isOpen: true,
     timings: '24 Hours Open • 7 Days a Week',
     facilities: ['RFID Felt Tables', 'Tableside Dining Menu', 'Sommelier Wine Service', 'Private Cashiers', 'VIP Valet'],
     sectionTag: 'HIDDEN_GEM'
+  },
+
+  // ==================== GOA OFFSHORE & CASINO POKER ROOMS ====================
+  {
+    id: 'rest-goa-1',
+    name: 'Deltin Royale Poker Room (WPT / DPT Live Felt)',
+    city: 'Goa',
+    cuisine: ['₹100/₹200 NLH', '₹200/₹500 PLO-5', 'WPT Live Feature Table', 'VIP Cruise'],
+    rating: 5.0,
+    reviewCount: 3450,
+    distanceKm: 0.5,
+    priceForTwo: 25000,
+    area: 'River Mandovi Offshore, Panjim',
+    isTableAvailable: true,
+    tableWaitMinutes: 0,
+    featuredOffer: 'Free VIP Speedboat Shuttle & Gourmet Buffet with Seat Pass',
+    imageUrl: '/images/deltin_royale.jpg',
+    galleryUrls: [
+      '/images/deltin_royale.jpg',
+      '/images/big_daddy.jpg',
+      '/images/wynn.jpg',
+      '/images/dining.jpg',
+      '/images/pulse/rooftop_lounge.jpg'
+    ],
+    popularDishes: [
+      { name: '₹100/₹200 Deepstack NLH (Riverboat)', price: 10000, isVeg: false, tag: 'WPT Felt' },
+      { name: '₹200/₹500 Action PLO-5', price: 25000, isVeg: false, tag: 'High Action' },
+      { name: '₹500/₹1,000 WPT High Roller', price: 50000, isVeg: false, tag: 'Broadcast Table' },
+      { name: '₹1,000/₹2,000 VIP Riverboat Salon', price: 100000, isVeg: false, tag: 'High Stakes' }
+    ],
+    about: 'India’s most iconic offshore floating poker room aboard the magnificent MV Deltin Royale. Official venue for World Poker Tour (WPT) India and DPT, featuring 24/7 RFID tables, riverfront views, live stream broadcast stage, and dedicated cage cashiers.',
+    address: 'Noah’s Ark, MV Deltin Royale, River Mandovi, Fisheries Jetty, Panaji, Goa 403001',
+    phone: '+91 832 665 1111',
+    isOpen: true,
+    timings: '24 Hours Open • Offshore Live Action',
+    facilities: ['Luxury Riverboat Cruise', 'WPT Live Stream Stage', 'Complimentary Gourmet Buffet', '24/7 Cage Settlement', 'VIP Speedboat Shuttle', 'Panoramic Mandovi Views'],
+    sectionTag: 'POPULAR'
+  },
+  {
+    id: 'rest-goa-2',
+    name: 'Big Daddy Spartan LIVE Poker Arena',
+    city: 'Goa',
+    cuisine: ['₹200/₹500 PLO-5', '₹500/₹1,000 Uncapped', 'Bomb Pots', 'Mega Cruiser'],
+    rating: 4.9,
+    reviewCount: 2890,
+    distanceKm: 0.8,
+    priceForTwo: 20000,
+    area: 'Mandovi River Strip, Panjim',
+    isTableAvailable: true,
+    tableWaitMinutes: 5,
+    featuredOffer: 'Hourly ₹25,000 Bad Beat Jackpot Active',
+    imageUrl: '/images/big_daddy.jpg',
+    galleryUrls: [
+      '/images/big_daddy.jpg',
+      '/images/deltin_royale.jpg',
+      '/images/aria.jpg',
+      '/images/resorts_world.jpg',
+      '/images/dining.jpg'
+    ],
+    popularDishes: [
+      { name: '₹200/₹500 Double Board Bomb Pots', price: 25000, isVeg: false, tag: 'IPC Felt' },
+      { name: '₹500/₹1,000 High Roller Uncapped', price: 50000, isVeg: false, tag: 'VIP Action' },
+      { name: '₹100/₹200 Warmup Turbo Table', price: 10000, isVeg: false },
+      { name: 'Single Malt & Tableside Seafood Platter', price: 1800, isVeg: false }
+    ],
+    about: 'Spectacular poker arena aboard the ultra-modern MV Big Daddy cruiser. Home of India Poker Championship (IPC), boasting illuminated glass-canopy ceilings, high-stakes double board bomb pots, and oceanfront breeze.',
+    address: 'Captain of Ports Jetty, Dayanand Bandodkar Marg, Panaji, Goa 403001',
+    phone: '+91 832 674 8888',
+    isOpen: true,
+    timings: '24 Hours Open • Continuous Cash Games',
+    facilities: ['Glass-Canopy Gaming Deck', 'IPC Championship Arena', 'Double Board Bomb Pots', 'Helipad Access', 'Single Malt Whiskey Bar', 'Direct Tender Service'],
+    sectionTag: 'TRENDING'
+  },
+  {
+    id: 'rest-goa-3',
+    name: 'Casino Pride 2 Poker Room (Baazi Poker Tour)',
+    city: 'Goa',
+    cuisine: ['₹100/₹200 Fast Action', '₹200/₹500 Deepstack', 'BPT Tourney Felt'],
+    rating: 4.8,
+    reviewCount: 2100,
+    distanceKm: 1.1,
+    priceForTwo: 10000,
+    area: 'Dayanand Bandodkar Marg, Panaji',
+    isTableAvailable: true,
+    tableWaitMinutes: 0,
+    featuredOffer: '100% Reload Bonus Match on First Buy-in',
+    imageUrl: '/images/wynn.jpg',
+    galleryUrls: [
+      '/images/wynn.jpg',
+      '/images/deltin_royale.jpg',
+      '/images/big_daddy.jpg',
+      '/images/dining.jpg'
+    ],
+    popularDishes: [
+      { name: '₹100/₹200 Deepstack Cash Table', price: 10000, isVeg: false, tag: 'BPT Table' },
+      { name: '₹200/₹500 PLO-5 Fast Action', price: 20000, isVeg: false, tag: 'Action Room' },
+      { name: 'BPT Satellite Seat Entry', price: 5000, isVeg: false }
+    ],
+    about: 'Vibrant, high-energy poker room hosted on the MV Pride of Goa. Revered as the live battleground of the Baazi Poker Tour (BPT) with friendly action, instant cage UPI payouts, and multi-cuisine tableside service.',
+    address: 'River Mandovi, Captain of Ports Jetty, Panaji, Goa 403001',
+    phone: '+91 832 242 0401',
+    isOpen: true,
+    timings: '24 Hours Open',
+    facilities: ['BPT Tournament Arena', 'Fast Action Cash Tables', 'Live Entertainment Deck', 'Instant Cage Payouts', 'River Cruise Shuttle'],
+    sectionTag: 'DATE_NIGHT'
+  },
+
+  // ==================== DELHI NCR HIGH STAKES CLUBS ====================
+  {
+    id: 'rest-del-1',
+    name: 'The Club 52 VIP Poker Lounge',
+    city: 'Delhi NCR',
+    cuisine: ['₹200/₹500 NLH', '₹500/₹1,000 PLO-5', 'VIP High Roller', 'Private Salon'],
+    rating: 5.0,
+    reviewCount: 1150,
+    distanceKm: 1.5,
+    priceForTwo: 50000,
+    area: 'Golf Course Road (DLF 5), Gurugram',
+    isTableAvailable: true,
+    tableWaitMinutes: 0,
+    featuredOffer: 'Complimentary Tableside Single Malt Tasting & Valet',
+    imageUrl: '/images/delhi_club.jpg',
+    galleryUrls: [
+      '/images/delhi_club.jpg',
+      '/images/bobbys_room.jpg',
+      '/images/dining.jpg',
+      '/images/wynn.jpg',
+      '/images/pulse/rooftop_lounge.jpg'
+    ],
+    popularDishes: [
+      { name: '₹500/₹1,000 PLO-5 Uncapped', price: 50000, isVeg: false, tag: 'Signature High Roller' },
+      { name: '₹200/₹500 Deepstack NLH', price: 25000, isVeg: false, tag: 'Executive Table' },
+      { name: '₹1,000/₹2,000 VIP Private Salon', price: 100000, isVeg: false, tag: 'Nosebleed' },
+      { name: 'Executive Single Malt & Caviar Canapés', price: 2500, isVeg: false }
+    ],
+    about: 'Ultra-exclusive private card room tailored for Delhi NCR’s elite business leaders and poker aficionados. Featuring rich dark walnut wood panels, custom black-and-gold RFID felt, private vault deposit, and discrete security escorts.',
+    address: 'Level 14, One Horizon Centre, Golf Course Road, DLF Phase 5, Gurugram, Haryana 122002',
+    phone: '+91 124 498 5200',
+    isOpen: true,
+    timings: '2:00 PM – 6:00 AM Daily',
+    facilities: ['Discreet VIP Private Salon', 'RFID Gold-Rimmed Felt', 'Private Safe Deposit Box', 'Tableside Chef Service', 'Armed Security Valet', 'Cigar Terrace'],
+    sectionTag: 'POPULAR'
+  },
+  {
+    id: 'rest-del-2',
+    name: 'House of Aces Private Card Room',
+    city: 'Delhi NCR',
+    cuisine: ['₹100/₹200 Deepstack', '₹200/₹500 Double Board PLO', 'Estate Lounge'],
+    rating: 4.9,
+    reviewCount: 880,
+    distanceKm: 3.8,
+    priceForTwo: 25000,
+    area: 'Sainik Farms, South Delhi',
+    isTableAvailable: true,
+    tableWaitMinutes: 0,
+    featuredOffer: 'Zero Rake on Weekend Deepstack Invitationals',
+    imageUrl: '/images/bobbys_room.jpg',
+    galleryUrls: [
+      '/images/bobbys_room.jpg',
+      '/images/delhi_club.jpg',
+      '/images/aria.jpg',
+      '/images/dining.jpg'
+    ],
+    popularDishes: [
+      { name: '₹200/₹500 Double Board PLO', price: 25000, isVeg: false, tag: 'Weekend Invitational' },
+      { name: '₹100/₹200 Deepstack NLH (Uncapped)', price: 15000, isVeg: false },
+      { name: 'Private Farmhouse Table Rental (6-Max)', price: 75000, isVeg: false }
+    ],
+    about: 'Lush private estate poker club tucked away in South Delhi. Features plush chesterfield leather lounges, championship green felt, high-action double board Omaha, and dedicated concierge.',
+    address: 'Western Avenue, Sainik Farms, South Delhi, New Delhi 110062',
+    phone: '+91 11 2955 8811',
+    isOpen: true,
+    timings: '4:00 PM – 4:00 AM Daily',
+    facilities: ['Private Farmhouse Sanctuary', 'Double Board PLO Action', 'Full Bar & BBQ Terrace', 'Heated Outdoor Cabanas', 'Private Chauffeur Drop'],
+    sectionTag: 'TRENDING'
+  },
+  {
+    id: 'rest-del-3',
+    name: 'Royal Flush Society Aerocity',
+    city: 'Delhi NCR',
+    cuisine: ['₹100/₹200 NLH', '₹200/₹500 Deepstack', 'Transit High Roller'],
+    rating: 4.8,
+    reviewCount: 1420,
+    distanceKm: 2.1,
+    priceForTwo: 15000,
+    area: 'Aerocity Worldmark, New Delhi',
+    isTableAvailable: true,
+    tableWaitMinutes: 5,
+    featuredOffer: 'Airport Transit Priority Seat Hold for 60 Minutes',
+    imageUrl: '/images/aria.jpg',
+    galleryUrls: [
+      '/images/aria.jpg',
+      '/images/delhi_club.jpg',
+      '/images/wynn.jpg',
+      '/images/dining.jpg'
+    ],
+    popularDishes: [
+      { name: '₹100/₹200 Fast Cash NLH', price: 10000, isVeg: false, tag: 'Instant Seat' },
+      { name: '₹200/₹500 Deepstack Airport Flight', price: 20000, isVeg: false, tag: 'Deepstack' },
+      { name: '₹500/₹1,000 Aerocity High Roller', price: 50000, isVeg: false }
+    ],
+    about: 'Luxury poker lounge situated steps away from Indira Gandhi International Airport (T3). Modern acoustic design, rapid cage currency exchange and UPI settlement, and 24/7 express table action for traveling players.',
+    address: 'Worldmark 1, Aerocity Hospitality District, Indira Gandhi International Airport, New Delhi 110037',
+    phone: '+91 11 4988 3300',
+    isOpen: true,
+    timings: '24 Hours Open • 7 Days a Week',
+    facilities: ['Walking Distance to Airport T3', '24/7 Express Cash Games', 'Instant UPI & Crypto Cage', 'Soundproof Acoustic Suites', 'High-Speed Wi-Fi & Lounge'],
+    sectionTag: 'NEW'
   }
 ];
 

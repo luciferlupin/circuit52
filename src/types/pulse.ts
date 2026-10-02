@@ -45,6 +45,7 @@ export interface Restaurant {
   timings: string;
   facilities: string[];
   sectionTag: 'POPULAR' | 'DATE_NIGHT' | 'NEW' | 'HIDDEN_GEM' | 'TRENDING';
+  city?: string;
 }
 
 export interface Showtime {

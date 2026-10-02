@@ -20,6 +20,7 @@ export const RestaurantFeed: React.FC = () => {
   const {
     restaurants,
     movies,
+    currentLocation,
     setSelectedRestaurant,
     setSelectedMovie,
     setIsTableSheetOpen,
@@ -31,10 +32,14 @@ export const RestaurantFeed: React.FC = () => {
     filters
   } = usePulse();
 
+  const [cityFilter, setCityFilter] = useState<'ALL' | 'Bengaluru' | 'Goa' | 'Delhi NCR'>('ALL');
   const [stakesFilter, setStakesFilter] = useState<'ALL' | '100_200' | '200_500' | '500_1000' | 'VIP'>('ALL');
 
-  // Apply contextual filters & stakes filter
+  // Apply contextual filters, city hub & stakes filter
   const filteredRestaurants = restaurants.filter(r => {
+    // City Hub filter
+    if (cityFilter !== 'ALL' && r.city !== cityFilter) return false;
+
     // Stakes filter
     if (stakesFilter === '100_200' && !r.cuisine.some(c => c.includes('100/200') || c.includes('100/₹200')) && !r.popularDishes.some(d => d.name.includes('100/200'))) return false;
     if (stakesFilter === '200_500' && !r.cuisine.some(c => c.includes('200/500') || c.includes('200/₹500')) && !r.popularDishes.some(d => d.name.includes('200/500'))) return false;
@@ -58,9 +63,26 @@ export const RestaurantFeed: React.FC = () => {
     return true;
   });
 
-  const popularList = filteredRestaurants.filter(r => r.sectionTag === 'POPULAR' || r.sectionTag === 'TRENDING');
-  const dateNightList = filteredRestaurants.filter(r => r.sectionTag === 'DATE_NIGHT' || r.priceForTwo >= 20000);
-  const hiddenGemsList = filteredRestaurants.filter(r => r.sectionTag === 'HIDDEN_GEM' || r.sectionTag === 'NEW');
+  // Prioritize clubs matching the user's selected city when viewing ALL
+  const displayRestaurants = cityFilter === 'ALL'
+    ? [...filteredRestaurants].sort((a, b) => {
+        const aMatches = a.city === currentLocation.city ? 1 : 0;
+        const bMatches = b.city === currentLocation.city ? 1 : 0;
+        return bMatches - aMatches;
+      })
+    : filteredRestaurants;
+
+  const popularList = displayRestaurants.filter(r => r.sectionTag === 'POPULAR' || r.sectionTag === 'TRENDING');
+  const dateNightList = displayRestaurants.filter(r => r.sectionTag === 'DATE_NIGHT' || r.priceForTwo >= 20000);
+  const hiddenGemsList = displayRestaurants.filter(r => r.sectionTag === 'HIDDEN_GEM' || r.sectionTag === 'NEW');
+
+  // Context-aware Featured Live Table
+  const activeHubCity = cityFilter !== 'ALL' ? cityFilter : (currentLocation.city || 'Bengaluru');
+  const featuredClub = activeHubCity === 'Goa'
+    ? (restaurants.find(r => r.id === 'rest-goa-1') || restaurants[0])
+    : activeHubCity === 'Delhi NCR'
+    ? (restaurants.find(r => r.id === 'rest-del-1') || restaurants[0])
+    : (restaurants.find(r => r.id === 'rest-blr-1') || restaurants[0]);
 
   const renderCard = (restaurant: Restaurant) => {
     const isSaved = savedItemIds.includes(restaurant.id);
@@ -138,9 +160,10 @@ export const RestaurantFeed: React.FC = () => {
             {restaurant.cuisine.slice(0, 2).join(' • ')}
           </div>
 
-          {/* Area & Min Buy-in */}
+          {/* Area, City & Min Buy-in */}
           <div className="pulse-card-meta-row">
             <span className="pulse-card-area">{restaurant.area}</span>
+            {restaurant.city && <span className="pulse-card-city-tag">{restaurant.city}</span>}
             <span className="pulse-card-meta-dot">•</span>
             <span className="pulse-card-price">From ₹{restaurant.priceForTwo.toLocaleString()} buy-in</span>
           </div>
@@ -174,7 +197,7 @@ export const RestaurantFeed: React.FC = () => {
         </div>
         <div className="pulse-marquee-content-track">
           <span className="pulse-marquee-text">
-            ⚡ Wynn: Seat #4 Open (₹100/₹200) • Aria ₹50L GTD tonight • Bobby's Room active • 180s Seat Hold Active
+            ⚡ Deltin Royale Goa: WPT Riverboat Table 3 Open • Rockets Bangalore: ₹100/₹200 Live Action • Club 52 Delhi NCR: High Roller PLO-5 Active • Big Daddy Goa: ₹25k Bad Beat Active
           </span>
         </div>
       </div>
@@ -185,7 +208,7 @@ export const RestaurantFeed: React.FC = () => {
           <div className="pulse-flt-header">
             <div className="pulse-flt-badge">
               <Flame size={13} className="pulse-flt-flame-icon" />
-              <span>FEATURED TABLE • INDIRANAGAR</span>
+              <span>FEATURED TABLE • {activeHubCity.toUpperCase()}</span>
             </div>
             <span className="pulse-flt-seated-pill">
               <span className="pulse-dot-live" /> Seat #4 Open
@@ -195,8 +218,8 @@ export const RestaurantFeed: React.FC = () => {
           <div className="pulse-flt-body">
             <div className="pulse-flt-venue-row">
               <div>
-                <h4 className="pulse-flt-title">Wynn Poker Room — Table 1</h4>
-                <div className="pulse-flt-stakes">₹100/₹200 Deepstack NLH • ₹10,000 Min Buy-in</div>
+                <h4 className="pulse-flt-title">{featuredClub.name}</h4>
+                <div className="pulse-flt-stakes">{featuredClub.cuisine.slice(0, 2).join(' • ')} • From ₹{featuredClub.priceForTwo.toLocaleString()} Min Buy-in</div>
               </div>
             </div>
 
@@ -217,12 +240,12 @@ export const RestaurantFeed: React.FC = () => {
                 type="button"
                 className="pulse-flt-primary-btn"
                 onClick={() => {
-                  setSelectedRestaurant(restaurants[0]);
+                  setSelectedRestaurant(featuredClub);
                   setIsTableSheetOpen(true);
                 }}
               >
                 <CalendarDays size={15} />
-                <span>Reserve Seat #4 (180s Guarantee)</span>
+                <span>Reserve Seat at {featuredClub.name.split(' ')[0]}</span>
               </button>
             </div>
           </div>
@@ -259,11 +282,38 @@ export const RestaurantFeed: React.FC = () => {
         </button>
       </div>
 
-      {/* 4. FAST STAKES FILTER RAIL */}
+      {/* 4. FAST POKER HUB REGION SELECTOR */}
       <div className="pulse-stakes-rail-container">
         <div className="pulse-stakes-rail-title-row">
+          <span className="pulse-stakes-rail-label">Poker Hub</span>
+          <span className="pulse-stakes-count">
+            {cityFilter === 'ALL' ? `${displayRestaurants.length} Clubs Across India` : `${displayRestaurants.length} Clubs in ${cityFilter}`}
+          </span>
+        </div>
+        <div className="pulse-stakes-rail">
+          {[
+            { id: 'ALL', label: 'All Hubs' },
+            { id: 'Bengaluru', label: 'Bengaluru (5)' },
+            { id: 'Goa', label: 'Goa Offshore (3)' },
+            { id: 'Delhi NCR', label: 'Delhi NCR (3)' }
+          ].map(hub => (
+            <button
+              key={hub.id}
+              type="button"
+              className={`pulse-stakes-chip ${cityFilter === hub.id ? 'active' : ''}`}
+              onClick={() => setCityFilter(hub.id as any)}
+            >
+              {hub.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 5. FAST STAKES FILTER RAIL */}
+      <div className="pulse-stakes-rail-container" style={{ marginTop: '2px' }}>
+        <div className="pulse-stakes-rail-title-row">
           <span className="pulse-stakes-rail-label">Filter by Stakes & Action</span>
-          <span className="pulse-stakes-count">{filteredRestaurants.length} Clubs Available</span>
+          <span className="pulse-stakes-count">{displayRestaurants.length} Clubs Available</span>
         </div>
         <div className="pulse-stakes-rail">
           {[
@@ -271,7 +321,7 @@ export const RestaurantFeed: React.FC = () => {
             { id: '100_200', label: '₹100/₹200 Mid Stakes' },
             { id: '200_500', label: '₹200/₹500 Action PLO' },
             { id: '500_1000', label: '₹500/₹1,000 High Roller' },
-            { id: 'VIP', label: "Bobby's Room VIP" }
+            { id: 'VIP', label: "VIP High Roller" }
           ].map(stk => (
             <button
               key={stk.id}
@@ -285,7 +335,7 @@ export const RestaurantFeed: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. UPCOMING WEEKEND TOURNAMENTS & GTD FLIGHTS SHOWCASE */}
+      {/* 6. UPCOMING WEEKEND TOURNAMENTS & GTD FLIGHTS SHOWCASE */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
@@ -343,7 +393,7 @@ export const RestaurantFeed: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. SECTION 1: Live Cash Game Poker Clubs */}
+      {/* 7. SECTION 1: Live Cash Game Poker Clubs */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
@@ -353,7 +403,7 @@ export const RestaurantFeed: React.FC = () => {
           <button
             type="button"
             className="pulse-section-see-all"
-            onClick={() => setSelectedRestaurant(restaurants[0])}
+            onClick={() => setSelectedRestaurant(displayRestaurants[0])}
           >
             <span>See all clubs</span>
             <ArrowRight size={14} />
@@ -361,25 +411,25 @@ export const RestaurantFeed: React.FC = () => {
         </div>
 
         <div className="pulse-horizontal-cards-row">
-          {(popularList.length > 0 ? popularList : filteredRestaurants).map(renderCard)}
+          {(popularList.length > 0 ? popularList : displayRestaurants).map(renderCard)}
         </div>
       </section>
 
-      {/* 7. SECTION 2: High Roller & VIP Lounges */}
+      {/* 8. SECTION 2: High Roller & VIP Lounges */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">High Roller & VIP Penthouse Lounges</h3>
-            <p className="pulse-section-subtitle">Private cages, uncapped stakes, Bobby's Room & luxury felt</p>
+            <h3 className="pulse-section-title">High Roller & VIP Lounges</h3>
+            <p className="pulse-section-subtitle">Private cages, uncapped stakes, Goa riverboat salons & luxury felt</p>
           </div>
         </div>
 
         <div className="pulse-vertical-cards-col">
-          {(dateNightList.length > 0 ? dateNightList : filteredRestaurants.slice(1)).map(renderCard)}
+          {(dateNightList.length > 0 ? dateNightList : displayRestaurants.slice(1)).map(renderCard)}
         </div>
       </section>
 
-      {/* 8. SECTION 3: Action PLO & Deepstack Rooms */}
+      {/* 9. SECTION 3: Action PLO & Deepstack Rooms */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
@@ -389,7 +439,7 @@ export const RestaurantFeed: React.FC = () => {
         </div>
 
         <div className="pulse-horizontal-cards-row">
-          {(hiddenGemsList.length > 0 ? hiddenGemsList : filteredRestaurants).map(renderCard)}
+          {(hiddenGemsList.length > 0 ? hiddenGemsList : displayRestaurants).map(renderCard)}
         </div>
       </section>
 

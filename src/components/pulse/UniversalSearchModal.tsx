@@ -13,13 +13,14 @@ import {
 } from 'lucide-react';
 
 const TRENDING_TAGS = [
+  'Deltin Royale Goa',
+  'Rockets Bangalore 100ft',
+  'The Club 52 Delhi NCR',
+  'Big Daddy Casino Goa',
   '₹100/₹200 NLH Cash',
-  'Wynn High Roller Lounge',
-  '₹50L Aria Deepstack',
   'PLO-5 Action Rooms',
-  "Bobby's Room VIP Felt",
-  'RFID Smart Tables',
-  '₹200/₹500 Stakes'
+  'Wynn High Roller Lounge',
+  'House of Aces South Delhi'
 ];
 
 export const UniversalSearchModal: React.FC = () => {
@@ -46,7 +47,8 @@ export const UniversalSearchModal: React.FC = () => {
     const matchedRestaurants = restaurants.filter(
       r => r.name.toLowerCase().includes(q) ||
            r.cuisine.some(c => c.toLowerCase().includes(q)) ||
-           r.area.toLowerCase().includes(q)
+           r.area.toLowerCase().includes(q) ||
+           (r.city && r.city.toLowerCase().includes(q))
     );
 
     const matchedMovies = movies.filter(
