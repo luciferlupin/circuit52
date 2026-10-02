@@ -16,6 +16,11 @@ export const HeroCarousel: React.FC = () => {
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  // Touch swipe support for mobile
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const minSwipeDistance = 40;
+
   // Auto rotate carousel gently every 6 seconds
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,6 +35,25 @@ export const HeroCarousel: React.FC = () => {
 
   const handlePrev = () => {
     setCurrentIndex(prev => (prev - 1 + HERO_CAROUSEL_ITEMS.length) % HERO_CAROUSEL_ITEMS.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) {
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      handlePrev();
+    }
   };
 
   const handleCtaClick = (item: (typeof HERO_CAROUSEL_ITEMS)[number]) => {
@@ -47,7 +71,12 @@ export const HeroCarousel: React.FC = () => {
 
   return (
     <div className="pulse-hero-carousel-wrapper">
-      <div className="pulse-hero-carousel">
+      <div
+        className="pulse-hero-carousel"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Cinematic Card */}
         <div
           key={currentItem.id}

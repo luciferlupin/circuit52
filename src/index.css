@@ -7353,6 +7353,613 @@ input, select, textarea {
   transform: scale(1.08);
 }
 
+/* ==========================================================================
+   SECTION 27: CIRCUIT 52 HOMEPAGE PROPER (MARQUEE, FLT, STREAK, STAKES, TOURNEYS)
+   ========================================================================== */
+
+/* 1. Live Circuit Action Marquee */
+.pulse-live-marquee-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, rgba(10, 23, 60, 0.85) 0%, rgba(2, 6, 20, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  margin: 10px 16px 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.pulse-live-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(37, 99, 235, 0.25);
+  border: 1px solid #3b82f6;
+  border-radius: var(--radius-full);
+  color: #60a5fa;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pulse-marquee-content-track {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.pulse-marquee-text {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: #cbd5e1;
+  font-weight: 500;
+  animation: pulseMarquee 30s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes pulseMarquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* 2. Featured Live Action Table Card */
+.pulse-flt-banner-wrapper {
+  padding: 10px 16px 4px;
+}
+
+.pulse-flt-card {
+  background: linear-gradient(135deg, rgba(12, 28, 72, 0.75) 0%, rgba(3, 8, 24, 0.92) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75), 0 0 25px rgba(37, 99, 235, 0.2);
+  transition: all 0.25s ease;
+}
+
+.pulse-flt-card:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 10px 35px rgba(37, 99, 235, 0.35);
+}
+
+.pulse-flt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.pulse-flt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #fbbf24;
+  letter-spacing: 0.05em;
+}
+
+.pulse-flt-flame-icon {
+  color: #f59e0b;
+  animation: flamePulse 1.4s ease-in-out infinite alternate;
+}
+
+.pulse-flt-seated-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: var(--radius-full);
+  color: #60a5fa;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.pulse-flt-body {
+  padding: 14px;
+}
+
+.pulse-flt-venue-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.pulse-flt-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 3px;
+}
+
+.pulse-flt-stakes {
+  font-size: 0.74rem;
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.pulse-flt-seat-open-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #34d399;
+  font-size: 0.68rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pulse-flt-amenities-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.pulse-flt-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(10, 23, 60, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.pulse-flt-actions-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pulse-flt-primary-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: none;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s ease;
+}
+
+.pulse-flt-primary-btn:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+}
+
+.pulse-flt-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 23, 60, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-flt-ghost-btn:hover {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: #60a5fa;
+  color: #ffffff;
+}
+
+/* 3. Daily Table Streak Mini Banner */
+.pulse-streak-mini-banner {
+  margin: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(8, 20, 52, 0.7) 0%, rgba(2, 6, 18, 0.9) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-streak-mini-banner:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
+}
+
+.pulse-smb-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pulse-smb-flame-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pulse-smb-flame {
+  color: #fbbf24;
+  animation: flamePulse 1.2s infinite alternate;
+}
+
+.pulse-smb-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.pulse-smb-level-tag {
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.pulse-smb-xp-bar-bg {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.pulse-smb-xp-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+  box-shadow: 0 0 6px #60a5fa;
+}
+
+.pulse-smb-sub {
+  font-size: 0.64rem;
+  color: var(--text-secondary);
+}
+
+.pulse-smb-roll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid #60a5fa;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+  flex-shrink: 0;
+}
+
+.pulse-smb-roll-btn:hover {
+  background: #3b82f6;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+}
+
+/* 4. Stakes Filter Rail */
+.pulse-stakes-rail-container {
+  padding: 8px 16px 2px;
+}
+
+.pulse-stakes-rail-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.pulse-stakes-rail-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pulse-stakes-count {
+  font-size: 0.68rem;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.pulse-stakes-rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-stakes-chip {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 23, 60, 0.55);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pulse-stakes-chip.active {
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border-color: #60a5fa;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+/* 5. Tournament Showcase Row */
+.pulse-tourney-showcase-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-tourney-preview-card {
+  width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(10, 23, 60, 0.7) 0%, rgba(2, 6, 20, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.pulse-tourney-preview-card:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.pulse-tpc-poster-wrapper {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.pulse-tpc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pulse-tourney-preview-card:hover .pulse-tpc-img {
+  transform: scale(1.04);
+}
+
+.pulse-tpc-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(2,6,20,0.92) 100%);
+}
+
+.pulse-tpc-live-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #fbbf24;
+  color: #fbbf24;
+  font-size: 0.6rem;
+  font-weight: 800;
+}
+
+.pulse-tpc-time-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(10, 23, 60, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.pulse-tpc-info {
+  padding: 12px;
+}
+
+.pulse-tpc-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.pulse-tpc-meta {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.pulse-tpc-dot {
+  margin: 0 4px;
+}
+
+.pulse-tpc-cta-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-tpc-cta-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+/* 6. Card Quick Actions Bar */
+.pulse-card-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pulse-card-reserve-cta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-card-reserve-cta:hover {
+  background: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+.pulse-card-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 7px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 23, 60, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pulse-card-view-btn:hover {
+  background: rgba(37, 99, 235, 0.2);
+  color: #ffffff;
+}
+
+/* 7. Circuit 52 Trust & Club Standards Grid */
+.pulse-trust-section {
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.pulse-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .pulse-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pulse-trust-card {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(6, 16, 42, 0.65);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  transition: all 0.2s ease;
+}
+
+.pulse-trust-card:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.3);
+}
+
+.pulse-trust-icon {
+  color: #60a5fa;
+  margin-bottom: 8px;
+}
+
+.pulse-trust-title {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px;
+}
+
+.pulse-trust-desc {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin: 0;
+}
+
 
 
 
