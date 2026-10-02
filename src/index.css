@@ -4537,3 +4537,659 @@ input, select, textarea {
   border-radius: 2px;
   box-shadow: 0 0 10px #3b82f6;
 }
+
+/* ==========================================================================
+   MOBILE-FIRST PERFECTION & DEVICE RESPONSIVENESS (ALL SCREENS, CARDS, BUTTONS)
+   ========================================================================== */
+
+/* 1. Mobile Shell & Viewport Insets */
+@media (max-width: 640px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #000000;
+  }
+
+  .pulse-viewport-container {
+    padding: 0 !important;
+    background: #000000 !important;
+    min-height: 100dvh !important;
+    height: 100dvh !important;
+    display: block !important;
+  }
+
+  .pulse-desktop-mode-switcher {
+    display: none !important;
+  }
+
+  .pulse-phone-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .pulse-status-bar {
+    display: none !important;
+  }
+
+  .pulse-scrollable-canvas {
+    padding-bottom: max(96px, calc(82px + env(safe-area-inset-bottom, 20px))) !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* Sticky Top Header */
+  .pulse-header {
+    padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Floating Bottom Nav on Mobile */
+  .pulse-floating-bottom-nav {
+    bottom: max(10px, env(safe-area-inset-bottom, 10px)) !important;
+    left: 12px !important;
+    right: 12px !important;
+  }
+
+  .pulse-nav-island {
+    height: 58px !important;
+    padding: 0 4px !important;
+  }
+
+  .pulse-nav-tab-btn {
+    font-size: 0.62rem !important;
+  }
+
+  .pulse-nav-tab-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* 2. Desktop Framed Preview Overlays */
+.pulse-phone-shell.framed .pulse-modal-overlay,
+.pulse-phone-shell.framed .pulse-detail-overlay,
+.pulse-phone-shell.framed .pulse-search-fullscreen-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .pulse-phone-shell.framed .pulse-modal-overlay,
+  .pulse-phone-shell.framed .pulse-detail-overlay,
+  .pulse-phone-shell.framed .pulse-search-fullscreen-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* 3. Header, Location Dropdown, Search Bar & Ticker */
+.pulse-location-btn {
+  min-width: 0;
+  flex: 1;
+}
+
+.pulse-location-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.pulse-location-title-row {
+  min-width: 0;
+}
+
+.pulse-location-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pulse-location-sub {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.pulse-search-bar {
+  min-height: 44px;
+}
+
+.pulse-search-placeholder {
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pulse-search-end-actions {
+  flex-shrink: 0;
+}
+
+/* 4. Horizontal Scrolling Rails (Category Rail, Filter Chips, Saved Collections, Horizontal Cards) */
+.pulse-category-rail {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 -16px;
+  scroll-padding-left: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-category-card {
+  width: 68px;
+  min-height: 80px;
+}
+
+.pulse-category-icon-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+}
+
+.pulse-filter-chips-rail {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 -16px;
+  scroll-padding-left: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-filter-chip-btn {
+  height: 34px;
+  min-height: 34px;
+  font-size: 0.72rem;
+  padding: 0 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pulse-horizontal-cards-row {
+  margin: 0 -16px;
+  padding: 0 16px 8px;
+  scroll-padding-left: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-horizontal-cards-row > * {
+  width: 290px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 360px) {
+  .pulse-horizontal-cards-row > * {
+    width: 260px;
+  }
+}
+
+/* 5. Editorial Hero Carousel Card */
+.pulse-hero-carousel-wrapper {
+  padding: 10px 16px 14px;
+}
+
+.pulse-hero-card {
+  min-height: 215px;
+  height: 220px;
+}
+
+.pulse-hero-content {
+  padding: 14px 14px 16px;
+}
+
+.pulse-hero-headline {
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.pulse-hero-subtext {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.pulse-hero-cta-btn {
+  padding: 7px 14px;
+  font-size: 0.76rem;
+  min-height: 36px;
+}
+
+/* 6. Club / Restaurant Feed Cards Hierarchy & Anatomy */
+.pulse-restaurant-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.pulse-card-img-container {
+  height: 165px;
+}
+
+.pulse-card-content {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pulse-card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.pulse-card-name {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.pulse-rating-box {
+  flex-shrink: 0;
+  font-size: 0.74rem;
+}
+
+.pulse-card-cuisine {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.pulse-card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pulse-card-area {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.pulse-card-price {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+/* 7. Tournaments & Championships Grid (MoviesFeed) */
+.pulse-movies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.pulse-movie-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.pulse-movie-poster-box {
+  aspect-ratio: 3/4;
+}
+
+.pulse-movie-info {
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pulse-movie-title {
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pulse-movie-genre {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pulse-book-movie-btn {
+  margin-top: auto;
+  min-height: 34px;
+  padding: 7px 6px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* 8. Events & VIP Felts (EventsFeed) */
+.pulse-event-artwork-box {
+  height: 165px;
+}
+
+.pulse-event-info {
+  padding: 12px 14px 14px;
+}
+
+.pulse-event-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.pulse-event-venue {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pulse-event-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pulse-event-book-pill-btn {
+  min-height: 36px;
+  padding: 8px 16px;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+/* 9. Offers & Explore Page */
+.pulse-offers-page {
+  padding: 14px 16px 24px;
+}
+
+.pulse-page-header {
+  margin-bottom: 16px;
+}
+
+.pulse-page-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.pulse-page-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.pulse-offer-card-item {
+  border-radius: var(--radius-lg);
+  padding: 14px;
+}
+
+.pulse-oci-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pulse-oci-copy-btn,
+.pulse-oci-use-btn {
+  min-height: 36px;
+  padding: 7px 12px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+/* 10. Bookings & Passes View */
+.pulse-bookings-page {
+  padding: 14px 16px 24px;
+}
+
+.pulse-segmented-tabs {
+  display: flex;
+  background: rgba(8, 16, 40, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.pulse-seg-tab {
+  flex: 1;
+  min-height: 36px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text-muted);
+  transition: all 0.15s ease;
+}
+
+.pulse-seg-tab.active {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0f2456 100%);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
+}
+
+.pulse-booking-ticket-card {
+  padding: 14px;
+  border-radius: var(--radius-lg);
+}
+
+.pulse-btc-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pulse-btc-action-btn {
+  flex: 1;
+  min-height: 38px;
+  padding: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* 11. Saved Wishlist Page */
+.pulse-saved-page {
+  padding: 14px 16px 24px;
+}
+
+.pulse-collections-carousel {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 0 -16px 16px;
+  padding: 0 16px 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-collection-pill {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 12. Profile Page & Menu */
+.pulse-profile-page {
+  padding: 14px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pulse-profile-hero-card {
+  padding: 16px;
+  border-radius: var(--radius-xl);
+}
+
+.pulse-profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.pulse-stat-card {
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+}
+
+.pulse-stat-num {
+  font-size: 1.2rem;
+}
+
+.pulse-profile-menu-group {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.pulse-profile-row-item {
+  min-height: 52px;
+  padding: 12px 14px;
+}
+
+.pulse-profile-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+/* 13. All Modals & Bottom Sheets on Mobile */
+.pulse-detail-overlay,
+.pulse-modal-overlay {
+  z-index: 300;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.pulse-detail-sheet,
+.pulse-booking-sheet,
+.pulse-seat-sheet,
+.pulse-filter-sheet,
+.pulse-checkout-sheet,
+.pulse-location-sheet {
+  max-height: 92dvh !important;
+  border-radius: 26px 26px 0 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pulse-sheet-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 10px auto 4px;
+  flex-shrink: 0;
+}
+
+.pulse-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Sticky Footers inside Sheets */
+.pulse-detail-sticky-bar,
+.pulse-checkout-footer,
+.pulse-seat-footer,
+.pulse-filter-footer {
+  position: sticky !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: rgba(1, 4, 10, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(59, 130, 246, 0.25) !important;
+  padding: 12px 16px max(16px, env(safe-area-inset-bottom, 16px)) !important;
+  z-index: 30 !important;
+}
+
+.pulse-detail-body {
+  padding: 14px 16px max(96px, calc(80px + env(safe-area-inset-bottom, 20px))) !important;
+}
+
+.pulse-booking-scroll-body,
+.pulse-filter-scroll-body,
+.pulse-checkout-scroll-body {
+  padding: 14px 16px max(80px, calc(68px + env(safe-area-inset-bottom, 20px))) !important;
+}
+
+/* 14. Primary Buttons Touch Standards */
+.pulse-primary-cta-btn,
+.pulse-pay-btn {
+  min-height: 44px;
+  padding: 11px 20px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* 15. Ticket & Success Dialog Centering on Mobile */
+.pulse-ticket-modal-card,
+.pulse-success-modal-card {
+  width: calc(100% - 28px) !important;
+  max-width: 390px !important;
+  margin: auto !important;
+  border-radius: 24px !important;
+}
+
+/* 16. Universal Search Modal Fullscreen Mobile */
+.pulse-search-fullscreen-overlay {
+  z-index: 400;
+  background: #000000;
+}
+
+.pulse-search-header-bar {
+  padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  padding-bottom: 12px !important;
+}
+
+.pulse-search-results-scroll {
+  padding-bottom: max(32px, env(safe-area-inset-bottom, 32px)) !important;
+}
+

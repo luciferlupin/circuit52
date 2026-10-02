@@ -62,19 +62,21 @@ export const PulseShell: React.FC = () => {
 
       {/* Main Phone Shell Wrapper */}
       <div className={`pulse-phone-shell ${isPhoneFrameMode ? 'framed' : 'edge-to-edge'}`}>
-        {/* Dynamic Island Status Bar */}
-        <div className="pulse-status-bar">
-          <span className="pulse-time-clock">9:41</span>
-          {/* Dynamic Island Pill */}
-          <div className="pulse-dynamic-island">
-            <span className="pulse-dynamic-dot" />
-            <span className="pulse-dynamic-label">PULSE LIVE</span>
+        {/* Dynamic Island Status Bar (Only in desktop phone mockup frame) */}
+        {isPhoneFrameMode && (
+          <div className="pulse-status-bar">
+            <span className="pulse-time-clock">9:41</span>
+            {/* Dynamic Island Pill */}
+            <div className="pulse-dynamic-island">
+              <span className="pulse-dynamic-dot" />
+              <span className="pulse-dynamic-label">CIRCUIT 52 LIVE</span>
+            </div>
+            <div className="pulse-status-icons">
+              <span>5G</span>
+              <span>100%</span>
+            </div>
           </div>
-          <div className="pulse-status-icons">
-            <span>5G</span>
-            <span>100%</span>
-          </div>
-        </div>
+        )}
 
         {/* Scrollable Screen Content */}
         <div className="pulse-scrollable-canvas">

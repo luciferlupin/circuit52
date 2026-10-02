@@ -85,11 +85,11 @@ export const ProfileView: React.FC = () => {
         </div>
 
         <div className="pulse-profile-meta">
-          <h2 className="pulse-profile-name">Alex Morgan</h2>
-          <div className="pulse-profile-contact">+91 98450 19284 • alex.morgan@pulse.city</div>
+          <h2 className="pulse-profile-name">Alex "Ace" Morgan</h2>
+          <div className="pulse-profile-contact">+91 98450 19284 • alex.morgan@circuit52.club</div>
           <div className="pulse-profile-tier-pill">
             <Sparkles size={12} />
-            <span>PULSE BLACK VIP MEMBER</span>
+            <span>CIRCUIT 52 VIP BLACK CARD</span>
           </div>
         </div>
       </div>
@@ -98,15 +98,15 @@ export const ProfileView: React.FC = () => {
       <div className="pulse-profile-stats-grid">
         <div className="pulse-stat-card" onClick={() => setActiveTab('BOOKINGS')}>
           <span className="pulse-stat-num">{bookings.length}</span>
-          <span className="pulse-stat-label">Total Bookings</span>
+          <span className="pulse-stat-label">Table Passes</span>
         </div>
         <div className="pulse-stat-card" onClick={() => setActiveTab('SAVED')}>
           <span className="pulse-stat-num">{savedItemIds.length}</span>
-          <span className="pulse-stat-label">Saved Spots</span>
+          <span className="pulse-stat-label">Saved Clubs</span>
         </div>
         <div className="pulse-stat-card">
-          <span className="pulse-stat-num" style={{ color: '#60a5fa' }}>₹1,450</span>
-          <span className="pulse-stat-label">Total Saved</span>
+          <span className="pulse-stat-num" style={{ color: '#60a5fa' }}>₹4,500</span>
+          <span className="pulse-stat-label">Reload Credits</span>
         </div>
       </div>
 
@@ -136,7 +136,7 @@ export const ProfileView: React.FC = () => {
 
       {/* Version Note */}
       <div className="pulse-version-note">
-        Pulse City Experience Engine v3.4.0 (Production Build)
+        Circuit 52 Mobile Operating System v2.4.0 (Production Build)
       </div>
     </div>
   );

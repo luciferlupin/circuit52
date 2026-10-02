@@ -6,8 +6,8 @@ import { Users, Ticket } from 'lucide-react';
 export const EventsFeed: React.FC = () => {
   const { events, setSelectedEvent, experiences } = usePulse();
 
-  const musicEvents = events.filter(e => e.category === 'MUSIC' || e.category === 'PARTIES');
-  const comedyEvents = events.filter(e => e.category === 'COMEDY');
+  const seriesEvents = events.filter(e => e.category === 'MUSIC' || e.category === 'EXPERIENCES');
+  const bountyEvents = events.filter(e => e.category === 'PARTIES' || e.category === 'EXPERIENCES' || e.id === 'evt-3');
 
   const renderEventCard = (evt: EventItem) => {
     return (
@@ -62,7 +62,7 @@ export const EventsFeed: React.FC = () => {
               }}
             >
               <Ticket size={13} />
-              <span>Book</span>
+              <span>Book Pass</span>
             </button>
           </div>
         </div>
@@ -72,40 +72,40 @@ export const EventsFeed: React.FC = () => {
 
   return (
     <div className="pulse-events-feed">
-      {/* SECTION 1: Trending Live Concerts & Music */}
+      {/* SECTION 1: High Stakes Series & Invitational Nights */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Trending Music Festivals & Arenas</h3>
-            <p className="pulse-section-subtitle">Stadium lasers, international headliners & AV live sets</p>
+            <h3 className="pulse-section-title">High Stakes Series & Invitational Nights</h3>
+            <p className="pulse-section-subtitle">Mega satellites, uncapped PLO-5 cash nights & VIP felt</p>
           </div>
         </div>
 
         <div className="pulse-events-grid">
-          {musicEvents.map(renderEventCard)}
+          {(seriesEvents.length > 0 ? seriesEvents : events).map(renderEventCard)}
         </div>
       </section>
 
-      {/* SECTION 2: Stand-Up Comedy & Club Nights */}
+      {/* SECTION 2: Bounties, Satellites & Special Gigs */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Stand-Up Comedy & Solo Specials</h3>
-            <p className="pulse-section-subtitle">Intimate basement rooms, craft beers & touring comics</p>
+            <h3 className="pulse-section-title">Bounties, Satellites & Special Gigs</h3>
+            <p className="pulse-section-subtitle">Celebrity guest pro bounties and national series satellites</p>
           </div>
         </div>
 
         <div className="pulse-events-grid">
-          {comedyEvents.map(renderEventCard)}
+          {(bountyEvents.length > 0 ? bountyEvents : events).map(renderEventCard)}
         </div>
       </section>
 
-      {/* SECTION 3: Curated Urban Experiences */}
+      {/* SECTION 3: Handpicked VIP Felts & Masterclasses */}
       <section className="pulse-feed-section">
         <div className="pulse-section-header">
           <div>
-            <h3 className="pulse-section-title">Handpicked Experiences</h3>
-            <p className="pulse-section-subtitle">Artisan workshops, private sailing, and weekend adventures</p>
+            <h3 className="pulse-section-title">VIP Private Felts & Masterclasses</h3>
+            <p className="pulse-section-subtitle">Private host sessions, 1-on-1 solver coaching & luxury dining</p>
           </div>
         </div>
 

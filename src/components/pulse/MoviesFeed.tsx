@@ -55,7 +55,7 @@ export const MoviesFeed: React.FC = () => {
             }}
           >
             <Ticket size={13} />
-            <span>Register Tourney Seat</span>
+            <span>Register Seat</span>
           </button>
         </div>
       </div>
