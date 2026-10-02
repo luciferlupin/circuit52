@@ -1602,12 +1602,22 @@ input, select, textarea {
   gap: 8px;
 }
 
+@media (max-width: 440px) {
+  .pulse-detail-action-buttons-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pulse-action-grid-btn.primary {
+    grid-column: span 2;
+  }
+}
+
 .pulse-action-grid-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   padding: 10px;
+  min-height: 44px;
   border-radius: var(--radius-md);
   font-size: 0.8rem;
   font-weight: 700;
@@ -1615,6 +1625,10 @@ input, select, textarea {
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   transition: all 0.15s ease;
+}
+
+.pulse-action-grid-btn:active {
+  transform: scale(0.97);
 }
 
 .pulse-action-grid-btn.primary {
@@ -1657,20 +1671,34 @@ input, select, textarea {
 .pulse-detail-tabs-bar {
   display: flex;
   border-bottom: 1px solid var(--border-subtle);
-  gap: 20px;
+  gap: 16px;
+  overflow-x: auto;
+  margin: 0 -16px 14px;
+  padding: 0 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.pulse-detail-tabs-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .pulse-detail-tab-btn {
-  padding: 8px 0;
-  font-size: 0.78rem;
+  padding: 8px 2px;
+  font-size: 0.76rem;
   font-weight: 700;
   color: var(--text-muted);
   position: relative;
   transition: color 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .pulse-detail-tab-btn.active {
   color: #60a5fa;
+  font-weight: 800;
 }
 
 .pulse-detail-tab-btn.active::after {
@@ -3003,11 +3031,13 @@ input, select, textarea {
 
 .pulse-search-native-input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   color: #fff;
   font-size: 0.85rem;
   outline: none;
+  text-overflow: ellipsis;
 }
 
 .pulse-clear-input-btn {
@@ -3580,6 +3610,31 @@ input, select, textarea {
   color: var(--text-muted);
 }
 
+.pulse-ticket-interactive-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(4, 10, 28, 0.85);
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.pulse-hint-spin-icon {
+  color: #60a5fa;
+  animation: rotateSlow 8s linear infinite;
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .pulse-ticket-footer-actions {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -3587,6 +3642,13 @@ input, select, textarea {
   padding: 12px 16px;
   background: #000000;
   border-top: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 380px) {
+  .pulse-ticket-footer-actions {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
 }
 
 .pulse-ticket-action-btn {
@@ -3601,6 +3663,12 @@ input, select, textarea {
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-primary);
+  min-height: 40px;
+  transition: all 0.15s ease;
+}
+
+.pulse-ticket-action-btn:active {
+  transform: scale(0.97);
 }
 
 .pulse-ticket-action-btn.primary {
@@ -3608,6 +3676,27 @@ input, select, textarea {
   color: #ffffff;
   border: 1px solid rgba(96, 165, 250, 0.4);
   font-weight: 800;
+}
+
+.pulse-ticket-action-btn.apple-wallet {
+  background: #000000;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.12);
+  font-weight: 800;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.pulse-ticket-action-btn.apple-wallet:hover {
+  background: #111111;
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+}
+
+.pulse-apple-icon {
+  color: #ffffff;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -5909,11 +5998,13 @@ input, select, textarea {
 }
 
 .pulse-tb-body {
-  padding: 16px 18px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pulse-tb-section {
@@ -5998,6 +6089,8 @@ input, select, textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
@@ -7076,6 +7169,25 @@ input, select, textarea {
   margin-bottom: 12px;
 }
 
+@media (max-width: 540px) {
+  .pulse-photos-action-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .pulse-photo-filter-chips {
+    width: 100%;
+    margin: 0 -4px;
+    padding: 0 4px 4px;
+  }
+  .pulse-launch-slideshow-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 14px;
+    font-size: 0.76rem;
+  }
+}
+
 .pulse-photo-filter-chips {
   display: flex;
   gap: 8px;
@@ -7262,6 +7374,9 @@ input, select, textarea {
   width: 100%;
   max-width: 640px;
   height: 100dvh;
+  max-height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7370,6 +7485,12 @@ input, select, textarea {
   display: block;
   user-select: none;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .pulse-lightbox-main-img {
+    max-height: 42vh;
+  }
 }
 
 .pulse-lightbox-nav {
@@ -7633,13 +7754,22 @@ input, select, textarea {
   align-items: center;
 }
 
+@media (max-width: 440px) {
+  .pulse-flt-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
+
 .pulse-flt-primary-btn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 11px 14px;
+  min-height: 44px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   border: none;
@@ -7651,6 +7781,10 @@ input, select, textarea {
   transition: all 0.2s ease;
 }
 
+.pulse-flt-primary-btn:active {
+  transform: scale(0.97);
+}
+
 .pulse-flt-primary-btn:hover {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
@@ -7659,8 +7793,10 @@ input, select, textarea {
 .pulse-flt-ghost-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  padding: 10px 12px;
+  padding: 10px 14px;
+  min-height: 44px;
   border-radius: var(--radius-full);
   background: rgba(10, 23, 60, 0.6);
   border: 1px solid rgba(59, 130, 246, 0.3);
@@ -7669,6 +7805,10 @@ input, select, textarea {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.pulse-flt-ghost-btn:active {
+  transform: scale(0.97);
 }
 
 .pulse-flt-ghost-btn:hover {

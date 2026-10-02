@@ -84,7 +84,7 @@ export const UniversalSearchModal: React.FC = () => {
           <Search size={18} className="pulse-search-icon" />
           <input
             type="text"
-            placeholder="Search poker rooms, cash stakes (100/200, PLO), tourneys..."
+            placeholder="Search clubs, stakes, tourneys..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             onKeyDown={e => {
