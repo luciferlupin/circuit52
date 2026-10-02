@@ -78,7 +78,7 @@ export const RestaurantFeed: React.FC = () => {
               title={isSaved ? 'Remove from Saved' : 'Save Restaurant'}
               aria-label="Save restaurant"
             >
-              <Bookmark size={15} fill={isSaved ? '#10b981' : 'none'} />
+              <Bookmark size={15} fill={isSaved ? '#3b82f6' : 'none'} color={isSaved ? '#3b82f6' : '#fff'} />
             </button>
           </div>
 
@@ -100,10 +100,10 @@ export const RestaurantFeed: React.FC = () => {
         <div className="pulse-card-content">
           <div className="pulse-card-title-row">
             <h3 className="pulse-card-name">{restaurant.name}</h3>
-            {/* Green Rating Box */}
+            {/* Rating Box */}
             <div className="pulse-rating-box">
               <span>{restaurant.rating.toFixed(1)}</span>
-              <Star size={11} fill="#86efac" />
+              <Star size={11} fill="#93c5fd" color="#93c5fd" />
             </div>
           </div>
 

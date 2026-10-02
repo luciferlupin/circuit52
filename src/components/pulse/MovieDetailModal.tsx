@@ -75,7 +75,7 @@ export const MovieDetailModal: React.FC = () => {
                 onClick={() => toggleSaveItem(selectedMovie.id)}
                 aria-label="Save"
               >
-                <Bookmark size={16} fill={isSaved ? '#10b981' : 'none'} />
+                <Bookmark size={16} fill={isSaved ? '#3b82f6' : 'none'} color={isSaved ? '#3b82f6' : '#fff'} />
               </button>
             </div>
           </div>
@@ -102,7 +102,7 @@ export const MovieDetailModal: React.FC = () => {
             <div className="pulse-movie-meta-col">
               <div className="pulse-movie-rating-row">
                 <div className="pulse-rating-box">
-                  <Star size={12} fill="#86efac" />
+                  <Star size={12} fill="#93c5fd" color="#93c5fd" />
                   <span>{selectedMovie.rating.toFixed(1)}</span>
                 </div>
                 <span className="pulse-votes-text">{selectedMovie.votesCount} Votes</span>

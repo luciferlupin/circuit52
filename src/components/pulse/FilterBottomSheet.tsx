@@ -79,7 +79,7 @@ export const FilterBottomSheet: React.FC = () => {
                   className={`pulse-fchip ${filters.minRating === rating ? 'active' : ''}`}
                   onClick={() => setFilters(prev => ({ ...prev, minRating: rating }))}
                 >
-                  <Star size={13} fill="#fbbf24" color="#fbbf24" />
+                  <Star size={13} fill="#60a5fa" color="#60a5fa" />
                   <span>★ {rating}+ Rating</span>
                 </button>
               ))}

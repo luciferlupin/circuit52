@@ -21,48 +21,48 @@ export const ProfileView: React.FC = () => {
     {
       id: 'bookings',
       label: 'My Bookings & Passes',
-      icon: <Ticket size={18} style={{ color: '#10b981' }} />,
+      icon: <Ticket size={18} style={{ color: '#3b82f6' }} />,
       badge: `${bookings.filter(b => b.status === 'UPCOMING').length} active`,
       onClick: () => setActiveTab('BOOKINGS')
     },
     {
       id: 'saved',
       label: 'Saved Places & Wishlist',
-      icon: <Bookmark size={18} style={{ color: '#ec4899' }} />,
+      icon: <Bookmark size={18} style={{ color: '#60a5fa' }} />,
       badge: `${savedItemIds.length} saved`,
       onClick: () => setActiveTab('SAVED')
     },
     {
       id: 'payments',
       label: 'Payments & Pulse Pay',
-      icon: <CreditCard size={18} style={{ color: '#06b6d4' }} />,
+      icon: <CreditCard size={18} style={{ color: '#2563eb' }} />,
       sub: 'UPI, saved cards & wallets',
       onClick: () => alert('Payments settings: Default UPI linked (GPay)')
     },
     {
       id: 'offers',
       label: 'Exclusive Offers & Vouchers',
-      icon: <Tag size={18} style={{ color: '#f59e0b' }} />,
+      icon: <Tag size={18} style={{ color: '#93c5fd' }} />,
       badge: `${offers.length} active`,
       onClick: () => alert('View active coupons in checkout')
     },
     {
       id: 'gift',
       label: 'Gift Cards & Pulse Credits',
-      icon: <Gift size={18} style={{ color: '#8b5cf6' }} />,
+      icon: <Gift size={18} style={{ color: '#3b82f6' }} />,
       sub: 'Balance: ₹4,500',
       onClick: () => alert('Gift card balance: ₹4,500')
     },
     {
       id: 'notifications',
       label: 'Notification Preferences',
-      icon: <Bell size={18} style={{ color: '#3b82f6' }} />,
+      icon: <Bell size={18} style={{ color: '#60a5fa' }} />,
       onClick: () => alert('Instant booking and seat offer notifications are enabled')
     },
     {
       id: 'help',
       label: '24/7 Concierge & Support',
-      icon: <HelpCircle size={18} style={{ color: '#14b8a6' }} />,
+      icon: <HelpCircle size={18} style={{ color: '#2563eb' }} />,
       onClick: () => alert('Pulse Concierge support is active. Connecting you with our priority agent...')
     },
     {
@@ -105,7 +105,7 @@ export const ProfileView: React.FC = () => {
           <span className="pulse-stat-label">Saved Spots</span>
         </div>
         <div className="pulse-stat-card">
-          <span className="pulse-stat-num" style={{ color: '#f59e0b' }}>₹1,450</span>
+          <span className="pulse-stat-num" style={{ color: '#60a5fa' }}>₹1,450</span>
           <span className="pulse-stat-label">Total Saved</span>
         </div>
       </div>

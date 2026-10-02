@@ -27,7 +27,7 @@ export const MoviesFeed: React.FC = () => {
 
           {/* Top Rating Pill */}
           <div className="pulse-movie-rating-badge">
-            <Star size={11} fill="#fbbf24" color="#fbbf24" />
+            <Star size={11} fill="#60a5fa" color="#60a5fa" />
             <span>{movie.rating.toFixed(1)}</span>
             <span className="pulse-votes-count">({movie.votesCount})</span>
           </div>

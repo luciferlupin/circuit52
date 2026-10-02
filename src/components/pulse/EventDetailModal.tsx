@@ -67,7 +67,7 @@ export const EventDetailModal: React.FC = () => {
                 onClick={() => toggleSaveItem(selectedEvent.id)}
                 aria-label="Save"
               >
-                <Bookmark size={16} fill={isSaved ? '#10b981' : 'none'} />
+                <Bookmark size={16} fill={isSaved ? '#3b82f6' : 'none'} color={isSaved ? '#3b82f6' : '#fff'} />
               </button>
             </div>
           </div>

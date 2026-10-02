@@ -106,14 +106,14 @@ export const SavedView: React.FC = () => {
                               toggleSaveItem(r.id);
                             }}
                           >
-                            <Bookmark size={16} fill="#10b981" color="#10b981" />
+                            <Bookmark size={16} fill="#3b82f6" color="#3b82f6" />
                           </button>
                         </div>
                         <div className="pulse-saved-sub">{r.cuisine.slice(0, 2).join(', ')} • {r.area}</div>
                         <div className="pulse-saved-bottom-row">
                           <div className="pulse-rating-box">
                             <span>{r.rating}</span>
-                            <Star size={10} fill="#86efac" />
+                            <Star size={10} fill="#93c5fd" color="#93c5fd" />
                           </div>
                           <span className="pulse-saved-price">₹{r.priceForTwo} for two</span>
                         </div>
@@ -147,7 +147,7 @@ export const SavedView: React.FC = () => {
                               toggleSaveItem(m.id);
                             }}
                           >
-                            <Bookmark size={16} fill="#10b981" color="#10b981" />
+                            <Bookmark size={16} fill="#3b82f6" color="#3b82f6" />
                           </button>
                         </div>
                         <div className="pulse-saved-sub">{m.genre.join(', ')} • {m.runtime}</div>
@@ -185,7 +185,7 @@ export const SavedView: React.FC = () => {
                               toggleSaveItem(e.id);
                             }}
                           >
-                            <Bookmark size={16} fill="#10b981" color="#10b981" />
+                            <Bookmark size={16} fill="#3b82f6" color="#3b82f6" />
                           </button>
                         </div>
                         <div className="pulse-saved-sub">{e.dateBadge} • {e.venue}</div>

@@ -81,7 +81,7 @@ export const RestaurantDetailModal: React.FC = () => {
                 onClick={() => toggleSaveItem(selectedRestaurant.id)}
                 aria-label="Save"
               >
-                <Bookmark size={16} fill={isSaved ? '#10b981' : 'none'} />
+                <Bookmark size={16} fill={isSaved ? '#3b82f6' : 'none'} color={isSaved ? '#3b82f6' : '#fff'} />
               </button>
             </div>
           </div>
@@ -108,7 +108,7 @@ export const RestaurantDetailModal: React.FC = () => {
               <h2 className="pulse-detail-name">{selectedRestaurant.name}</h2>
               <div className="pulse-rating-box large">
                 <span>{selectedRestaurant.rating.toFixed(1)}</span>
-                <Star size={13} fill="#86efac" />
+                <Star size={13} fill="#93c5fd" color="#93c5fd" />
               </div>
             </div>
 
@@ -283,7 +283,7 @@ export const RestaurantDetailModal: React.FC = () => {
                   <span className="pulse-big-score">{selectedRestaurant.rating.toFixed(1)}</span>
                   <div className="pulse-stars-row">
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="#10b981" color="#10b981" />
+                      <Star key={s} size={14} fill="#3b82f6" color="#3b82f6" />
                     ))}
                   </div>
                   <span className="pulse-reviews-count">{selectedRestaurant.reviewCount} Ratings</span>

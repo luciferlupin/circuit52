@@ -49,7 +49,7 @@ export const OffersView: React.FC = () => {
                 >
                   {copiedCode === offer.code ? (
                     <>
-                      <CheckCircle2 size={13} style={{ color: '#10b981' }} />
+                      <CheckCircle2 size={13} style={{ color: '#3b82f6' }} />
                       <span>Copied!</span>
                     </>
                   ) : (

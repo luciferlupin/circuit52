@@ -564,28 +564,28 @@ export const SAVED_COLLECTIONS: SavedCollection[] = [
     id: 'col-1',
     name: 'Date Night',
     icon: '✨',
-    color: '#ec4899',
+    color: '#3b82f6',
     itemIds: ['rest-1', 'rest-2', 'mov-1']
   },
   {
     id: 'col-2',
     name: 'Weekend Plans',
     icon: '🔥',
-    color: '#f59e0b',
+    color: '#2563eb',
     itemIds: ['evt-1', 'rest-3', 'exp-1']
   },
   {
     id: 'col-3',
     name: 'Want to Try',
     icon: '📌',
-    color: '#06b6d4',
+    color: '#1d4ed8',
     itemIds: ['rest-4', 'mov-3', 'exp-2']
   },
   {
     id: 'col-4',
     name: 'Favourite Restaurants',
     icon: '❤️',
-    color: '#10b981',
+    color: '#60a5fa',
     itemIds: ['rest-1', 'rest-5']
   }
 ];

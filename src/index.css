@@ -1,40 +1,62 @@
 /* ==========================================================================
    PULSE DESIGN SYSTEM — Modern Consumer Discovery & Booking Engine
-   Inspired by District, Zomato & Swiggy interaction philosophies
+   Strict Color System: Pure Pitch Black & Midnight Dark Blue Glow Gradient
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
 
 :root {
-  /* Color Palette */
-  --bg-main: #080c14;
-  --bg-surface: #0f172a;
-  --bg-card: #141e33;
-  --bg-card-hover: #1e293b;
-  --bg-elevated: #1e293b;
-  --bg-glass: rgba(15, 23, 42, 0.85);
+  /* Core Foundation: Pure Black & Midnight Dark Blue Glow Gradients */
+  --bg-main: #000000;
+  --bg-surface: #02050f;
+  --bg-card: #081126;
+  --bg-card-gradient: linear-gradient(145deg, #091638 0%, #01040a 100%);
+  --bg-card-hover: linear-gradient(145deg, #0f2456 0%, #020614 100%);
+  --bg-elevated: #0a1738;
+  --bg-glass: rgba(2, 5, 14, 0.92);
+  --bg-glass-card: rgba(8, 18, 42, 0.7);
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.14);
-  --border-active: rgba(16, 185, 129, 0.4);
+  /* Glowing Borders */
+  --border-subtle: rgba(59, 130, 246, 0.16);
+  --border-medium: rgba(59, 130, 246, 0.28);
+  --border-active: rgba(59, 130, 246, 0.65);
+  --border-glow: rgba(96, 165, 250, 0.75);
 
+  /* Typography Colors */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --text-dim: #475569;
+  --text-dim: #334155;
 
-  --accent-emerald: #10b981;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.3);
-  --accent-coral: #ff4b4b;
-  --accent-gold: #f59e0b;
-  --accent-cyan: #38bdf8;
-  --accent-purple: #8b5cf6;
+  /* Dark Blue Glow Accents (All accents strictly anchored in dark blue glow) */
+  --accent-blue-deep: #0a1638;
+  --accent-blue-mid: #1e3a8a;
+  --accent-blue: #2563eb;
+  --accent-blue-bright: #3b82f6;
+  --accent-blue-light: #93c5fd;
+  --accent-blue-glow: rgba(37, 99, 235, 0.45);
+  --accent-blue-subtle: rgba(37, 99, 235, 0.18);
+
+  /* Mapped Accents for Uniformity */
+  --accent-emerald: #2563eb;
+  --accent-emerald-glow: rgba(37, 99, 235, 0.45);
+  --accent-coral: #1d4ed8;
+  --accent-gold: #60a5fa;
+  --accent-cyan: #3b82f6;
+  --accent-purple: #1e40af;
+
+  /* Gradients */
+  --gradient-bg-radial: radial-gradient(circle at 50% 12%, #0c1a40 0%, #030814 55%, #000000 100%);
+  --gradient-primary-btn: linear-gradient(135deg, #2563eb 0%, #1e3a8a 60%, #0b1530 100%);
+  --gradient-secondary-btn: linear-gradient(135deg, rgba(10, 22, 56, 0.7) 0%, rgba(2, 5, 14, 0.9) 100%);
+  --gradient-nav-island: linear-gradient(180deg, rgba(8, 16, 38, 0.96) 0%, rgba(0, 0, 0, 0.98) 100%);
+  --gradient-ribbon: linear-gradient(90deg, #020617 0%, #1e3a8a 50%, #020617 100%);
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Spacing System */
+  /* Spacing */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -43,7 +65,6 @@
   --space-6: 24px;
   --space-8: 32px;
   --space-10: 40px;
-  --space-12: 48px;
 
   /* Corner Radii */
   --radius-sm: 8px;
@@ -53,13 +74,18 @@
   --radius-sheet: 28px;
   --radius-full: 9999px;
 
-  /* Elevation */
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.45);
-  --shadow-elevated: 0 12px 36px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 0 24px rgba(16, 185, 129, 0.2);
+  /* Shadows with Dark Blue Glow */
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(30, 58, 138, 0.18);
+  --shadow-elevated: 0 16px 45px rgba(0, 0, 0, 0.95), 0 0 32px rgba(37, 99, 235, 0.28);
+  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.45);
+  --shadow-blue-sm: 0 0 12px rgba(59, 130, 246, 0.35);
+  --shadow-blue-lg: 0 0 35px rgba(37, 99, 235, 0.5);
 }
 
-/* Reset & Base */
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -95,7 +121,6 @@ input, select, textarea {
   font-family: var(--font-mono);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -104,12 +129,12 @@ input, select, textarea {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1e3a8a;
   border-radius: 4px;
 }
 
 /* ==========================================================================
-   VIEWPORT SHELL & IPHONE 16 PRO CONTAINER
+   VIEWPORT CONTAINER & PHONE SHELL
    ========================================================================== */
 
 .pulse-viewport-container {
@@ -117,7 +142,7 @@ input, select, textarea {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 20%, #111a2e 0%, #05080e 100%);
+  background: var(--gradient-bg-radial);
   position: relative;
 }
 
@@ -127,10 +152,9 @@ input, select, textarea {
 
 .pulse-viewport-container.fluid-mode {
   padding: 0;
-  background: var(--bg-main);
+  background: #000000;
 }
 
-/* Desktop Mode Switcher Button */
 .pulse-desktop-mode-switcher {
   position: fixed;
   top: 16px;
@@ -143,25 +167,25 @@ input, select, textarea {
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(8, 16, 38, 0.88);
   backdrop-filter: blur(16px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-full);
   color: var(--text-primary);
   font-size: 0.78rem;
   font-weight: 700;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 14px rgba(30, 58, 138, 0.25);
   transition: all 0.2s ease;
 }
 
 .pulse-mode-toggle-btn:hover {
-  background: #1e293b;
-  border-color: var(--accent-emerald);
+  background: #0f2456;
+  border-color: #3b82f6;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
 }
 
-/* Phone Mockup Frame */
 .pulse-phone-shell {
-  background: var(--bg-main);
+  background: #000000;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -174,8 +198,8 @@ input, select, textarea {
   height: 844px;
   max-height: calc(100vh - 40px);
   border-radius: 46px;
-  border: 9px solid #1e293b;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  border: 9px solid #09132c;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.98), 0 0 45px rgba(30, 58, 138, 0.35);
 }
 
 .pulse-phone-shell.edge-to-edge {
@@ -212,7 +236,7 @@ input, select, textarea {
   justify-content: space-between;
   align-items: center;
   padding: 10px 18px 4px;
-  background: rgba(8, 12, 20, 0.98);
+  background: #000000;
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -225,38 +249,43 @@ input, select, textarea {
   align-items: center;
   gap: 6px;
   padding: 3px 12px;
-  background: #000;
+  background: #000000;
   border-radius: 20px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.28), 0 0 10px rgba(37, 99, 235, 0.2);
 }
 
 .pulse-dynamic-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
   animation: pulseDot 2s infinite;
 }
 
 .pulse-dynamic-label {
   font-size: 0.62rem;
   font-weight: 800;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   letter-spacing: 0.04em;
 }
 
 .pulse-status-icons {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   font-size: 0.72rem;
+  color: var(--text-secondary);
 }
 
-/* Scrollable Canvas */
 .pulse-scrollable-canvas {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #000000;
   padding-bottom: 96px; /* Space for floating bottom nav */
 }
 
@@ -268,7 +297,7 @@ input, select, textarea {
   position: sticky;
   top: 0;
   z-index: 85;
-  background: rgba(8, 12, 20, 0.96);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 10px 16px 12px;
@@ -292,12 +321,13 @@ input, select, textarea {
   width: 32px;
   height: 32px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #0a1638 100%);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.4);
+  border: 1px solid rgba(96, 165, 250, 0.3);
 }
 
 .pulse-location-title-row {
@@ -314,7 +344,7 @@ input, select, textarea {
 }
 
 .pulse-chevron {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-location-sub {
@@ -333,7 +363,7 @@ input, select, textarea {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.7);
   border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -343,7 +373,9 @@ input, select, textarea {
 }
 
 .pulse-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: #0f2456;
+  border-color: #3b82f6;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-badge-dot {
@@ -353,7 +385,7 @@ input, select, textarea {
   min-width: 15px;
   height: 15px;
   border-radius: 10px;
-  background: var(--accent-coral);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: #fff;
   font-size: 0.6rem;
   font-weight: 800;
@@ -361,20 +393,23 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   padding: 0 4px;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
 }
 
 .pulse-avatar-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
-  color: #080c14;
+  background: linear-gradient(135deg, #1e3a8a 0%, #050d24 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
+  color: #ffffff;
   font-weight: 800;
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
 }
 
 /* Large Search Bar */
@@ -386,21 +421,22 @@ input, select, textarea {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(9, 20, 50, 0.75) 0%, rgba(1, 3, 10, 0.95) 100%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 10px 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(30, 58, 138, 0.12);
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .pulse-search-bar:hover {
-  border-color: var(--border-medium);
+  border-color: #3b82f6;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-search-icon {
-  color: var(--text-muted);
+  color: #60a5fa;
   flex-shrink: 0;
 }
 
@@ -420,7 +456,7 @@ input, select, textarea {
 }
 
 .pulse-mic-btn {
-  color: var(--accent-cyan);
+  color: #3b82f6;
   padding: 4px;
 }
 
@@ -443,13 +479,17 @@ input, select, textarea {
   font-size: 0.68rem;
   overflow: hidden;
   white-space: nowrap;
+  background: linear-gradient(90deg, rgba(8, 18, 46, 0.8) 0%, rgba(1, 3, 8, 0.9) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
 }
 
 .pulse-ticker-tag {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  color: var(--accent-gold);
+  color: #60a5fa;
   font-weight: 800;
   letter-spacing: 0.03em;
   flex-shrink: 0;
@@ -506,12 +546,14 @@ input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), 0 0 10px rgba(30, 58, 138, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.25);
   transition: all 0.2s ease;
 }
 
 .pulse-category-card.active .pulse-category-icon-bubble {
-  box-shadow: 0 0 16px var(--accent-emerald-glow);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  border-color: #3b82f6;
   transform: translateY(-2px);
 }
 
@@ -523,13 +565,13 @@ input, select, textarea {
   position: absolute;
   top: -4px;
   right: -4px;
-  background: var(--accent-coral);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: #fff;
   font-size: 0.58rem;
   font-weight: 800;
   padding: 1px 5px;
   border-radius: var(--radius-full);
-  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
 }
 
 .pulse-category-meta {
@@ -558,9 +600,9 @@ input, select, textarea {
 .pulse-category-active-bar {
   width: 18px;
   height: 2.5px;
-  background: var(--accent-emerald);
+  background: #3b82f6;
   border-radius: 2px;
-  box-shadow: 0 0 8px var(--accent-emerald);
+  box-shadow: 0 0 8px #3b82f6;
   margin-top: 2px;
 }
 
@@ -582,6 +624,7 @@ input, select, textarea {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
   cursor: pointer;
 }
 
@@ -599,7 +642,7 @@ input, select, textarea {
 .pulse-hero-vignette {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8, 12, 20, 0.95) 0%, rgba(8, 12, 20, 0.4) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(6, 14, 34, 0.5) 60%, transparent 100%);
 }
 
 .pulse-hero-content {
@@ -619,7 +662,7 @@ input, select, textarea {
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: var(--accent-gold);
+  color: #60a5fa;
   margin-bottom: 4px;
 }
 
@@ -653,18 +696,20 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #fff;
-  color: #080c14;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #fff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
   font-size: 0.76rem;
   font-weight: 800;
   padding: 7px 14px;
   border-radius: var(--radius-full);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45);
   transition: transform 0.15s ease;
 }
 
 .pulse-hero-cta-btn:hover {
   transform: translateX(2px);
+  box-shadow: 0 4px 22px rgba(37, 99, 235, 0.6);
 }
 
 .pulse-hero-arrows {
@@ -676,16 +721,18 @@ input, select, textarea {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(4, 9, 24, 0.75);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s ease;
+  transition: all 0.15s ease;
 }
 .pulse-arrow-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: #0f2456;
+  border-color: #3b82f6;
 }
 
 .pulse-hero-dots {
@@ -699,14 +746,15 @@ input, select, textarea {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #334155;
+  background: #1e293b;
   transition: all 0.2s ease;
 }
 
 .pulse-hero-dot.active {
   width: 20px;
   border-radius: 4px;
-  background: var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
 }
 
 /* ==========================================================================
@@ -734,7 +782,7 @@ input, select, textarea {
   gap: 6px;
   padding: 7px 13px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(145deg, rgba(8, 18, 44, 0.7) 0%, rgba(1, 3, 10, 0.9) 100%);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-size: 0.74rem;
@@ -745,20 +793,21 @@ input, select, textarea {
 }
 
 .pulse-filter-chip-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: #0f2456;
+  border-color: rgba(59, 130, 246, 0.4);
   color: var(--text-primary);
 }
 
 .pulse-filter-chip-btn.active {
-  background: rgba(16, 185, 129, 0.18);
-  border-color: var(--accent-emerald);
-  color: #34d399;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border-color: #60a5fa;
+  color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.45);
 }
 
 .pulse-filter-chip-btn.filter-trigger {
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(8, 16, 38, 0.92);
   border-color: var(--border-medium);
   color: var(--text-primary);
 }
@@ -767,11 +816,12 @@ input, select, textarea {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
 }
 
 /* ==========================================================================
-   FEED SECTIONS & RESTAURANT CARDS
+   FEED SECTIONS & ALL CARDS (PURE BLACK + DARK BLUE GLOW GRADIENT)
    ========================================================================== */
 
 .pulse-dining-feed, .pulse-movies-feed, .pulse-events-feed {
@@ -812,7 +862,7 @@ input, select, textarea {
   gap: 3px;
   font-size: 0.74rem;
   font-weight: 700;
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 /* Horizontal Cards Carousel */
@@ -840,18 +890,41 @@ input, select, textarea {
   gap: 14px;
 }
 
-/* Restaurant Card Anatomy */
-.pulse-restaurant-card {
-  background: var(--bg-card);
+/* Unified Card Surface */
+.pulse-restaurant-card,
+.pulse-movie-card,
+.pulse-event-card,
+.pulse-experience-card,
+.pulse-booking-ticket-card,
+.pulse-offer-card-item,
+.pulse-profile-hero-card,
+.pulse-stat-card,
+.pulse-profile-menu-group,
+.pulse-saved-item-card {
+  background: var(--bg-card-gradient);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-card);
   cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.pulse-restaurant-card:active {
+.pulse-restaurant-card:hover,
+.pulse-movie-card:hover,
+.pulse-event-card:hover,
+.pulse-experience-card:hover,
+.pulse-booking-ticket-card:hover,
+.pulse-offer-card-item:hover,
+.pulse-saved-item-card:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-elevated);
+}
+
+.pulse-restaurant-card:active,
+.pulse-movie-card:active,
+.pulse-event-card:active,
+.pulse-experience-card:active {
   transform: scale(0.98);
 }
 
@@ -888,25 +961,27 @@ input, select, textarea {
   gap: 5px;
   padding: 3px 8px;
   border-radius: var(--radius-full);
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid rgba(59, 130, 246, 0.25);
   backdrop-filter: blur(6px);
   font-size: 0.68rem;
   font-weight: 700;
 }
 
 .pulse-card-avail-pill.green {
-  color: #34d399;
+  color: #60a5fa;
 }
 
 .pulse-card-avail-pill.orange {
-  color: #fb923c;
+  color: #93c5fd;
 }
 
 .pulse-dot-live {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentColor;
+  background: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
   animation: pulseDot 1.6s infinite;
 }
 
@@ -920,7 +995,8 @@ input, select, textarea {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(8, 12, 20, 0.75);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -930,7 +1006,9 @@ input, select, textarea {
 }
 
 .pulse-card-bookmark-btn.saved {
-  color: var(--accent-emerald);
+  color: #3b82f6;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
 }
 
 .pulse-card-bottom-overlay {
@@ -947,7 +1025,9 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+  background: linear-gradient(90deg, #1d4ed8 0%, #0a1329 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.35);
   color: #fff;
   font-size: 0.65rem;
   font-weight: 800;
@@ -957,7 +1037,8 @@ input, select, textarea {
 }
 
 .pulse-card-distance-pill {
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
   font-size: 0.68rem;
@@ -984,13 +1065,15 @@ input, select, textarea {
   line-height: 1.25;
 }
 
-/* Iconic Green Rating Badge */
+/* Rating Badge — Dark Blue Glow */
 .pulse-rating-box {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: #15803d;
-  color: #fff;
+  background: linear-gradient(135deg, #1e3a8a 0%, #09132b 100%);
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+  color: #93c5fd;
   padding: 3px 7px;
   border-radius: 6px;
   font-weight: 800;
@@ -1032,20 +1115,6 @@ input, select, textarea {
   gap: 12px;
 }
 
-.pulse-movie-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  transition: transform 0.15s ease;
-}
-
-.pulse-movie-card:active {
-  transform: scale(0.98);
-}
-
 .pulse-movie-poster-box {
   position: relative;
   aspect-ratio: 3/4;
@@ -1065,7 +1134,8 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
   padding: 3px 6px;
@@ -1092,18 +1162,18 @@ input, select, textarea {
 .pulse-cert-pill {
   padding: 2px 5px;
   border-radius: 4px;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
   font-size: 0.6rem;
   font-weight: 800;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-subtle);
 }
 
 .pulse-format-tag {
   padding: 2px 6px;
   border-radius: 4px;
-  background: var(--accent-cyan);
-  color: #080c14;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
   font-size: 0.6rem;
   font-weight: 800;
 }
@@ -1135,22 +1205,28 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 7px;
+  padding: 8px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  color: #ffffff;
   font-size: 0.74rem;
   font-weight: 800;
-  transition: opacity 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+.pulse-book-movie-btn:hover {
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.6);
 }
 
 .pulse-imax-banner {
-  background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: linear-gradient(135deg, #09173a 0%, #01040b 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   border-radius: var(--radius-xl);
   padding: 18px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(12, 74, 110, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 58, 138, 0.25);
 }
 
 .pulse-imax-content h3 {
@@ -1162,7 +1238,7 @@ input, select, textarea {
 
 .pulse-imax-content p {
   font-size: 0.74rem;
-  color: #bae6fd;
+  color: #93c5fd;
   margin-bottom: 12px;
 }
 
@@ -1174,20 +1250,6 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   gap: 14px;
-}
-
-.pulse-event-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.pulse-event-card:active {
-  transform: scale(0.98);
 }
 
 .pulse-event-artwork-box {
@@ -1205,13 +1267,14 @@ input, select, textarea {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #fff;
-  color: #080c14;
+  background: linear-gradient(135deg, #1e3a8a 0%, #0a1329 100%);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+  color: #dbeafe;
   font-weight: 900;
   font-size: 0.7rem;
   padding: 4px 9px;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 0.02em;
 }
 
@@ -1219,14 +1282,14 @@ input, select, textarea {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(4px);
-  color: var(--accent-gold);
+  color: #60a5fa;
   font-size: 0.65rem;
   font-weight: 800;
   padding: 3px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .pulse-event-interested-pill {
@@ -1236,7 +1299,8 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border-subtle);
   backdrop-filter: blur(4px);
   color: #fff;
   font-size: 0.68rem;
@@ -1268,7 +1332,7 @@ input, select, textarea {
   justify-content: space-between;
   align-items: center;
   padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .pulse-price-sub {
@@ -1280,15 +1344,17 @@ input, select, textarea {
 .pulse-price-bold {
   font-size: 0.95rem;
   font-weight: 900;
-  color: var(--accent-emerald);
+  color: #60a5fa;
 }
 
 .pulse-event-book-pill-btn {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  color: #fff;
   font-size: 0.78rem;
   font-weight: 800;
   padding: 6px 14px;
@@ -1296,15 +1362,6 @@ input, select, textarea {
 }
 
 /* Curated Experiences Cards */
-.pulse-experience-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-}
-
 .pulse-exp-img-box {
   position: relative;
   height: 130px;
@@ -1320,7 +1377,8 @@ input, select, textarea {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  background: rgba(8, 12, 20, 0.85);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border-subtle);
   color: #fff;
   font-size: 0.65rem;
   font-weight: 700;
@@ -1335,7 +1393,7 @@ input, select, textarea {
 .pulse-exp-cat {
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--accent-gold);
+  color: #60a5fa;
 }
 
 .pulse-exp-title {
@@ -1364,8 +1422,8 @@ input, select, textarea {
 .pulse-detail-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -1373,13 +1431,20 @@ input, select, textarea {
   animation: fadeIn 0.2s ease-out;
 }
 
-.pulse-detail-sheet {
-  background: #0d1424;
-  border-top: 1px solid var(--border-medium);
+.pulse-detail-sheet,
+.pulse-booking-sheet,
+.pulse-seat-sheet,
+.pulse-filter-sheet,
+.pulse-checkout-sheet,
+.pulse-location-sheet,
+.pulse-ticket-modal-card,
+.pulse-success-modal-card {
+  background: linear-gradient(180deg, #071026 0%, #01040a 100%);
+  border-top: 1px solid rgba(59, 130, 246, 0.35);
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 -12px 50px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 -12px 50px rgba(0, 0, 0, 0.95), 0 0 35px rgba(30, 58, 138, 0.25);
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
@@ -1397,7 +1462,7 @@ input, select, textarea {
 .pulse-sheet-handle {
   width: 44px;
   height: 5px;
-  background: #475569;
+  background: rgba(59, 130, 246, 0.4);
   border-radius: 3px;
   margin: 10px auto 10px;
 }
@@ -1429,17 +1494,19 @@ input, select, textarea {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(6px);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--border-subtle);
 }
 
 .pulse-gallery-circle-btn.saved {
-  color: var(--accent-emerald);
+  color: #3b82f6;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
 }
 
 .pulse-gallery-right-actions {
@@ -1465,7 +1532,8 @@ input, select, textarea {
 }
 
 .pulse-gallery-thumb.active {
-  border: 2px solid var(--accent-emerald);
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
 }
 
 .pulse-detail-body {
@@ -1491,7 +1559,7 @@ input, select, textarea {
 
 .pulse-detail-reviews-sub {
   font-size: 0.74rem;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-weight: 600;
   margin-top: 2px;
 }
@@ -1515,17 +1583,16 @@ input, select, textarea {
   gap: 4px;
   padding: 4px 9px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.6);
   border: 1px solid var(--border-subtle);
   font-size: 0.72rem;
   color: var(--text-secondary);
 }
 
 .pulse-detail-pill.open {
-  color: #34d399;
+  color: #60a5fa;
 }
 
-/* Primary Action Buttons Grid */
 .pulse-detail-action-buttons-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -1541,18 +1608,18 @@ input, select, textarea {
   border-radius: var(--radius-md);
   font-size: 0.8rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.6);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   transition: all 0.15s ease;
 }
 
 .pulse-action-grid-btn.primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
-  border: none;
+  background: var(--gradient-primary-btn);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
   font-weight: 800;
-  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
 }
 
 .pulse-detail-offer-banner {
@@ -1561,19 +1628,19 @@ input, select, textarea {
   gap: 10px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: linear-gradient(90deg, rgba(30, 58, 138, 0.3) 0%, rgba(3, 8, 20, 0.8) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
 }
 
 .pulse-offer-sparkle {
-  color: var(--accent-gold);
+  color: #60a5fa;
   flex-shrink: 0;
 }
 
 .pulse-offer-title {
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--accent-gold);
+  color: #60a5fa;
   letter-spacing: 0.04em;
 }
 
@@ -1600,7 +1667,7 @@ input, select, textarea {
 }
 
 .pulse-detail-tab-btn.active {
-  color: var(--accent-emerald);
+  color: #60a5fa;
 }
 
 .pulse-detail-tab-btn.active::after {
@@ -1610,8 +1677,9 @@ input, select, textarea {
   left: 0;
   right: 0;
   height: 2.5px;
-  background: var(--accent-emerald);
+  background: #3b82f6;
   border-radius: 2px;
+  box-shadow: 0 0 8px #3b82f6;
 }
 
 .pulse-tab-content-block {
@@ -1642,7 +1710,7 @@ input, select, textarea {
 
 .pulse-dish-card {
   padding: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   display: flex;
@@ -1664,13 +1732,13 @@ input, select, textarea {
 }
 
 .pulse-veg-indicator.veg {
-  border: 1.5px solid #16a34a;
-  background: #22c55e;
+  border: 1.5px solid #2563eb;
+  background: #3b82f6;
 }
 
 .pulse-veg-indicator.non-veg {
-  border: 1.5px solid #dc2626;
-  background: #ef4444;
+  border: 1.5px solid #1e3a8a;
+  background: #0f172a;
 }
 
 .pulse-dish-name {
@@ -1683,7 +1751,7 @@ input, select, textarea {
   display: inline-block;
   font-size: 0.6rem;
   font-weight: 700;
-  color: var(--accent-gold);
+  color: #60a5fa;
   margin-top: 2px;
 }
 
@@ -1706,7 +1774,7 @@ input, select, textarea {
   align-items: center;
   gap: 5px;
   padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   font-size: 0.72rem;
@@ -1714,7 +1782,7 @@ input, select, textarea {
 }
 
 .pulse-fac-check {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-detail-address-text {
@@ -1734,7 +1802,7 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(10, 15, 26, 0.97);
+  background: rgba(0, 0, 0, 0.98);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-medium);
   display: flex;
@@ -1746,7 +1814,7 @@ input, select, textarea {
 .pulse-sticky-avail {
   font-size: 0.82rem;
   font-weight: 800;
-  color: #34d399;
+  color: #60a5fa;
 }
 
 .pulse-sticky-sub {
@@ -1761,11 +1829,12 @@ input, select, textarea {
   gap: 6px;
   padding: 11px 22px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 800;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
   transition: transform 0.15s ease;
 }
 
@@ -1778,14 +1847,14 @@ input, select, textarea {
 }
 
 /* ==========================================================================
-   TABLE RESERVATION SHEET (5 STEPS)
+   TABLE RESERVATION SHEET & MODALS
    ========================================================================== */
 
 .pulse-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   z-index: 300;
   display: flex;
   flex-direction: column;
@@ -1793,19 +1862,21 @@ input, select, textarea {
   animation: fadeIn 0.2s ease-out;
 }
 
-.pulse-booking-sheet, .pulse-seat-sheet, .pulse-filter-sheet, .pulse-checkout-sheet, .pulse-location-sheet {
-  background: #0d1424;
-  border-top: 1px solid var(--border-medium);
-  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
-  max-height: 88vh;
+.pulse-booking-sheet,
+.pulse-seat-sheet,
+.pulse-filter-sheet,
+.pulse-checkout-sheet,
+.pulse-location-sheet {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.9);
-  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-.pulse-booking-header, .pulse-filter-header, .pulse-checkout-header, .pulse-location-sheet-header, .pulse-seat-header {
+.pulse-booking-header,
+.pulse-filter-header,
+.pulse-checkout-header,
+.pulse-location-sheet-header,
+.pulse-seat-header {
   padding: 14px 18px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
@@ -1817,7 +1888,7 @@ input, select, textarea {
 .pulse-booking-step-badge {
   font-size: 0.62rem;
   font-weight: 800;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   letter-spacing: 0.05em;
 }
 
@@ -1837,14 +1908,17 @@ input, select, textarea {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(10, 22, 56, 0.7);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
 }
 
-.pulse-booking-scroll-body, .pulse-filter-scroll-body, .pulse-checkout-scroll-body {
+.pulse-booking-scroll-body,
+.pulse-filter-scroll-body,
+.pulse-checkout-scroll-body {
   padding: 16px 18px;
   overflow-y: auto;
   display: flex;
@@ -1863,13 +1937,13 @@ input, select, textarea {
   margin-bottom: 8px;
 }
 
-/* Guests Stepper (− 2 +) */
+/* Guests Stepper */
 .pulse-guest-stepper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
 }
@@ -1878,7 +1952,8 @@ input, select, textarea {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 30, 70, 0.7);
+  border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -1887,8 +1962,10 @@ input, select, textarea {
 }
 
 .pulse-stepper-btn:hover:not(:disabled) {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
 }
 
 .pulse-stepper-btn:disabled {
@@ -1930,7 +2007,7 @@ input, select, textarea {
   width: 68px;
   padding: 10px 6px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -1939,8 +2016,9 @@ input, select, textarea {
 }
 
 .pulse-date-pill.active {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: var(--accent-emerald);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.35) 0%, rgba(10, 22, 56, 0.8) 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.45);
 }
 
 .pulse-date-day {
@@ -1957,7 +2035,7 @@ input, select, textarea {
 }
 
 .pulse-date-pill.active .pulse-date-label {
-  color: var(--accent-emerald);
+  color: #60a5fa;
 }
 
 .pulse-date-sub {
@@ -1975,9 +2053,10 @@ input, select, textarea {
 
 .pulse-period-toggle {
   display: flex;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.6);
   border-radius: var(--radius-full);
   padding: 2px;
+  border: 1px solid var(--border-subtle);
 }
 
 .pulse-period-btn {
@@ -1989,8 +2068,9 @@ input, select, textarea {
 }
 
 .pulse-period-btn.active {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
 }
 
 .pulse-time-slots-grid {
@@ -2003,7 +2083,7 @@ input, select, textarea {
   position: relative;
   padding: 9px 4px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
@@ -2013,17 +2093,18 @@ input, select, textarea {
 }
 
 .pulse-time-slot-pill.active {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
   font-weight: 900;
-  border-color: var(--accent-emerald);
+  border-color: #60a5fa;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
 }
 
 .pulse-slot-tag {
   position: absolute;
   top: -5px;
   right: 2px;
-  background: var(--accent-coral);
+  background: #1d4ed8;
   color: #fff;
   font-size: 0.52rem;
   font-weight: 800;
@@ -2044,22 +2125,23 @@ input, select, textarea {
   gap: 10px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .pulse-booking-offer-card.selected {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: var(--accent-emerald);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.25) 0%, rgba(2, 6, 18, 0.7) 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-offer-radio {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 1.5px solid #64748b;
+  border: 1.5px solid #1e3a8a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2070,7 +2152,8 @@ input, select, textarea {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
 }
 
 .pulse-offer-card-title {
@@ -2089,26 +2172,33 @@ input, select, textarea {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 800;
-  color: var(--accent-gold);
-  background: rgba(245, 158, 11, 0.1);
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.15);
   padding: 2px 6px;
   border-radius: 4px;
-  border: 1px dashed rgba(245, 158, 11, 0.4);
+  border: 1px dashed rgba(59, 130, 246, 0.4);
 }
 
 .pulse-booking-guarantee-note {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  justify-content: center;
-  padding: 6px;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(10, 22, 56, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.pulse-guarantee-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
 }
 
 .pulse-booking-footer {
-  padding: 14px 18px env(safe-area-inset-bottom, 16px);
-  background: rgba(8, 12, 20, 0.98);
+  padding: 12px 18px env(safe-area-inset-bottom, 14px);
+  background: rgba(0, 0, 0, 0.98);
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -2116,37 +2206,37 @@ input, select, textarea {
   gap: 12px;
 }
 
-.pulse-booking-summary-pill {
-  display: flex;
-  flex-direction: column;
+.pulse-booking-summary-col {
+  flex: 1;
 }
 
-.pulse-summary-text {
-  font-size: 0.78rem;
+.pulse-bs-guests-row {
+  font-size: 0.8rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
-.pulse-summary-badge {
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: var(--accent-emerald);
+.pulse-bs-datetime-row {
+  font-size: 0.7rem;
+  color: #60a5fa;
 }
 
-.pulse-confirm-booking-btn {
+.pulse-confirm-step-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #ffffff;
   font-size: 0.85rem;
-  font-weight: 900;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+  font-weight: 800;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
 }
 
 /* ==========================================================================
-   MOVIE DETAILS & SEAT SELECTION INTERFACE
+   MOVIE SEAT SELECTION INTERFACE
    ========================================================================== */
 
 .pulse-detail-sheet.movie {
@@ -2168,7 +2258,7 @@ input, select, textarea {
 .pulse-backdrop-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #0d1424 0%, rgba(13, 20, 36, 0.4) 60%, transparent 100%);
+  background: linear-gradient(to top, #071026 0%, rgba(7, 16, 38, 0.4) 60%, transparent 100%);
 }
 
 .pulse-trailer-play-btn {
@@ -2178,14 +2268,15 @@ input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(10, 22, 56, 0.75);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.4);
   color: #fff;
   padding: 6px 12px;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
   font-weight: 700;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-movie-detail-body {
@@ -2206,7 +2297,8 @@ input, select, textarea {
   aspect-ratio: 3/4;
   border-radius: var(--radius-md);
   object-fit: cover;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 14px rgba(30, 58, 138, 0.3);
+  border: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
@@ -2244,7 +2336,8 @@ input, select, textarea {
 .pulse-runtime-pill, .pulse-lang-pill {
   font-size: 0.68rem;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.5);
+  border: 1px solid var(--border-subtle);
   padding: 2px 6px;
   border-radius: 4px;
   display: inline-flex;
@@ -2281,14 +2374,14 @@ input, select, textarea {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #1e293b;
-  border: 1px solid var(--border-medium);
+  background: linear-gradient(135deg, #1e3a8a 0%, #050d24 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.78rem;
   font-weight: 800;
-  color: var(--accent-cyan);
+  color: #60a5fa;
   margin-bottom: 4px;
 }
 
@@ -2318,14 +2411,15 @@ input, select, textarea {
   align-items: center;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
 .pulse-cinema-date-btn.active {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: var(--accent-emerald);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.35) 0%, rgba(10, 22, 56, 0.8) 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
 }
 
 .pulse-c-day {
@@ -2347,7 +2441,7 @@ input, select, textarea {
 .pulse-fmt-chip {
   padding: 4px 10px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   font-size: 0.68rem;
   font-weight: 700;
@@ -2355,9 +2449,10 @@ input, select, textarea {
 }
 
 .pulse-fmt-chip.active {
-  background: var(--accent-cyan);
-  color: #080c14;
-  border-color: var(--accent-cyan);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
 }
 
 .pulse-cinemas-list {
@@ -2368,9 +2463,10 @@ input, select, textarea {
 
 .pulse-cinema-card {
   padding: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-card-gradient);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
 }
 
 .pulse-cinema-header {
@@ -2405,9 +2501,9 @@ input, select, textarea {
   font-weight: 800;
   padding: 1px 5px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.6);
   border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
+  color: #60a5fa;
 }
 
 .pulse-showtimes-grid {
@@ -2419,7 +2515,7 @@ input, select, textarea {
 .pulse-showtime-pill {
   padding: 6px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.5);
   border: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -2429,7 +2525,8 @@ input, select, textarea {
 }
 
 .pulse-showtime-pill:hover {
-  border-color: var(--accent-emerald);
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-st-time {
@@ -2445,7 +2542,7 @@ input, select, textarea {
 }
 
 .pulse-st-fmt {
-  color: var(--accent-cyan);
+  color: #60a5fa;
   font-weight: 700;
 }
 
@@ -2459,16 +2556,12 @@ input, select, textarea {
   margin-top: 2px;
 }
 
-.pulse-st-status.orange { color: #fbbf24; }
-.pulse-st-status.red { color: #f87171; }
+.pulse-st-status.orange { color: #93c5fd; }
+.pulse-st-status.red { color: #60a5fa; }
 
 /* THEATRE SEAT SELECTION INTERFACE */
 .pulse-seat-sheet {
   height: 90vh;
-}
-
-.pulse-seat-header {
-  padding: 12px 18px;
 }
 
 .pulse-seat-movie-title {
@@ -2485,7 +2578,7 @@ input, select, textarea {
   display: flex;
   justify-content: space-around;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(0, 0, 0, 0.6);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -2503,10 +2596,10 @@ input, select, textarea {
   border-radius: 3px;
 }
 
-.pulse-seat-sample.available { background: #334155; }
-.pulse-seat-sample.selected { background: var(--accent-emerald); }
-.pulse-seat-sample.sold { background: #1e293b; opacity: 0.3; }
-.pulse-seat-sample.recliner { background: var(--accent-gold); }
+.pulse-seat-sample.available { background: #0b1736; border: 1px solid rgba(59, 130, 246, 0.3); }
+.pulse-seat-sample.selected { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 0 10px #3b82f6; }
+.pulse-seat-sample.sold { background: #060a14; opacity: 0.3; }
+.pulse-seat-sample.recliner { border: 1px solid #60a5fa; background: #0c1a40; }
 
 .pulse-theatre-scroll-area {
   flex: 1;
@@ -2526,9 +2619,9 @@ input, select, textarea {
 
 .pulse-screen-curve {
   height: 8px;
-  border-top: 3px solid var(--accent-cyan);
+  border-top: 3px solid #3b82f6;
   border-radius: 50% 50% 0 0;
-  box-shadow: 0 -4px 16px var(--accent-cyan);
+  box-shadow: 0 -6px 20px rgba(59, 130, 246, 0.7);
   margin-bottom: 4px;
 }
 
@@ -2536,7 +2629,7 @@ input, select, textarea {
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: #60a5fa;
 }
 
 .pulse-theatre-layout {
@@ -2598,35 +2691,40 @@ input, select, textarea {
 }
 
 .pulse-seat-btn.available {
-  background: #334155;
-  color: #fff;
+  background: #0b1736;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #94a3b8;
 }
 
 .pulse-seat-btn.available:hover {
-  background: #475569;
+  background: #142a5e;
+  border-color: #3b82f6;
+  color: #fff;
 }
 
 .pulse-seat-btn.selected {
-  background: var(--accent-emerald) !important;
-  color: #022c22 !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #93c5fd !important;
   transform: scale(1.15);
-  box-shadow: 0 0 8px var(--accent-emerald);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.8) !important;
 }
 
 .pulse-seat-btn.sold {
-  background: #1e293b;
+  background: #060a14;
   color: transparent;
   opacity: 0.25;
   cursor: not-allowed;
 }
 
 .pulse-seat-btn.recliner {
-  border: 1px solid var(--accent-gold);
+  border: 1px solid #60a5fa;
+  background: #0c1a40;
 }
 
 .pulse-seat-footer {
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(8, 12, 20, 0.98);
+  background: rgba(0, 0, 0, 0.98);
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -2640,7 +2738,7 @@ input, select, textarea {
 }
 
 .pulse-seat-ids-sub {
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-size: 0.72rem;
   margin-left: 4px;
 }
@@ -2648,7 +2746,7 @@ input, select, textarea {
 .pulse-seat-total-price {
   font-size: 1.25rem;
   font-weight: 900;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-family: var(--font-mono);
 }
 
@@ -2701,7 +2799,7 @@ input, select, textarea {
 
 .pulse-event-meta-card {
   padding: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   display: flex;
@@ -2710,7 +2808,7 @@ input, select, textarea {
 }
 
 .pulse-meta-icon {
-  color: var(--accent-cyan);
+  color: #3b82f6;
   flex-shrink: 0;
 }
 
@@ -2738,7 +2836,8 @@ input, select, textarea {
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(10, 22, 56, 0.4);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
 }
 
@@ -2746,7 +2845,8 @@ input, select, textarea {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #0a1638 100%);
+  border: 1px solid rgba(59, 130, 246, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2782,7 +2882,7 @@ input, select, textarea {
 .pulse-timeline-time {
   font-family: var(--font-mono);
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: #60a5fa;
   width: 60px;
 }
 
@@ -2790,7 +2890,8 @@ input, select, textarea {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #64748b;
+  background: #2563eb;
+  box-shadow: 0 0 6px #2563eb;
 }
 
 .pulse-timeline-act {
@@ -2801,7 +2902,8 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(10, 22, 56, 0.4);
+  border: 1px solid var(--border-subtle);
   padding: 10px 12px;
   border-radius: var(--radius-sm);
 }
@@ -2815,7 +2917,7 @@ input, select, textarea {
 }
 
 .pulse-term-icon {
-  color: var(--accent-emerald);
+  color: #3b82f6;
   flex-shrink: 0;
 }
 
@@ -2825,7 +2927,7 @@ input, select, textarea {
   left: 0;
   right: 0;
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(10, 15, 26, 0.98);
+  background: rgba(0, 0, 0, 0.98);
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -2841,7 +2943,7 @@ input, select, textarea {
 .pulse-event-price-amount {
   font-size: 1.15rem;
   font-weight: 900;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-family: var(--font-mono);
 }
 
@@ -2854,7 +2956,7 @@ input, select, textarea {
 
 .pulse-ticket-qty-select {
   padding: 8px 10px;
-  background: #1e293b;
+  background: #0b1736;
   border: 1px solid var(--border-medium);
   color: #fff;
   border-radius: var(--radius-sm);
@@ -2869,7 +2971,7 @@ input, select, textarea {
 .pulse-search-fullscreen-overlay {
   position: fixed;
   inset: 0;
-  background: #080c14;
+  background: #000000;
   z-index: 400;
   display: flex;
   flex-direction: column;
@@ -2882,7 +2984,7 @@ input, select, textarea {
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .pulse-search-input-wrapper {
@@ -2891,7 +2993,7 @@ input, select, textarea {
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(135deg, rgba(10, 22, 56, 0.7) 0%, rgba(1, 3, 10, 0.9) 100%);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-full);
 }
@@ -2909,7 +3011,7 @@ input, select, textarea {
   color: var(--text-muted);
 }
 .pulse-mic-icon {
-  color: var(--accent-cyan);
+  color: #3b82f6;
 }
 
 .pulse-search-cancel-btn {
@@ -2947,132 +3049,7 @@ input, select, textarea {
 
 .pulse-clear-recents-link {
   font-size: 0.72rem;
-  color: var(--accent-emerald);
-  font-weight: 700;
-}
-
-.pulse-recent-chips-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.pulse-recent-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  font-size: 0.76rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.pulse-trending-chips-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.pulse-trending-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  border-radius: var(--radius-full);
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
-  font-size: 0.74rem;
-  font-weight: 700;
-}
-
-.pulse-trend-num {
-  font-size: 0.65rem;
-  color: #f59e0b;
-  font-weight: 800;
-}
-
-.pulse-search-category-group {
-  margin-bottom: 20px;
-}
-
-.pulse-search-group-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--accent-emerald);
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-}
-
-.pulse-search-group-items {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.pulse-search-item-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.pulse-search-item-row:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.pulse-search-thumb {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.pulse-search-thumb.poster {
-  width: 32px;
-  height: 46px;
-}
-
-.pulse-search-item-meta {
-  flex: 1;
-}
-
-.pulse-search-item-title {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--text-primary);
-}
-
-.pulse-search-item-sub {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.pulse-search-price {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--accent-emerald);
-}
-
-.pulse-no-results-box {
-  text-align: center;
-  padding: 48px 16px;
-}
-
-.pulse-no-results-emoji {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+  color: #3b82f6;
 }
 
 /* ==========================================================================
@@ -3083,9 +3060,10 @@ input, select, textarea {
   display: flex;
   gap: 12px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-card-gradient);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
 }
 
 .pulse-checkout-thumb {
@@ -3109,7 +3087,7 @@ input, select, textarea {
 
 .pulse-checkout-venue {
   font-size: 0.72rem;
-  color: var(--accent-cyan);
+  color: #60a5fa;
   margin-top: 2px;
 }
 
@@ -3130,12 +3108,12 @@ input, select, textarea {
   gap: 8px;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px dashed var(--border-medium);
 }
 
 .pulse-tag-icon {
-  color: var(--accent-gold);
+  color: #60a5fa;
 }
 
 .pulse-coupon-native-input {
@@ -3150,8 +3128,9 @@ input, select, textarea {
 
 .pulse-coupon-apply-btn {
   padding: 4px 10px;
-  background: var(--accent-gold);
-  color: #080c14;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
   border-radius: 4px;
   font-size: 0.72rem;
   font-weight: 800;
@@ -3159,7 +3138,7 @@ input, select, textarea {
 
 .pulse-coupon-error {
   font-size: 0.68rem;
-  color: var(--accent-coral);
+  color: #60a5fa;
 }
 
 .pulse-quick-coupons-row {
@@ -3172,9 +3151,9 @@ input, select, textarea {
   font-size: 0.68rem;
   padding: 4px 8px;
   border-radius: 4px;
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: #fbbf24;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
   font-weight: 700;
   cursor: pointer;
 }
@@ -3190,8 +3169,8 @@ input, select, textarea {
   align-items: center;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid var(--accent-emerald);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.25) 0%, rgba(2, 6, 18, 0.7) 100%);
+  border: 1px solid #3b82f6;
 }
 
 .pulse-applied-left {
@@ -3201,25 +3180,26 @@ input, select, textarea {
 }
 
 .pulse-applied-check {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-applied-sub {
   font-size: 0.68rem;
-  color: #34d399;
+  color: #93c5fd;
 }
 
 .pulse-remove-coupon-btn {
   font-size: 0.68rem;
   font-weight: 700;
-  color: var(--accent-coral);
+  color: #60a5fa;
 }
 
 .pulse-checkout-bill-card {
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-card-gradient);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -3241,7 +3221,7 @@ input, select, textarea {
 }
 
 .pulse-bill-row.discount {
-  color: #34d399;
+  color: #60a5fa;
   font-weight: 700;
 }
 
@@ -3258,7 +3238,7 @@ input, select, textarea {
 }
 
 .pulse-bill-row .highlight {
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-size: 1.1rem;
 }
 
@@ -3282,22 +3262,23 @@ input, select, textarea {
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .pulse-payment-card.selected {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: var(--accent-emerald);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.25) 0%, rgba(2, 6, 18, 0.7) 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-pm-radio {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 1.5px solid #64748b;
+  border: 1.5px solid #1e3a8a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3307,11 +3288,12 @@ input, select, textarea {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
 }
 
 .pulse-pm-icon {
-  color: var(--accent-cyan);
+  color: #3b82f6;
 }
 
 .pulse-pm-meta {
@@ -3332,8 +3314,8 @@ input, select, textarea {
 .pulse-pm-fast-tag {
   font-size: 0.58rem;
   font-weight: 800;
-  color: var(--accent-emerald);
-  background: rgba(16, 185, 129, 0.1);
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.15);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -3349,7 +3331,7 @@ input, select, textarea {
 
 .pulse-checkout-footer {
   padding: 12px 18px env(safe-area-inset-bottom, 14px);
-  background: rgba(8, 12, 20, 0.98);
+  background: rgba(0, 0, 0, 0.98);
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -3359,7 +3341,7 @@ input, select, textarea {
 .pulse-checkout-footer-amount {
   font-size: 1.25rem;
   font-weight: 900;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-family: var(--font-mono);
 }
 
@@ -3374,22 +3356,23 @@ input, select, textarea {
   justify-content: center;
   padding: 12px 24px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #ffffff;
   font-size: 0.88rem;
   font-weight: 900;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
 }
 
 /* ==========================================================================
-   DIGITAL TICKET MODAL (SECTION 18)
+   DIGITAL TICKET PASS & SECURITY RIBBON
    ========================================================================== */
 
 .pulse-ticket-modal-card {
   width: 100%;
   max-width: 360px;
-  background: #0f172a;
-  border: 1px solid var(--border-medium);
+  background: linear-gradient(160deg, #091638 0%, #01040a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-elevated);
@@ -3410,21 +3393,22 @@ input, select, textarea {
   gap: 5px;
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--accent-emerald);
+  color: #60a5fa;
   letter-spacing: 0.05em;
 }
 
 .pulse-digital-pass-body {
   padding: 16px;
-  background: #080c14;
+  background: #000000;
 }
 
-/* Animated Security Shimmer Hologram Ribbon */
+/* Animated Security Shimmer Ribbon */
 .pulse-ticket-security-ribbon {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, #1e1b4b 0%, #064e3b 50%, #1e1b4b 100%);
-  padding: 4px;
+  background: var(--gradient-ribbon);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 5px;
   border-radius: 4px;
   margin-bottom: 12px;
   text-align: center;
@@ -3436,7 +3420,7 @@ input, select, textarea {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.5), transparent);
   animation: shimmerMove 3s infinite linear;
 }
 
@@ -3447,7 +3431,7 @@ input, select, textarea {
 .pulse-security-text {
   font-size: 0.55rem;
   font-weight: 800;
-  color: #fff;
+  color: #93c5fd;
   letter-spacing: 0.08em;
 }
 
@@ -3463,13 +3447,14 @@ input, select, textarea {
   height: 52px;
   border-radius: 8px;
   object-fit: cover;
+  border: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
 .pulse-ticket-type-tag {
   font-size: 0.6rem;
   font-weight: 800;
-  color: var(--accent-cyan);
+  color: #60a5fa;
   letter-spacing: 0.05em;
 }
 
@@ -3495,14 +3480,15 @@ input, select, textarea {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #0f172a;
+  background: #000000;
+  border: 1px solid var(--border-subtle);
 }
 .pulse-cutout-notch.left { margin-left: -8px; }
 .pulse-cutout-notch.right { margin-right: -8px; }
 
 .pulse-dashed-line {
   flex: 1;
-  border-top: 1.5px dashed var(--border-subtle);
+  border-top: 1.5px dashed var(--border-medium);
 }
 
 .pulse-ticket-meta-grid {
@@ -3513,7 +3499,8 @@ input, select, textarea {
 }
 
 .pulse-ticket-meta-cell {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.45);
+  border: 1px solid var(--border-subtle);
   padding: 8px;
   border-radius: 6px;
 }
@@ -3536,7 +3523,7 @@ input, select, textarea {
 }
 
 .pulse-t-val.highlight {
-  color: var(--accent-emerald);
+  color: #60a5fa;
 }
 
 .pulse-ticket-qr-section {
@@ -3550,15 +3537,18 @@ input, select, textarea {
 .pulse-qr-code-frame {
   position: relative;
   padding: 8px;
-  background: #fff;
+  background: #040a18;
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
   border-radius: 8px;
   width: 140px;
   height: 140px;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.25);
 }
 
 .pulse-qr-code-img {
   width: 100%;
   height: 100%;
+  filter: invert(1) brightness(1.2);
 }
 
 .pulse-qr-scan-bar {
@@ -3567,8 +3557,8 @@ input, select, textarea {
   left: 8px;
   right: 8px;
   height: 2px;
-  background: var(--accent-emerald);
-  box-shadow: 0 0 8px var(--accent-emerald);
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
   animation: scanBar 2s infinite ease-in-out alternate;
 }
 
@@ -3592,7 +3582,7 @@ input, select, textarea {
   grid-template-columns: 2fr 1fr 1fr;
   gap: 8px;
   padding: 12px 16px;
-  background: #0f172a;
+  background: #000000;
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -3603,15 +3593,17 @@ input, select, textarea {
   gap: 4px;
   padding: 8px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.6);
+  border: 1px solid var(--border-subtle);
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .pulse-ticket-action-btn.primary {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
   font-weight: 800;
 }
 
@@ -3622,8 +3614,8 @@ input, select, textarea {
 .pulse-success-modal-card {
   width: 100%;
   max-width: 360px;
-  background: #0d1424;
-  border: 1px solid var(--border-medium);
+  background: linear-gradient(160deg, #091638 0%, #01040a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   border-radius: var(--radius-xl);
   padding: 24px 20px;
   text-align: center;
@@ -3635,7 +3627,8 @@ input, select, textarea {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3643,14 +3636,14 @@ input, select, textarea {
 }
 
 .pulse-success-check-icon {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-success-glow-ring {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid var(--accent-emerald);
+  border: 2px solid #3b82f6;
   animation: pingRing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
@@ -3667,8 +3660,9 @@ input, select, textarea {
   gap: 4px;
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--accent-emerald);
-  background: rgba(16, 185, 129, 0.1);
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   padding: 3px 8px;
   border-radius: var(--radius-full);
   margin-bottom: 8px;
@@ -3688,7 +3682,7 @@ input, select, textarea {
 
 .pulse-success-summary-card {
   padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   text-align: left;
@@ -3710,7 +3704,7 @@ input, select, textarea {
 .pulse-success-details-row {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-subtle);
   padding-top: 6px;
   margin-bottom: 6px;
 }
@@ -3731,9 +3725,9 @@ input, select, textarea {
   display: flex;
   justify-content: space-between;
   font-size: 0.72rem;
-  color: var(--accent-cyan);
+  color: #60a5fa;
   padding-top: 4px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .pulse-success-actions-col {
@@ -3749,7 +3743,8 @@ input, select, textarea {
   gap: 6px;
   padding: 8px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.5);
+  border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -3771,21 +3766,21 @@ input, select, textarea {
   gap: 12px;
   padding: 12px 14px;
   margin: 14px 18px 8px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid var(--accent-emerald);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.2) 0%, rgba(2, 6, 18, 0.7) 100%);
+  border: 1px solid #3b82f6;
   border-radius: var(--radius-md);
   cursor: pointer;
 }
 
 .pulse-detect-icon-box {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-detect-title {
   display: block;
   font-size: 0.82rem;
   font-weight: 800;
-  color: #34d399;
+  color: #93c5fd;
 }
 
 .pulse-detect-sub {
@@ -3814,15 +3809,16 @@ input, select, textarea {
   align-items: center;
   padding: 12px 14px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(10, 22, 56, 0.4);
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .pulse-city-card.selected {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: var(--accent-emerald);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.25) 0%, rgba(2, 6, 18, 0.7) 100%);
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
 }
 
 .pulse-city-name-row {
@@ -3834,7 +3830,7 @@ input, select, textarea {
 }
 
 .pulse-city-pin {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 .pulse-city-state {
@@ -3850,14 +3846,17 @@ input, select, textarea {
 }
 
 .pulse-city-check {
-  color: var(--accent-emerald);
+  color: #3b82f6;
 }
 
 /* ==========================================================================
    BOOKINGS VIEW, SAVED VIEW, PROFILE VIEW, OFFERS VIEW
    ========================================================================== */
 
-.pulse-bookings-page, .pulse-saved-page, .pulse-profile-page, .pulse-offers-page {
+.pulse-bookings-page,
+.pulse-saved-page,
+.pulse-profile-page,
+.pulse-offers-page {
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -3882,7 +3881,7 @@ input, select, textarea {
 /* Segmented Tabs */
 .pulse-segmented-tabs {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.5);
   border-radius: var(--radius-full);
   padding: 3px;
   border: 1px solid var(--border-subtle);
@@ -3903,14 +3902,14 @@ input, select, textarea {
 }
 
 .pulse-seg-tab.active {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
 }
 
 .pulse-seg-count {
   font-size: 0.62rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   padding: 1px 5px;
   border-radius: 999px;
 }
@@ -3923,10 +3922,6 @@ input, select, textarea {
 
 .pulse-booking-ticket-card {
   padding: 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -3943,6 +3938,7 @@ input, select, textarea {
   height: 50px;
   border-radius: 8px;
   object-fit: cover;
+  border: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
@@ -3960,7 +3956,7 @@ input, select, textarea {
 .pulse-btc-type-badge {
   font-size: 0.6rem;
   font-weight: 800;
-  color: var(--accent-cyan);
+  color: #60a5fa;
 }
 
 .pulse-btc-status-pill {
@@ -3969,9 +3965,19 @@ input, select, textarea {
   padding: 2px 6px;
   border-radius: 4px;
 }
-.pulse-btc-status-pill.upcoming { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-.pulse-btc-status-pill.past { background: rgba(255, 255, 255, 0.08); color: #94a3b8; }
-.pulse-btc-status-pill.cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.pulse-btc-status-pill.upcoming {
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+.pulse-btc-status-pill.past {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+.pulse-btc-status-pill.cancelled {
+  background: rgba(30, 58, 138, 0.3);
+  color: #60a5fa;
+}
 
 .pulse-btc-title {
   font-size: 0.95rem;
@@ -3988,7 +3994,7 @@ input, select, textarea {
   display: flex;
   justify-content: space-between;
   padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(10, 22, 56, 0.4);
   border-radius: 6px;
 }
 
@@ -4017,7 +4023,7 @@ input, select, textarea {
   font-weight: 800;
   color: var(--text-primary);
 }
-.pulse-btc-amount.free { color: var(--accent-emerald); }
+.pulse-btc-amount.free { color: #60a5fa; }
 
 .pulse-btc-actions-row {
   display: flex;
@@ -4032,34 +4038,38 @@ input, select, textarea {
   gap: 4px;
   padding: 8px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.5);
+  border: 1px solid var(--border-subtle);
   font-size: 0.72rem;
   font-weight: 700;
 }
 
 .pulse-btc-action-btn.primary {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
   font-weight: 800;
 }
 
 .pulse-btc-action-btn.danger {
-  color: var(--accent-coral);
+  color: #93c5fd;
 }
 
 .pulse-empty-state-card {
   text-align: center;
   padding: 48px 16px;
-  background: var(--bg-card);
+  background: var(--bg-card-gradient);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  box-shadow: var(--shadow-card);
 }
 
 .pulse-empty-icon {
-  color: var(--text-dim);
+  color: #2563eb;
 }
 
 .pulse-empty-state-card h4 {
@@ -4088,7 +4098,7 @@ input, select, textarea {
   gap: 6px;
   padding: 7px 14px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.5);
   border: 1px solid var(--border-subtle);
   font-size: 0.74rem;
   font-weight: 700;
@@ -4097,14 +4107,15 @@ input, select, textarea {
 }
 
 .pulse-collection-pill.active {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: var(--accent-emerald);
-  color: #34d399;
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+  border-color: #60a5fa;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
 }
 
 .pulse-coll-count {
   font-size: 0.62rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   padding: 1px 5px;
   border-radius: 999px;
 }
@@ -4133,10 +4144,7 @@ input, select, textarea {
   display: flex;
   gap: 12px;
   padding: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  cursor: pointer;
 }
 
 .pulse-saved-thumb {
@@ -4144,6 +4152,7 @@ input, select, textarea {
   height: 60px;
   border-radius: 8px;
   object-fit: cover;
+  border: 1px solid var(--border-subtle);
 }
 
 .pulse-saved-thumb.poster {
@@ -4191,9 +4200,6 @@ input, select, textarea {
   align-items: center;
   gap: 14px;
   padding: 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
 }
 
 .pulse-profile-avatar-large {
@@ -4201,13 +4207,15 @@ input, select, textarea {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #050d24 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   font-weight: 800;
-  color: #080c14;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.35);
 }
 
 .pulse-profile-verified-badge {
@@ -4217,12 +4225,12 @@ input, select, textarea {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--accent-emerald);
-  color: #080c14;
+  background: #3b82f6;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--bg-card);
+  border: 2px solid #000000;
 }
 
 .pulse-profile-name {
@@ -4241,8 +4249,9 @@ input, select, textarea {
   gap: 4px;
   font-size: 0.62rem;
   font-weight: 800;
-  color: var(--accent-gold);
-  background: rgba(245, 158, 11, 0.1);
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   padding: 2px 7px;
   border-radius: var(--radius-full);
   margin-top: 4px;
@@ -4256,9 +4265,6 @@ input, select, textarea {
 
 .pulse-stat-card {
   padding: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
   text-align: center;
   cursor: pointer;
 }
@@ -4279,10 +4285,6 @@ input, select, textarea {
 .pulse-profile-menu-group {
   display: flex;
   flex-direction: column;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 
 .pulse-profile-row-item {
@@ -4290,7 +4292,7 @@ input, select, textarea {
   justify-content: space-between;
   align-items: center;
   padding: 12px 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -4300,7 +4302,7 @@ input, select, textarea {
 }
 
 .pulse-profile-row-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(37, 99, 235, 0.1);
 }
 
 .pulse-profile-row-left {
@@ -4313,7 +4315,8 @@ input, select, textarea {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(10, 22, 56, 0.6);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4339,8 +4342,9 @@ input, select, textarea {
 .pulse-profile-badge {
   font-size: 0.65rem;
   font-weight: 700;
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
   padding: 2px 7px;
   border-radius: var(--radius-full);
 }
@@ -4364,9 +4368,6 @@ input, select, textarea {
 }
 
 .pulse-offer-card-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -4382,8 +4383,9 @@ input, select, textarea {
 .pulse-oci-cat {
   font-size: 0.6rem;
   font-weight: 800;
-  color: var(--accent-emerald);
-  background: rgba(16, 185, 129, 0.1);
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -4391,8 +4393,9 @@ input, select, textarea {
 .pulse-oci-bank {
   font-size: 0.6rem;
   font-weight: 800;
-  color: var(--accent-gold);
-  background: rgba(245, 158, 11, 0.1);
+  color: #93c5fd;
+  background: rgba(10, 22, 56, 0.6);
+  border: 1px solid var(--border-subtle);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -4428,7 +4431,7 @@ input, select, textarea {
 .pulse-oci-code {
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--accent-gold);
+  color: #60a5fa;
 }
 
 .pulse-oci-copy-btn, .pulse-oci-use-btn {
@@ -4442,18 +4445,20 @@ input, select, textarea {
 }
 
 .pulse-oci-copy-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 22, 56, 0.6);
+  border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
 
 .pulse-oci-use-btn {
-  background: var(--accent-emerald);
-  color: #022c22;
+  background: var(--gradient-primary-btn);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #ffffff;
   font-weight: 800;
 }
 
 /* ==========================================================================
-   FLOATING BOTTOM NAVIGATION (SECTION 16)
+   FLOATING BOTTOM NAVIGATION
    ========================================================================== */
 
 .pulse-floating-bottom-nav {
@@ -4467,17 +4472,17 @@ input, select, textarea {
 
 .pulse-nav-island {
   pointer-events: auto;
-  background: rgba(13, 20, 36, 0.95);
+  background: var(--gradient-nav-island);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-medium);
+  border: 1px solid rgba(59, 130, 246, 0.32);
   border-radius: var(--radius-full);
   height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.95), 0 0 25px rgba(30, 58, 138, 0.28);
 }
 
 .pulse-nav-tab-btn {
@@ -4496,7 +4501,7 @@ input, select, textarea {
 }
 
 .pulse-nav-tab-btn.active {
-  color: var(--accent-emerald);
+  color: #60a5fa;
   font-weight: 800;
 }
 
@@ -4508,7 +4513,9 @@ input, select, textarea {
   position: absolute;
   top: -4px;
   right: -8px;
-  background: var(--accent-coral);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
   color: #fff;
   font-size: 0.55rem;
   font-weight: 900;
@@ -4526,7 +4533,7 @@ input, select, textarea {
   bottom: 5px;
   width: 14px;
   height: 2.5px;
-  background: var(--accent-emerald);
+  background: #3b82f6;
   border-radius: 2px;
-  box-shadow: 0 0 8px var(--accent-emerald);
+  box-shadow: 0 0 10px #3b82f6;
 }

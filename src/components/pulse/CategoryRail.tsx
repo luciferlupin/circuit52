@@ -17,7 +17,7 @@ const CATEGORIES: CategoryItem[] = [
     name: 'Dining',
     tagline: 'Book Tables',
     icon: '🍽️',
-    gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)'
+    gradient: 'linear-gradient(135deg, #2563eb 0%, #0a1638 100%)'
   },
   {
     id: 'MOVIES',
@@ -25,7 +25,7 @@ const CATEGORIES: CategoryItem[] = [
     tagline: 'IMAX & 4DX',
     badge: 'NEW',
     icon: '🎬',
-    gradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)'
+    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #050d24 100%)'
   },
   {
     id: 'EVENTS',
@@ -33,28 +33,28 @@ const CATEGORIES: CategoryItem[] = [
     tagline: 'Live Gigs',
     badge: 'HOT',
     icon: '⚡',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)'
+    gradient: 'linear-gradient(135deg, #3b82f6 0%, #0c1c4d 100%)'
   },
   {
     id: 'NIGHTLIFE',
     name: 'Nightlife',
     tagline: 'Rooftops & Bars',
     icon: '🍸',
-    gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'
+    gradient: 'linear-gradient(135deg, #1e40af 0%, #030816 100%)'
   },
   {
     id: 'ACTIVITIES',
     name: 'Activities',
     tagline: 'Workshops & Sports',
     icon: '🎯',
-    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)'
+    gradient: 'linear-gradient(135deg, #1e3a8a 0%, #060e22 100%)'
   },
   {
     id: 'EXPERIENCES',
     name: 'Experiences',
     tagline: 'Yachting & Spas',
     icon: '✨',
-    gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)'
+    gradient: 'linear-gradient(135deg, #2563eb 0%, #081330 100%)'
   }
 ];
 

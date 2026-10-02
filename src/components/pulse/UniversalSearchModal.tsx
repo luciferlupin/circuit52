@@ -215,7 +215,7 @@ export const UniversalSearchModal: React.FC = () => {
                           </div>
                           <div className="pulse-rating-box">
                             <span>{rest.rating}</span>
-                            <Star size={10} fill="#86efac" />
+                            <Star size={10} fill="#93c5fd" color="#93c5fd" />
                           </div>
                         </div>
                       ))}
