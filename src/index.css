@@ -4036,12 +4036,14 @@ input, select, textarea {
 
 .pulse-btc-info {
   flex: 1;
+  min-width: 0;
 }
 
 .pulse-btc-type-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
   margin-bottom: 2px;
 }
 
@@ -4075,11 +4077,19 @@ input, select, textarea {
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--text-primary);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pulse-btc-venue {
   font-size: 0.72rem;
   color: var(--text-muted);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pulse-btc-meta-matrix {
@@ -4254,24 +4264,33 @@ input, select, textarea {
 
 .pulse-saved-meta {
   flex: 1;
+  min-width: 0;
 }
 
 .pulse-saved-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
 }
 
 .pulse-saved-title {
   font-size: 0.88rem;
   font-weight: 800;
   color: var(--text-primary);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pulse-saved-sub {
   font-size: 0.7rem;
   color: var(--text-muted);
   margin: 1px 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pulse-saved-bottom-row {
@@ -4869,8 +4888,8 @@ input, select, textarea {
 }
 
 .pulse-hero-card {
-  min-height: 215px;
-  height: 220px;
+  min-height: 220px;
+  height: auto;
 }
 
 .pulse-hero-content {
